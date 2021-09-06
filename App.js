@@ -8,7 +8,7 @@ import Menu from './src/pages/Menu'
 
 import api from './src/services/api'
 
-// Testando a Ap
+// Testando a Api
 export default () => {
   api.get("/clientes").then((response) => {
     console.log(response.data)
