@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styles } from '../Menu/styles'
 import { Text, View, Image } from 'react-native'
 import {
@@ -9,8 +9,12 @@ import {
 } from '@react-navigation/drawer';
 import { Feather, AntDesign, FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import firebase from '../../../firebaseconection';
 
 export default function Menu(props) {
+
+  // Navegação entre telas
+  const navigation = useNavigation();
 
   const AbrirFazerLogin = () => {
     navigation.reset({
@@ -21,17 +25,28 @@ export default function Menu(props) {
 
   const AbrirHome = () => {
     navigation.reset({
-        routes: [{name: 'Home'}] 
+      routes: [{ name: 'Home' }]
     })
-}
+  }
 
-  const navigation = useNavigation();
+    // Passar o email para a tela
+    const [email, setEmail] = useState('');
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setEmail(user.email);
+      }
+  
+    });
+
 
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.viewPerfil}>
-        <Text style={styles.textoUsuario}>Papai</Text>
-        <Text style={styles.textoUsuario}>De Pet</Text>
+        <Text style={styles.textoMenu}>Pet Amigos</Text>
+        <Text style={styles.textoUsuario}>{email}</Text>
+
+        <Image style={styles.avatar} source={require('../../../assets/src/MenuAvatar.png')} />
       </View>
       <DrawerContentScrollView {...props}>
 
@@ -39,7 +54,7 @@ export default function Menu(props) {
           icon={({ size, color }) => (
             <AntDesign name="home" size={24} color="black" />
           )}
-          label="Pet Amigos" />
+          label="Tela Inicial" />
         <DrawerItem
           icon={({ size, color }) => (
             <FontAwesome name="user-circle-o" size={24} color="black" />

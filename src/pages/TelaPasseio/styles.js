@@ -4,44 +4,41 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#C0C0C0',
+        backgroundColor: '#E1E2E1',
         alignItems: 'center',
 
     },
-    acessoMenu: {
-        backgroundColor: 'white',
-        width: hp('7%'),
-        height: hp('7%'),
-        alignItems: 'center',
-        justifyContent: 'center',
-        top: hp('6.8%'),
+    iconeVoltar:{
         right: wp('38%'),
-        borderRadius: 9,
-        borderTopLeftRadius: 0.5,
+        top: hp('2%')
+    
 
     },
     texto: {
-        fontSize: hp('3.8%'),
-        top: hp('10%'),
-        left: wp('3%')
+        fontSize: 25,
+        top: 25
+        
     },
     inputLocal: {
-        backgroundColor: '#FFF',
         borderRadius: wp('2%'),
         width: wp('90%'),
         height: hp('6.5%'),
         padding: 10,
-        top: hp('10%'),
-
+        top: hp('4%'),   
+        backgroundColor: '#C41D00',
+        borderBottomWidth: 2, 
+        borderLeftWidth: 2,
+        borderRightWidth: 2,
+        borderTopWidth: 2,
     },
     iconeLocal: {
         left: wp('40%'),
-        top: hp('5%')
-
+        bottom: hp('1%'),
+        
     },
     iconePesquisa: {
         left: wp('40%'),
-        top: hp('7.5%')
+        bottom: hp('1.5%'),      
 
     },
 
@@ -52,12 +49,14 @@ const styles = StyleSheet.create({
         height: hp('6.5%'),
         padding: 10,
         marginVertical: 10,
-        top: hp('14%'),
-
+        top: hp('5%'),
+        
     },
-    iconePasseio:{
-        bottom: hp('35%')
-    }
+    iconeBanho:{
+        bottom: hp('12.5%'),
+        right: wp('8.5%')
+    },
+
 })
 
 export { styles };

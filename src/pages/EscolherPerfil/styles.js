@@ -4,7 +4,7 @@ import {StyleSheet} from 'react-native'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#C0C0C0',
+        backgroundColor: '#E1E2E1',
         alignItems: 'center',
         justifyContent: 'center'
     
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         
         fontSize: hp('6.5%'),
         left: hp('5.5%'), 
-        color: '#FF5700',
+        color: '#C41D00',
         fontWeight: 'bold',
         
     },
@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
         fontSize: hp('6.3%'),
         left: hp('9.4%'),
         fontWeight: 'bold',
-        bottom: 14     
+        bottom: 14,
+
     },
     logo:{
         marginVertical: 10,
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     
     botaoCliente: {
 
-        backgroundColor: '#FF5700',
+        backgroundColor: '#C41D00',
         height: hp('20%'),
         width: wp ('28%'),
         alignItems: 'center',
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
         
     },
     botaoParceiro:{
-        backgroundColor: '#000',
+        backgroundColor: '#FF5700',
         height: hp('20%'),
         width: wp ('28%'),
         alignItems: 'center',
@@ -66,10 +67,7 @@ const styles = StyleSheet.create({
         borderLeftWidth: 2,
         borderRightWidth: 2,
         borderBottomWidth: 2,
-        borderBottomColor: '#FF5700',
-        borderLeftColor: '#FF5700',
-        borderTopColor: '#FF5700',
-        borderRightColor: '#FF5700',
+        
 
     },
     textBotaoCliente:{

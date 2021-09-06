@@ -8,7 +8,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FFFFFF"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,14 +17,17 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.uniceub.PetAmigos"
     },
     "android": {
+      "package": "com.uniceub.PetAmigos",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
-    },
+        "backgroundColor": "#000000"    
+      }    
+    }
+    ,
     "web": {
       "favicon": "./assets/favicon.png"
     }

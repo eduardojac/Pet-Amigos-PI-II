@@ -5,7 +5,7 @@ import { color } from 'react-native-reanimated';
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: '#C0C0C0',
+        backgroundColor: '#E1E2E1',
         alignItems: 'center',
     },
 
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     pet:{    
         fontSize: hp('6.5%'),
         right: hp('0.2%'), 
-        color: '#FF5700',
+        color: '#C41D00',
         fontWeight: 'bold',
         bottom:hp('7%')
         
@@ -40,8 +40,7 @@ const styles = StyleSheet.create({
     },
 
     botaoBanho:{
-        backgroundColor:'#FF5700',
-        
+        backgroundColor:'#C41D00',   
         width: wp('35%'),
         right:hp('9%'),
         borderRadius: 7,
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
     },
 
     botaoPasseio:{
-        backgroundColor:'#FF5700',
+        backgroundColor:'#C41D00',
         width: wp('35%'),
         left:hp('15%'),
         borderRadius: 7,
@@ -94,7 +93,7 @@ const styles = StyleSheet.create({
     },
 
     botaoMeuPet:{
-        backgroundColor:'#FF5700',
+        backgroundColor:'#C41D00',
         width: wp('35%'),
         right:hp('9%'),
         borderRadius: 7,
@@ -119,7 +118,7 @@ const styles = StyleSheet.create({
     },
 
     botaoSair:{
-        backgroundColor:'#FF5700',
+        backgroundColor:'#C41D00',
         width: wp('35%'),
         left:hp('15%'),
         borderRadius: 7,
@@ -149,12 +148,41 @@ const styles = StyleSheet.create({
         height: hp ('7%'),
         alignItems: 'center',
         justifyContent: 'center',
-        bottom: hp ('90%'),
+        bottom: hp ('95%'),
         right: wp ('38%'),
         borderRadius:9,
         borderTopLeftRadius:0.5,
         
+    },
+    estilo: {
+        top: hp ('25%'),
+        height: hp ('5%')
+    },
+    botaoEmail:{
+        width: wp('90%'),
+        height: hp('5%'),
+        backgroundColor: "#FFFFFF",
+        bottom: hp('7%'),
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderBottomWidth: 1, 
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+        borderTopWidth: 1,
+        borderRadius: 7
+    },
+    textEmail:{
+        fontWeight: 'bold',
+        top: hp('1.8%'),
+        
+    },
+    iconeEmail:{
+        right: wp('40%'),
+        bottom: hp('1.5%'),
+        
     }
+    
+
 })
 
 export {styles};

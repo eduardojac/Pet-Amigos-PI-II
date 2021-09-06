@@ -1,9 +1,9 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { TouchableOpacity, Text, View, SafeAreaView, Image, TextInput } from 'react-native';
-import { styles } from '../RecuperarSenha/styles.js';
+import { styles } from '../ConfirmacaoCadP/styles.js';
 
-export default function RecuperarSenha() {
+export default function ConfirmacaoCadP() {
 
     //Navegação entre telas
     const navigation = useNavigation();
@@ -16,22 +16,17 @@ export default function RecuperarSenha() {
     return (
         <SafeAreaView style={styles.container}>
 
+
             <Text style={styles.textoPet}>Pet</Text>
 
             <Text style={styles.textoAmigos}>Amigos</Text>
 
             <Image style={styles.logo} source={require('../../../assets/src/patinhaLogin.png')} />
 
-            <Text style={styles.InformacaoEmail}>Lhe enviaremos um email com mais informações sobre como recuperar sua senha</Text>
-
-            <TextInput style={styles.inputEmail} placeholder='Email'></TextInput>
-
-            <TouchableOpacity style={styles.botaoEnviarEmail} >
-                <Text style={styles.textEnviarEmail}>ENVIAR</Text>
-            </TouchableOpacity>
+            <Text style={styles.InformacaoEmail}>Cadastro em análise, verifique seu email nos próximos 10 dias para verificar o retorno</Text>
 
             <TouchableOpacity style={styles.botaoJaTemCadastro} onPress={AbrirFazerLogin}>
-                <Text style={{ fontSize: 17 }}>Já tem cadastro? Acesse!</Text>
+                <Text style={{ fontSize: 17 }}>Voltar a tela inicial</Text>
             </TouchableOpacity>
 
         </SafeAreaView>

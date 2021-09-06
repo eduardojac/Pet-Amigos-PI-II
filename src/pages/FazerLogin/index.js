@@ -1,18 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, Image, TouchableOpacity, StyleSheet, SafeAreaView, TextInput, Alert } from 'react-native';
-import { styles } from '../FazerLogin/styles.js';
+import { styles, LoadingIcon } from '../FazerLogin/styles.js';
 import firebase from '../../../firebaseconection';
-import Home from '../Home';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import api from '../../services/api'
 
 export default function FazerLogin() {
 
-    const falha = () =>
-    Alert.alert("Usuário ou senha incorretos!")
-    
-
+    // Navegação entre telas
     const navigation = useNavigation();
 
+    const AbrirHome = () => {
+        navigation.reset({
+            routes: [{ name: 'Home' }]
+        })
+    }
+
+    const AbrirTelaPerfil = () => {
+        navigation.reset({
+            routes: [{ name: 'EscolherPerfil' }]
+        })
+    }
+ 
+    const AbrirRecuperarSenha = () => {
+        navigation.reset({
+            routes: [{ name: 'RecuperarSenha' }]
+        })
+    }
+
+    // Testando api
+    const testarApi = () =>{
+        api.get('/clientes').then((response) =>{
+            console.log(response.data)
+            });
+
+}
+
+    //Fazer login
+    const [esconderSenha, setEsconderSenha] = useState(true)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -29,24 +56,8 @@ export default function FazerLogin() {
             falha()
         })
     }
-
-    /*const AbrirHome = () => {
-        navigation.reset({
-            routes: [{ name: 'Home' }]
-        })
-    }*/
-
-    const AbrirTelaPerfil = () => {
-        navigation.reset({
-            routes: [{ name: 'EscolherPerfil' }]
-        })
-    }
-
-    const AbrirRecuperarSenha = () => {
-        navigation.reset({
-            routes: [{ name: 'RecuperarSenha' }]
-        })
-    }
+    const falha = () =>
+        Alert.alert("Usuário ou senha incorretos!")
 
     return (
         <SafeAreaView style={styles.container}>
@@ -56,11 +67,27 @@ export default function FazerLogin() {
 
             <Image style={styles.logo} source={require('../../../assets/src/patinhaLogin.png')} />
 
-            <TextInput style={styles.inputLogin} placeholder='Login' value={email} onChangeText={txtEmail =>onChangeEmail(txtEmail)}></TextInput>
 
-            <TextInput style={styles.inputSenha} placeholder='Senha' secureTextEntry={true} value={password} onChangeText={txtPassword =>onChangePassword(txtPassword)}></TextInput>
+            <View style={styles.inputArea}>
+                <TextInput style={styles.inputLogin} placeholder='Login' value={email} onChangeText={txtEmail => onChangeEmail(txtEmail)}>
+                </TextInput>
+                <TouchableOpacity>
+                    <MaterialIcons style={styles.iconeEmail} name="email" size={20} color="black" />
+                </TouchableOpacity>
 
 
+            </View>
+            <View style={styles.inputArea}>
+                <TextInput style={styles.inputSenha} placeholder='Senha' secureTextEntry={esconderSenha} value={password} onChangeText={txtPassword => onChangePassword(txtPassword)}></TextInput>
+                <TouchableOpacity style={styles.iconeOlho} onPress={() => setEsconderSenha(!esconderSenha)}>
+                    {esconderSenha ?
+                        <Ionicons name="eye" size={20} color="black" />
+                        :
+                        <Ionicons name="eye-off" size={20} color="black" />
+                    }
+                </TouchableOpacity>
+            </View>
+            <TouchableOpacity onPress={testarApi}><Text>teste</Text></TouchableOpacity>
             <TouchableOpacity style={styles.botaoAcessar} onPress={login}>
                 <Text style={styles.textBotaoAcessar}>ACESSAR</Text>
             </TouchableOpacity>
@@ -73,9 +100,11 @@ export default function FazerLogin() {
                 <Text style={{ fontSize: 17 }}>Esqueci minha senha</Text>
             </TouchableOpacity>
 
-
         </SafeAreaView>
+
+
     )
 }
 
 
+//<TouchableOpacity onPress={AbrirHome}><Text>Direto</Text></TouchableOpacity>

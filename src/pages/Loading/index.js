@@ -1,67 +1,59 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Text, Image, StyleSheet } from 'react-native';
-import { Container, Logo, LoadingIcon, TextPet, TextAmigos, TextArroba} from './styles';
+import { Container, Logo, LoadingIcon, TextPet, TextAmigos, TextArroba } from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useNavigation } from '@react-navigation/native'
 
-import patinha from '../../../assets/src/patinha.png';
-
-
-
-
 export default () => {
 
+  //Tela de loading
   const navigation = useNavigation();
 
-   useEffect(() => {
+  useEffect(() => {
     const checkToken = async () => {
-         const token = await AsyncStorage.getItem('token')
-         if (token !== null) {
-             // validar
-         } else {
-             navigation.navigate('FazerLogin')
-         }
-    } 
+      const token = await AsyncStorage.getItem('token')
+      if (token !== null) {
+        // validar
+      } else {
+        navigation.navigate('FazerLogin')
+      }
+    }
     checkToken();
-    
 
- }, []); 
+
+  }, []);
 
 
   return (
 
-      <Container>
+    <Container>
 
 
-              <Logo>
-                 <Image 
-                 source={require('../../../assets/src/patinha.png')}/>
-              </Logo>
+      <Logo>
+        <Image
+          source={require('../../../assets/src/patinha.png')} />
+      </Logo>
 
 
-              <TextPet>
-                 <Text>Pet</Text>
-              </TextPet>
+      <TextPet>
+        <Text>Pet</Text>
+      </TextPet>
 
 
-              <TextAmigos>
-                <Text>Amigos</Text>
-              </TextAmigos>
-              
+      <TextAmigos>
+        <Text>Amigos</Text>
+      </TextAmigos>
 
-              <LoadingIcon size="large" color="#FFFFFF" />
 
-              <TextArroba>
-                <Text>Cuidando do seu pet!</Text>
-              </TextArroba>
-              
-      </Container>
+      <LoadingIcon size="large" color="#FFFFFF" />
+
+      <TextArroba>
+        <Text>Cuidando do seu pet!</Text>
+      </TextArroba>
+
+    </Container>
 
   );
 }
 
 
-       /* <Text>Amigos</Text>
-        <Text>Cuidando do seu pet!</Text>*/
-
-        

@@ -2,45 +2,148 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#C0C0C0',
+    container:{
+        flex: 0.407,
+        backgroundColor: '#C41D00',
         alignItems: 'center',
-
+        justifyContent: 'center'
     },
-    acessoMenu: {
-        backgroundColor: 'white',
-        width: hp('7%'),
-        height: hp('7%'),
+    viewLista:{
+        flex: 1,
+        alignItems: 'center'
+    },
+    texto:{
+        fontSize: 30,
+        fontWeight: 'bold',
+        bottom: 25
+    },
+    iconeVoltar:{
+        right: wp('38%'),
+        bottom: hp('2%')
+    },
+    botaoAdicionar:{
+        width: 250,
+        height: 45,
+        backgroundColor: '#FF5700',
+        borderRadius: 5,
         alignItems: 'center',
         justifyContent: 'center',
-        top: hp('6.8%'),
-        right: wp('38%'),
-        borderRadius: 9,
-        borderTopLeftRadius: 0.5,   
+        borderBottomWidth: 2, 
+        borderLeftWidth: 2,
+        borderRightWidth: 2,
+        borderTopWidth: 2,
+        borderBottomColor: '#C41D00',
+        borderLeftColor: '#C41D00',
+        borderTopColor: '#C41D00',
+        borderRightColor: '#C41D00',
+        top: 20
     },
-    textoPrincipal:{
-        fontSize: wp ('6%'),
+    textoAdd:{
         fontWeight: 'bold',
-        color: 'black',
-        top: hp('4%')
+        fontSize: 20,
+        top: 12,
+        right: 10
     },
-    textoNome:{
-        fontSize: wp ('8%'),
-        fontWeight: 'bold',
-        paddingTop: 50
+    textoLinha:{
+        top: 20,
+        color: '#C0C0C0',
+      
+        marginVertical: 25,
     },
-    textoBanho:{
-        fontSize: wp ('8%'),
+    viewModal:{
+        flex: 1,
+        justifyContent: 'center', 
+    },
+    telaModal:{
+        backgroundColor: 'white',
+        borderRadius: 10,
+        minHeight: 200,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    input:{
+        borderBottomWidth: 0.5,
+        backgroundColor: 'white',
+        width: 200,
+        borderBottomColor:'gray'
+    },
+    textoPet:{
         fontWeight: 'bold',
-        paddingTop: 50,
+        color: '#C41D00',
+        fontSize: 25,
+        bottom: 15
+    },
+    icone:{
+        left: 205,
+        bottom: 25
+    },
+    inputArea:{
+        flexDirection: 'row',
+        width: '90%',
+    },
+    botaoAdd:{
+        width: 150,
+        height: 35,
+        backgroundColor: '#FF5700',
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        bottom: 7,
+        borderBottomWidth: 2, 
+        borderLeftWidth: 2,
+        borderRightWidth: 2,
+        borderTopWidth: 2,
+        borderBottomColor: '#C41D00',
+        borderLeftColor: '#C41D00',
+        borderTopColor: '#C41D00',
+        borderRightColor: '#C41D00',
+    },
+    boxLista:{
+        backgroundColor: '#FFF', 
+        width: wp('90%'),
+        height: hp('15.5%'),
+        borderRadius: 15,
+        flex: 1,
+        marginVertical: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 1,
+        
         
     },
-    textoPasseio:{
-        fontSize: wp ('8%'),
+    avatarBanho: {
+        width: 90,
+        height: 90,
+        right: wp('30%'),
+        bottom: wp('16.5%')
+    },
+    botaoEditar:{
+        top: 65,
+        left: 110
+    },
+    botaoExcluir:{
+        top: 40,
+        left: 140
+    },
+    textoNome:{
+        color:'#FF5700',
+        top: 10,
         fontWeight: 'bold',
-        paddingTop: 50
+        fontSize: 25,
+             
+    },
+    textoEspecie:{
+        top : 15,
+        fontSize: 15,
+        fontWeight: 'bold', 
+        color: 'black'
+    },
+    textoSexoEIdade:{
+        top : 20,
+        fontSize: 15,
+        
+        color: 'black'
     }
-})
 
-export { styles };
+});
+export {styles};

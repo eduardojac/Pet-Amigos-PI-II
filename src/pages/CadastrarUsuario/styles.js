@@ -5,7 +5,7 @@ import { color } from 'react-native-reanimated';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#C0C0C0',
+        backgroundColor: '#E1E2E1',
         alignItems: 'center',
         
     },
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     textoPet:{
         fontSize: hp('6.5%'),
         right: hp('6.5%'), 
-        color: '#FF5700',
+        color: '#C41D00',
         fontWeight: 'bold',
         
     },
@@ -32,7 +32,11 @@ const styles = StyleSheet.create({
         borderRadius: wp ('2%'),
         width: wp('90%'),
         height: hp('6.5%'),
-        padding: 10
+        padding: 10,
+        borderBottomWidth: 2, 
+        borderLeftWidth: 2,
+        borderRightWidth: 2,
+        borderTopWidth: 2,
     },
     inputEmail:{
         backgroundColor: '#FFF',
@@ -40,7 +44,11 @@ const styles = StyleSheet.create({
         width: wp('90%'),
         height: hp('6.5%'),
         padding: 10,
-        marginVertical: 10
+        marginVertical: 10,
+        borderBottomWidth: 2, 
+        borderLeftWidth: 2,
+        borderRightWidth: 2,
+        borderTopWidth: 2,
     },
     inputSenha:{
         backgroundColor: '#FFF',
@@ -48,6 +56,10 @@ const styles = StyleSheet.create({
         width: wp('90%'),
         height: hp('6.5%'),
         padding: 10,
+        borderBottomWidth: 2, 
+        borderLeftWidth: 2,
+        borderRightWidth: 2,
+        borderTopWidth: 2,
         
     },
     
@@ -57,12 +69,16 @@ const styles = StyleSheet.create({
         width: wp('90%'),
         height: hp('6.5%'),
         padding: 10,
-        marginVertical: 10
+        marginVertical: 10,
+        borderBottomWidth: 2, 
+        borderLeftWidth: 2,
+        borderRightWidth: 2,
+        borderTopWidth: 2,
     },
 
     botaoCadastrar:{
         marginVertical: 20,
-        backgroundColor: '#FF5700',
+        backgroundColor: '#C41D00',
         height: hp('6.5%'),
         width: wp('40%'),
         borderRadius: wp ('2%'),

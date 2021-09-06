@@ -4,27 +4,59 @@ import { styles } from '../CadastrarUsuario/styles.js'
 import { useNavigation } from '@react-navigation/native';
 import firebase from '../../../firebaseconection';
 
-
 export default function CadastrarUsuario() {
-    
-    const cadastrado = () =>
-    Alert.alert("Cadastro realizado com sucesso!")
-      
-    const falhacadastro = () =>
-    Alert.alert("Não foi possível realizar o seu cadastro!",
-    "Lembre-se de que o email deve ser válido e sua senha deverá conter no mínimo 6 caracteres")
-    
 
+    // Navegação entre telas
     const navigation = useNavigation();
 
     const AbrirFazerLogin = () => {
         navigation.reset({
-            routes: [{ name: 'FazerLogin' }]  
+            routes: [{ name: 'FazerLogin' }]
         })
     }
 
+    // Cadastrar no banco e autenticação
+    const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [senha, setSenha] = useState('')
+
+    const Inserir = () => {
+        firebase.firestore().collection('clientes').add({ nome: nome, email: email, senha: password });
+
+    }
+
+    const Cadastramento = () => {
+        if (senha === password) {
+
+            firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
+                Inserir()
+                cadastrado()
+                navigation.navigate('FazerLogin')
+
+            }).catch(() => {
+                falhacadastro()
+            })
+
+        } else if (senha == "") {
+            Alert.alert("Por favor, confirme sua senha")
+            return;
+        } else {
+            Alert.alert("As senhas precisam ser as mesmas!")
+            return;
+        }
+    }
+
+    const cadastrado = () =>
+        Alert.alert("Cadastro realizado com sucesso!")
+
+    const falhacadastro = () =>
+        Alert.alert("Não foi possível realizar o seu cadastro!",
+            "Lembre-se de que o email deve ser válido e sua senha deverá conter no mínimo 6 caracteres")
+
+    const onChangeNome = (txtNome) => {
+        setNome(txtNome)
+    }
 
     const onChangeEmail = (txtEmail) => {
         setEmail(txtEmail)
@@ -32,14 +64,11 @@ export default function CadastrarUsuario() {
     const onChangePassword = (txtPassword) => {
         setPassword(txtPassword)
     }
-    const Cadastramento = () => {
-        firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
-        cadastrado()
-        navigation.navigate('FazerLogin')
-        }).catch(() => {
-        falhacadastro()
-        })
+
+    const onChangeSenha = (txtSenha) => {
+        setSenha(txtSenha)
     }
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -51,7 +80,7 @@ export default function CadastrarUsuario() {
 
             <TextInput
                 style={styles.inputNome}
-                placeholder='Nome' >
+                placeholder='Nome' onChangeText={txtNome => onChangeNome(txtNome)}>
             </TextInput>
 
             <TextInput
@@ -68,7 +97,7 @@ export default function CadastrarUsuario() {
             <TextInput
                 style={styles.inputConfirmarSenha}
                 secureTextEntry={true}
-                placeholder='Confirmar senha'>
+                placeholder='Confirmar senha' value={senha} onChangeText={txtSenha => onChangeSenha(txtSenha)}>
             </TextInput>
 
             <TouchableOpacity style={styles.botaoCadastrar} onPress={Cadastramento}>
