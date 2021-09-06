@@ -77,7 +77,7 @@ export default function Agenda() {
     const ExcluirAgendamento = async (id) => {
         firebase.firestore().collection('agendamento').doc(id).delete()
     }
-
+//a
     return (
         <View style={{ flex: 1 }}>
 
