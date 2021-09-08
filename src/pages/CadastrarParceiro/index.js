@@ -4,6 +4,7 @@ import { styles } from '../CadastrarParceiro/styles.js'
 import { useNavigation } from '@react-navigation/native';
 import firebase from '../../../firebaseconection';
 import { TextInputMask } from 'react-native-masked-text';
+import api from '../../services/api'
 
 export default function CadastrarParceiro() {
 
@@ -35,7 +36,13 @@ export default function CadastrarParceiro() {
             falhacadastro()
 
         } else {
-            firebase.firestore().collection('parceiros').add({ empresa: empresa, cpf: cpf, cidade: cidade, telefone: telefone });
+            //firebase.firestore().collection('parceiros').add({ empresa: empresa, cpf: cpf, cidade: cidade, telefone: telefone });
+            api.post('parceiros',{
+                empresa: empresa,
+                cpf: cpf,
+                cidade: cidade,
+                telefone: telefone
+            })
             cadastrado()
             navigation.navigate('ConfirmacaoCadP')
         }
