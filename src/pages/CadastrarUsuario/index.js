@@ -3,6 +3,7 @@ import { View, Text, TextInput, SafeAreaView, TouchableOpacity, Image, Alert } f
 import { styles } from '../CadastrarUsuario/styles.js'
 import { useNavigation } from '@react-navigation/native';
 import firebase from '../../../firebaseconection';
+import api from '../../services/api'
 
 export default function CadastrarUsuario() {
 
@@ -21,29 +22,49 @@ export default function CadastrarUsuario() {
     const [password, setPassword] = useState('')
     const [senha, setSenha] = useState('')
 
-    const Inserir = () => {
+    /* const Inserir = () => {
         firebase.firestore().collection('clientes').add({ nome: nome, email: email, senha: password });
 
+    } */
+
+    const Inserir = () => {
+        api.post('clientes', {
+            nome: nome,
+            email: email,
+            senha: password
+        })
     }
-
+    const validaEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    
     const Cadastramento = () => {
-        if (senha === password) {
-
-            firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
+        if (nome == "" || email == "" || password == "") {
+            Alert.alert("Por favor, preencha todos os campos")
+            return;
+        } else if (!validaEmail.test(String(email).toLowerCase())) {
+            Alert.alert("Por favor, insira um email válido")
+            return;
+        } else if (senha == "") {
+            Alert.alert("Por favor, confirme sua senha")
+            return;
+        } else if (password.length < 6) {
+            Alert.alert("A senha deve conter no mínimo 6 caracteres")
+            return;
+        } else if (senha != password) {
+            Alert.alert("As senhas precisam ser as mesmas!")
+            return;
+        } else {
+            /* firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
                 Inserir()
                 cadastrado()
                 navigation.navigate('FazerLogin')
 
             }).catch(() => {
                 falhacadastro()
-            })
-
-        } else if (senha == "") {
-            Alert.alert("Por favor, confirme sua senha")
-            return;
-        } else {
-            Alert.alert("As senhas precisam ser as mesmas!")
-            return;
+            })*/
+            Inserir()
+            cadastrado()
+            navigation.navigate('FazerLogin')
+             
         }
     }
 
