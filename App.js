@@ -6,14 +6,9 @@ import RoutesStack from './src/pages/Stacks/RoutesStack';
 import RoutesDrawer from './src/pages/Stacks/RoutesDrawer';
 import Menu from './src/pages/Menu'
 
-import api from './src/services/api'
 
-// Testando a Api
+
 export default () => {
-  api.get("/clientes").then((response) => {
-    console.log(response.data)
-  })
-
   return (
     
     <NavigationContainer>
