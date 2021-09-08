@@ -49,7 +49,7 @@ export default function FazerLogin() {
     const onChangePassword = (txtPassword) => {
         setPassword(txtPassword)
     }
-    const login = () => {
+    /*const login = () => {
         firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
             navigation.navigate('Home')
         }).catch(() => {
@@ -57,7 +57,20 @@ export default function FazerLogin() {
         })
     }
     const falha = () =>
-        Alert.alert("Usuário ou senha incorretos!")
+        Alert.alert("Usuário ou senha incorretos!") */
+
+    const login = () => {
+        api.post('/clientes/login',{
+            email: email,
+            senha: password
+        }).then((response) =>{
+            console.warn(response)
+            navigation.navigate('Home')
+        }).catch(() => {
+            Alert.alert("Usuário não encontrado")
+        })      
+        
+    }
 
     return (
         <SafeAreaView style={styles.container}>

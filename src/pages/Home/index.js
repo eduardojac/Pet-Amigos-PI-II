@@ -10,18 +10,25 @@ import firebase from '../../../firebaseconection';
 import { firestore } from 'firebase'
 import { DrawerItem } from '@react-navigation/drawer';
 import { AntDesign } from '@expo/vector-icons';
+import api from '../../services/api'
 
 export default function Home() {
 
     //Passar o email para a tela
     const [email, setEmail] = useState('');
+    //const [id,setId] = useState('');
 
-    firebase.auth().onAuthStateChanged((user) => {
+
+    /*firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             setEmail(user.email);
         }
 
-    });
+    }); */
+   // api.get('clientes/'id)
+
+
+
 
     // Navegação entre telas
     const navigation = useNavigation();
