@@ -14,6 +14,7 @@ import TelaPet from '../TelaPet'
 import ConfirmacaoCadP from '../ConfirmacaoCadP'
 import Agendamento from '../Agendamento'
 import Agenda from '../Agenda'
+import Usuario from '../Usuario'
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,7 @@ export default () => (
         <Stack.Screen name="ConfirmacaoCadP" component={ConfirmacaoCadP} />
         <Stack.Screen name="Agendamento" component={Agendamento} />
         <Stack.Screen name="Agenda" component={Agenda} />
+        <Stack.Screen name="Usuario" component={Usuario} />
     </Stack.Navigator>
 
 

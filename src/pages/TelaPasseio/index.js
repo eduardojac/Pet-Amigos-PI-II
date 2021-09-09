@@ -37,6 +37,27 @@ export default function TelaPasseio() {
             <TextInput style={styles.inputPesquisar} placeholder='Pesquise pelo seu parceiro favorito'></TextInput>
 
             <AntDesign style={styles.iconePesquisa} name="search1" size={24} color="black" />
+
+            <FlatList
+                showsVerticalScrollIndicator={false}
+                data={data}
+                renderItem={({ item }) => (
+                
+                    <TouchableOpacity onPress={() => AbrirAgendamento(item.empresa, item.cidade, item.telefone)}>
+                        
+                        <View style={styles.boxLista}>
+
+                            <Text style={{ color: 'black', fontSize: 25, left: 35, top: 30, fontWeight: 'bold', color: '#FF5700' }}>{item.empresa}</Text>
+
+                            <Text style={{ color: 'black', fontSize: 15, left: 45, top: 40, fontWeight: 'bold' }}>{item.cidade} - {item.telefone}</Text>
+
+                            <Image style={styles.avatarBanho} source={require('../../../assets/src/banhoDog.png')} />
+
+                        </View>
+                    </TouchableOpacity>
+                    
+                )}
+            />
         
         </SafeAreaView>
     )

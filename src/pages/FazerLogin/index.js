@@ -6,7 +6,7 @@ import firebase from '../../../firebaseconection';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import api from '../../services/api'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+
 
 export default function FazerLogin() {
 

@@ -29,6 +29,12 @@ export default function Menu(props) {
     })
   }
 
+  const AbrirPerfil = () => {
+    navigation.reset({
+      routes: [{ name: 'Usuario' }]
+    })
+  }
+
     // Passar o email para a tela
     const [email, setEmail] = useState('');
 
@@ -55,7 +61,7 @@ export default function Menu(props) {
             <AntDesign name="home" size={24} color="black" />
           )}
           label="Tela Inicial" />
-        <DrawerItem
+        <DrawerItem onPress={AbrirPerfil}
           icon={({ size, color }) => (
             <FontAwesome name="user-circle-o" size={24} color="black" />
           )}

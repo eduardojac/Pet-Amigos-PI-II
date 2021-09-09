@@ -47,6 +47,10 @@ export default () => (
       name="Agenda"
       component={Agenda}
     />
+    <Drawer.Screen
+      name="Usuario"
+      component={Usuario}
+    />
 
   </Drawer.Navigator>
 
