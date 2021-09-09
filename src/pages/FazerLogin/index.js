@@ -10,8 +10,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function FazerLogin() {
 
-    await AsyncStorage.setItem()
-
 
 
     // Navegação entre telas
@@ -76,6 +74,8 @@ export default function FazerLogin() {
         })      
         
     }
+
+    // Salvar os dados do usuário
 
     return (
         <SafeAreaView style={styles.container}>
