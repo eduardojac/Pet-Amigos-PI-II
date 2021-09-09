@@ -33,8 +33,10 @@ export default function FazerLogin() {
 
     // Testando api
     const testarApi = () =>{
-        api.get('/clientes').then((response) =>{
-            console.log(response)
+        api.get('/clientes/retornar',{
+            id_cliente: "205"
+        }).then((response) =>{
+            console.log(response.data)
             });
 
 }
@@ -67,7 +69,7 @@ export default function FazerLogin() {
         }).then((response) =>{
             const dados = response.data
             //const {mensagem,token,id_cliente,nome,email} = dados
-            console.log('Dados do cliente logado:','id:',dados.id_cliente,'nome:',dados.nome,'email:',dados.email)
+            console.log('Dados do cliente logado:','id:',response.data.id_cliente,'nome:',dados.nome,'email:',dados.email)
             AbrirHome()
         }).catch(() => {
             Alert.alert("Usuário não encontrado")
