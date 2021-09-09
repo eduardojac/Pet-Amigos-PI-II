@@ -106,6 +106,7 @@ export default function FazerLogin() {
                 </TouchableOpacity>
             </View>
             <TouchableOpacity onPress={testarApi}><Text>teste</Text></TouchableOpacity>
+            <TouchableOpacity onPress={AbrirHome}><Text>direto</Text></TouchableOpacity>
             <TouchableOpacity style={styles.botaoAcessar} onPress={login}>
                 <Text style={styles.textBotaoAcessar}>ACESSAR</Text>
             </TouchableOpacity>
