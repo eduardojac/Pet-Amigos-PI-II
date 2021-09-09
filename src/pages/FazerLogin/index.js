@@ -6,8 +6,13 @@ import firebase from '../../../firebaseconection';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import api from '../../services/api'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function FazerLogin() {
+
+    await AsyncStorage.setItem()
+
+
 
     // Navegação entre telas
     const navigation = useNavigation();
@@ -33,7 +38,7 @@ export default function FazerLogin() {
     // Testando api
     const testarApi = () =>{
         api.get('/clientes').then((response) =>{
-            console.log(response.data)
+            console.log(response)
             });
 
 }
@@ -64,7 +69,7 @@ export default function FazerLogin() {
             email: email,
             senha: password
         }).then((response) =>{
-            console.warn(response)
+            console.log(response.data)
             navigation.navigate('Home')
         }).catch(() => {
             Alert.alert("Usuário não encontrado")
@@ -105,7 +110,7 @@ export default function FazerLogin() {
                 <Text style={styles.textBotaoAcessar}>ACESSAR</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.botaoCadastro} onPress={AbrirTelaPerfil}>
+            <TouchableOpacity style={styles.botaoCadastro} onPress={AbrirTelaPerfil}> 
                 <Text style={{ fontSize: 17 }}>Não tem cadastro? Cadastre-se!</Text>
             </TouchableOpacity>
 
