@@ -12,10 +12,11 @@ import { DrawerItem } from '@react-navigation/drawer';
 import { AntDesign } from '@expo/vector-icons';
 import api from '../../services/api'
 
-export default function Home() {
+export default function Home({route}) {
 
+    //const {email} = this.props.route.params
     //Passar o email para a tela
-    const [email, setEmail] = useState('');
+    //const [email, setEmail] = useState('');
     //const [id,setId] = useState('');
 
 
@@ -92,7 +93,7 @@ export default function Home() {
             </View>
 
             <TouchableOpacity style={styles.botaoEmail} disabled={true} >
-                <Text style={styles.textEmail}>{email}</Text>
+                <Text style={styles.textEmail}>{route.params?.email}</Text>
                 <Feather style={styles.iconeEmail} name="user" size={24} color="black" />
 
             </TouchableOpacity>

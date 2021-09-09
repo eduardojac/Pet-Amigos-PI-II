@@ -15,9 +15,9 @@ export default function FazerLogin() {
     // Navegação entre telas
     const navigation = useNavigation();
 
-    const AbrirHome = () => {
-        navigation.reset({
-            routes: [{ name: 'Home' }]
+    const AbrirHome = (email) => {
+        navigation.navigate('Home', {
+        email: email
         })
     }
 
@@ -67,8 +67,10 @@ export default function FazerLogin() {
             email: email,
             senha: password
         }).then((response) =>{
-            console.log(response.data)
-            navigation.navigate('Home')
+            const dados = response.data
+            //const {mensagem,token,id_cliente,nome,email} = dados
+            console.log(dados)
+            AbrirHome()
         }).catch(() => {
             Alert.alert("Usuário não encontrado")
         })      
