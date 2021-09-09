@@ -15,11 +15,9 @@ export default function FazerLogin() {
     // Navegação entre telas
     const navigation = useNavigation();
 
-    const AbrirHome = (email) => {
-        navigation.navigate('Home', {
-        email: email
-        })
-    }
+    const AbrirHome = () => {
+        navigation.navigate('Home')
+        }
 
     const AbrirTelaPerfil = () => {
         navigation.reset({
@@ -70,6 +68,7 @@ export default function FazerLogin() {
             const dados = response.data
             //const {mensagem,token,id_cliente,nome,email} = dados
             console.log(dados)
+            console.warn(dados.id_cliente)
             AbrirHome()
         }).catch(() => {
             Alert.alert("Usuário não encontrado")

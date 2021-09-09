@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, TouchableOpacity, FlatList, Alert } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation,useRoute } from '@react-navigation/native'
 import { styles } from '../Home/styles'
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -12,7 +12,7 @@ import { DrawerItem } from '@react-navigation/drawer';
 import { AntDesign } from '@expo/vector-icons';
 import api from '../../services/api'
 
-export default function Home({route}) {
+export default function Home() {
 
     //const {email} = this.props.route.params
     //Passar o email para a tela
@@ -93,7 +93,7 @@ export default function Home({route}) {
             </View>
 
             <TouchableOpacity style={styles.botaoEmail} disabled={true} >
-                <Text style={styles.textEmail}>{route.params?.email}</Text>
+                <Text style={styles.textEmail}></Text>
                 <Feather style={styles.iconeEmail} name="user" size={24} color="black" />
 
             </TouchableOpacity>
