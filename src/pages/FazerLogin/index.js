@@ -67,8 +67,7 @@ export default function FazerLogin() {
         }).then((response) =>{
             const dados = response.data
             //const {mensagem,token,id_cliente,nome,email} = dados
-            console.log(dados)
-            console.warn(dados.id_cliente)
+            console.log('Dados do cliente logado:','id:',dados.id_cliente,'nome:',dados.nome,'email:',dados.email)
             AbrirHome()
         }).catch(() => {
             Alert.alert("Usuário não encontrado")
