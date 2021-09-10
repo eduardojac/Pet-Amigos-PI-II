@@ -254,4 +254,4 @@ export default function TelaPet(route) {
         </View>
 
     )
-}
+} 
