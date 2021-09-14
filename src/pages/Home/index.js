@@ -10,26 +10,18 @@ import firebase from '../../../firebaseconection';
 import { firestore } from 'firebase'
 import { DrawerItem } from '@react-navigation/drawer';
 import { AntDesign } from '@expo/vector-icons';
-import api from '../../services/api'
 
 export default function Home() {
 
-    //const {email} = this.props.route.params
     //Passar o email para a tela
-    //const [email, setEmail] = useState('');
-    //const [id,setId] = useState('');
+    const [email, setEmail] = useState('');
 
-
-    /*firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             setEmail(user.email);
         }
 
-    }); */
-   // api.get('clientes/'id)
-
-
-
+    }); 
 
     // Navegação entre telas
     const navigation = useNavigation();
@@ -93,7 +85,7 @@ export default function Home() {
             </View>
 
             <TouchableOpacity style={styles.botaoEmail} disabled={true} >
-                <Text style={styles.textEmail}></Text>
+                <Text style={styles.textEmail}>{email}</Text>
                 <Feather style={styles.iconeEmail} name="user" size={24} color="black" />
 
             </TouchableOpacity>

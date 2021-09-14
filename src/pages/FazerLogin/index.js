@@ -5,7 +5,6 @@ import { styles, LoadingIcon } from '../FazerLogin/styles.js';
 import firebase from '../../../firebaseconection';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import api from '../../services/api'
 
 
 export default function FazerLogin() {
@@ -31,16 +30,6 @@ export default function FazerLogin() {
         })
     }
 
-    // Testando api
-    const testarApi = () =>{
-        api.get('/clientes/retornar',{
-            id_cliente: "205"
-        }).then((response) =>{
-            console.log(response.data)
-            });
-
-}
-
     //Fazer login
     const [esconderSenha, setEsconderSenha] = useState(true)
     const [email, setEmail] = useState('')
@@ -52,7 +41,7 @@ export default function FazerLogin() {
     const onChangePassword = (txtPassword) => {
         setPassword(txtPassword)
     }
-    /*const login = () => {
+    const login = () => {
         firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
             navigation.navigate('Home')
         }).catch(() => {
@@ -60,22 +49,7 @@ export default function FazerLogin() {
         })
     }
     const falha = () =>
-        Alert.alert("Usuário ou senha incorretos!") */
-
-    const login = () => {
-        api.post('/clientes/login',{
-            email: email,
-            senha: password
-        }).then((response) =>{
-            const dados = response.data
-            //const {mensagem,token,id_cliente,nome,email} = dados
-            console.log('Dados do cliente logado:','id:',response.data.id_cliente,'nome:',dados.nome,'email:',dados.email)
-            AbrirHome()
-        }).catch(() => {
-            Alert.alert("Usuário não encontrado")
-        })      
-        
-    }
+        Alert.alert("Usuário ou senha incorretos!") 
 
     // Salvar os dados do usuário
 
@@ -107,7 +81,6 @@ export default function FazerLogin() {
                     }
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity onPress={testarApi}><Text>teste</Text></TouchableOpacity>
             <TouchableOpacity onPress={AbrirHome}><Text>direto</Text></TouchableOpacity>
             <TouchableOpacity style={styles.botaoAcessar} onPress={login}>
                 <Text style={styles.textBotaoAcessar}>ACESSAR</Text>
