@@ -16,6 +16,8 @@ import TelaPasseio from '../TelaPasseio'
 import TelaPet from '../TelaPet'
 import Agendamento from '../Agendamento'
 import Agenda from '../Agenda'
+import AgendamentoPasseio from '../AgendamentoPasseio';
+
 const Drawer = createDrawerNavigator();
 
 export default () => (
@@ -50,6 +52,10 @@ export default () => (
     <Drawer.Screen
       name="Usuario"
       component={Usuario}
+    />
+    <Drawer.Screen
+      name="AgendamentoPasseio"
+      component={AgendamentoPasseio}
     />
 
   </Drawer.Navigator>

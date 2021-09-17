@@ -9,16 +9,58 @@ import { FontAwesome } from '@expo/vector-icons';
 import firebase from '../../../firebaseconection';
 import { firestore } from 'firebase';
 
+
 export default function TelaPasseio() {
 
     //Navegação entre telas
     const navigation = useNavigation();
 
+    const AbrirAgendamentoPasseio = (empresa, cidade, telefone) => {
+        navigation.navigate('AgendamentoPasseio', {
+        empresa: empresa, 
+        cidade: cidade, 
+        telefone: telefone
+        })
+    }
     const AbrirHome = () => {
         navigation.reset({
             routes: [{ name: 'Home' }]
         })
     }
+
+    // Pegar o nome do usuário
+    const [empresa, setEmpresa] = useState('')
+    const [dados, setDados] = useState('')
+    const [cidade, setCidade] = useState('')
+    const [telefone, setTelefone] = useState('')
+    const [data, setData] = useState('')
+
+
+    //Exibir lista de parceiros cadastrados
+    const ListaParceiros = () => {
+        firebase.firestore().collection('parceirosPasseio')
+        parceiros.get().then((snapshot) => {
+            snapshot.docs.forEach(doc => {
+
+            })
+        })
+    }
+    const ref = firebase.firestore().collection('parceirosPasseio');
+    useEffect(() => {
+        ref.onSnapshot(querySnapshot => {
+            const data = []
+            querySnapshot.forEach(doc => {
+                data.push({
+                    ...doc.data(),
+                    key: doc.id
+                })
+            })
+            setData(data)
+
+        })
+        return;
+    }, [])
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -34,16 +76,16 @@ export default function TelaPasseio() {
 
             <Text style={styles.texto}>com seu pet!</Text>
 
-            <TextInput style={styles.inputPesquisar} placeholder='Pesquise pelo seu parceiro favorito'></TextInput>
+            <TextInput style={styles.inputPesquisar} placeholder='Pesquise pelo seu Parceiro favorito'></TextInput>
 
             <AntDesign style={styles.iconePesquisa} name="search1" size={24} color="black" />
-
+            
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={data}
                 renderItem={({ item }) => (
                 
-                    <TouchableOpacity onPress={() => AbrirAgendamento(item.empresa, item.cidade, item.telefone)}>
+                    <TouchableOpacity onPress={() => AbrirAgendamentoPasseio(item.empresa, item.cidade, item.telefone)}>
                         
                         <View style={styles.boxLista}>
 
@@ -58,7 +100,8 @@ export default function TelaPasseio() {
                     
                 )}
             />
-        
+            
+            
         </SafeAreaView>
     )
-} 
+}

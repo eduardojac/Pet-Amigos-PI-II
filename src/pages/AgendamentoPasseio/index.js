@@ -9,15 +9,15 @@ import { Entypo } from '@expo/vector-icons';
 import { ScrollView } from 'react-native-gesture-handler';
 import firebase from 'firebase';
 
-export default function Agendamento({ route }) {
+export default function AgendamentoPasseio({ route }) {
 
     // Navegação entre telas
 
     const navigation = useNavigation();
 
-    const AbrirTelaBanho = () => {
+    const AbrirTelaPasseio = () => {
         navigation.reset({
-            routes: [{ name: 'TelaBanho' }]
+            routes: [{ name: 'TelaPasseio' }]
         })
     }
 
@@ -92,7 +92,7 @@ export default function Agendamento({ route }) {
             let selDate = year + '-' + month + '-' + day;
 
             newListaDias.push({
-                status: dias[d.getDay()] != 'Dom' ? true : false, //Bloqueando o domingo nos agendamentos
+                status: dias[d.getDay()] != 'Dom' ? true : false,
                 weekday: dias[d.getDay()],
                 number: i      
                 
@@ -113,21 +113,17 @@ export default function Agendamento({ route }) {
     const [servico, setServico] = useState('')
     const [preco, setPreco] = useState('')
 
-    const abrirModalBanho = () => {
+    const abrirModalRapido = () => {
         setVisible(true)
-        setServico('Banho')
-        setPreco('R$ 40.00')
+        setServico('Passeio Rápido')
+        setPreco('R$ 60.00')
     }
-    const abrirModalTosa = () => {
+    const abrirModalLongo = () => {
         setVisible(true)
-        setServico('Tosa')
-        setPreco('R$ 35.00')
+        setServico('Passeio Longo')
+        setPreco('R$ 90.00')
     }
-    const abrirModalBanhoETosa = () => {
-        setVisible(true)
-        setServico('Banho e Tosa')
-        setPreco('R$ 65.00')
-    }
+
 
     //Cadastrar 
     const cadastrarPet = async () => {
@@ -155,7 +151,7 @@ export default function Agendamento({ route }) {
         <View style={styles.container}>
 
             <View style={styles.container1}>
-                <TouchableOpacity style={styles.botaoVoltar} onPress={AbrirTelaBanho} >
+                <TouchableOpacity style={styles.botaoVoltar} onPress={AbrirTelaPasseio} >
 
                     <Ionicons name="arrow-back-circle-outline" size={50} color="black" />
 
@@ -262,20 +258,16 @@ export default function Agendamento({ route }) {
                 <Text style={styles.divisao}>__________________________________________________</Text>
                 <Text style={styles.escolha}>Escolha seu serviço</Text>
 
-                <Text style={styles.banho}>Banho</Text>
-                <TouchableOpacity style={styles.btnBanho} onPress={abrirModalBanho}>
-                    <Text style={styles.txtBanho}>R$ 40.00</Text>
+                <Text style={styles.banho}>Passeio Rápido</Text>
+                <TouchableOpacity style={styles.btnBanho} onPress={abrirModalRapido}>
+                    <Text style={styles.txtBanho}>R$ 60.00</Text>
                 </TouchableOpacity>
 
-                <Text style={styles.tosa}>Tosa</Text>
-                <TouchableOpacity style={styles.btnTosa} onPress={abrirModalTosa}>
-                    <Text style={styles.txtTosa}>R$ 35.00</Text>
+                <Text style={styles.tosa}>Passeio Longo</Text>
+                <TouchableOpacity style={styles.btnTosa} onPress={abrirModalLongo}>
+                    <Text style={styles.txtTosa}>R$ 90.00</Text>
                 </TouchableOpacity>
 
-                <Text style={styles.banhoetosa}>Banho e Tosa</Text>
-                <TouchableOpacity style={styles.btnBanhoETosa} onPress={abrirModalBanhoETosa}>
-                    <Text style={styles.txtBanhoETosa}>R$ 65.00</Text>
-                </TouchableOpacity>
 
             </View>
 

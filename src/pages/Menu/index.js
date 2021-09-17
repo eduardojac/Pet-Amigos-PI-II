@@ -45,6 +45,24 @@ export default function Menu(props) {
   
     });
 
+    // Pegar o nome do usuário logado
+    /*const emailDoLogado = firebase.auth().currentUser.email
+
+    firebase.firestore().collection('clientes').where("email", "==", emailDoLogado)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                //console.log(doc.id, " => ", doc.data().nome);
+                setPegar(doc.data().nome);
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        }); 
+
+    const [pegar, setPegar] = useState(''); */
+
 
   return (
     <View style={{ flex: 1 }}>

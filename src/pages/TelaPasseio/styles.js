@@ -56,7 +56,23 @@ const styles = StyleSheet.create({
         bottom: hp('12.5%'),
         right: wp('8.5%')
     },
-
+    boxLista:{
+        backgroundColor: '#FFF', 
+        width: wp('90%'),
+        height: hp('15.5%'),
+        borderRadius: 15,
+        flex: 1,
+        marginVertical: 10,
+        alignItems: 'center',
+        justifyContent: 'center', 
+        borderWidth: 1, 
+    },
+    avatarBanho: {
+        width: 90,
+        height: 90,
+        right: wp ('30%'),
+        bottom: hp ('4%')
+    }
 })
 
 export { styles };
