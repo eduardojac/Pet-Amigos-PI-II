@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         
     },
     botaoParceiro:{
-        backgroundColor: '#FF5700',
+        backgroundColor: '#C41D00',
         height: hp('20%'),
         width: wp ('28%'),
         alignItems: 'center',

@@ -61,6 +61,25 @@ export default function TelaPasseio() {
         return;
     }, [])
 
+    // Filtrar parceiro favorito
+    const [searchText, setSearchText] = useState('');
+    const [list, setList] = useState(data);
+
+    useEffect(() => {
+        if(searchText === ''){
+            setList(data);
+        } else {
+            setList(
+                data.filter( item => {
+                    if(item.empresa.toLowerCase().indexOf(searchText.toLowerCase()) > -1){
+                        return true;
+                    } else{
+                        return false;
+                    }
+                })
+            );
+        }
+    }, [searchText]);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -76,13 +95,13 @@ export default function TelaPasseio() {
 
             <Text style={styles.texto}>com seu pet!</Text>
 
-            <TextInput style={styles.inputPesquisar} placeholder='Pesquise pelo seu Parceiro favorito'></TextInput>
+            <TextInput style={styles.inputPesquisar} placeholder={'Pesquise pelo seu Parceiro favorito'} value={searchText} onChangeText={(t) => setSearchText(t)}></TextInput>
 
             <AntDesign style={styles.iconePesquisa} name="search1" size={24} color="black" />
             
             <FlatList
                 showsVerticalScrollIndicator={false}
-                data={data}
+                data={list}
                 renderItem={({ item }) => (
                 
                     <TouchableOpacity onPress={() => AbrirAgendamentoPasseio(item.empresa, item.cidade, item.telefone)}>
