@@ -8,6 +8,9 @@ import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import firebase from '../../../firebaseconection';
 import { firestore } from 'firebase';
+import * as Location from 'expo-location';
+import Geocoder from 'react-native-geocoding';
+
 //import { request, PERMISSIONS } from 'react-native-permissions';
 //import Geolocation from '@react-native-community/geolocation';
 // import { Platform } from 'react-native';
@@ -86,26 +89,31 @@ export default function TelaBanho() {
     }, [searchText]);
 
     // pegar localização do usuário
-   // const [coords, setCoords] = useState(null );
 
-    /*const pegarLocalizacao = async () => {
-        setCoords(null);
-        let result = await request(
+    const [errorMsg, setErrorMsg] = useState(null);
+    const [coords, setCoords] = useState(null);
 
-            Platform.OS === 'ios' ? 
-            PERMISSIONS.IOS.LOCATION_ALWAYS 
-            :
-            PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION
-        ); 
+    
+       const pegarLoc = async () => {
+          alert('Aceitar Localizção');  
+          let {status} = await Location.requestForegroundPermissionsAsync();
 
-        if (result == 'granted') {
-            Geolocation.getCurrentPosition((info) => {
-                setCoords(info.coords);
-            });
-        } 
- 
+          
+          if (status !== 'granted' ) {
+            setErrorMsg('Permissão negada para acessar a Localização!')
+            return;
+          }
+  
+          let location = await Location.getLastKnownPositionAsync({});
+          setCoords(location.coords.latitude,location.coords.longitude);
+         
+        
+        };
 
-    } */
+  
+        
+
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -114,10 +122,10 @@ export default function TelaBanho() {
             <Ionicons name="arrow-back-circle-outline" size={50} color="black" />
             </TouchableOpacity>
 
-            <TextInput style={styles.inputLocal} placeholder='Onde você está?'></TextInput>
+            <TextInput style={styles.inputLocal} placeholder='Onde você está?'>{coords}</TextInput>
 
-            <MaterialIcons style={styles.iconeLocal} name="my-location" size={24} color="black"/>
-            <Text style={styles.texto}>É hora de dar banho</Text>
+            <MaterialIcons style={styles.iconeLocal} name="my-location" size={24} color="black" onPress={pegarLoc}/>
+            <Text style={styles.texto}>É hora de dar banho {coords}</Text>
 
             <Text style={styles.texto}>no seu pet!</Text>
 

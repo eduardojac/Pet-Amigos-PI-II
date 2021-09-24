@@ -22,6 +22,7 @@
     },
     "android": {
       "package": "com.uniceub.PetAmigos",
+      "permissions": ["ACCESS_BACKGROUND_LOCATION"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000000"    
