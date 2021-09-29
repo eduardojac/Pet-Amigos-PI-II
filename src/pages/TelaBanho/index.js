@@ -10,6 +10,8 @@ import firebase from '../../../firebaseconection';
 import { firestore } from 'firebase';
 import * as Location from 'expo-location';
 import Geocoder from 'react-native-geocoding';
+import { ListItem } from 'react-native-elements';
+
 
 //import { request, PERMISSIONS } from 'react-native-permissions';
 //import Geolocation from '@react-native-community/geolocation';
@@ -23,9 +25,9 @@ export default function TelaBanho() {
 
     const AbrirAgendamento = (empresa, cidade, telefone) => {
         navigation.navigate('Agendamento', {
-        empresa: empresa, 
-        cidade: cidade, 
-        telefone: telefone
+            empresa: empresa,
+            cidade: cidade,
+            telefone: telefone
         })
     }
     const AbrirHome = () => {
@@ -33,13 +35,14 @@ export default function TelaBanho() {
             routes: [{ name: 'Home' }]
         })
     }
-
+    
     // Pegar o nome do usuário
     const [empresa, setEmpresa] = useState('')
     const [dados, setDados] = useState('')
     const [cidade, setCidade] = useState('')
     const [telefone, setTelefone] = useState('')
     const [data, setData] = useState('')
+
 
 
     //Exibir lista de parceiros cadastrados
@@ -67,79 +70,78 @@ export default function TelaBanho() {
         return;
     }, [])
 
-
     // Filtro das empresas
+
     const [searchText, setSearchText] = useState('');
     const [list, setList] = useState(data);
 
     useEffect(() => {
-        if(searchText === ''){
+        if (searchText === '') {
             setList(data);
+            //console.log(list)
+            //console.log(data)
         } else {
             setList(
-                data.filter( item => {
-                    if(item.empresa.toLowerCase().indexOf(searchText.toLowerCase()) > -1){
+                data.filter(item => {
+                    if (item.empresa.toLowerCase().indexOf(searchText.toLowerCase()) > -1) {
                         return true;
-                    } else{
+                    } else {
                         return false;
                     }
                 })
             );
-        } 
+        }
     }, [searchText]);
+
 
     // pegar localização do usuário
 
     const [errorMsg, setErrorMsg] = useState(null);
     const [coords, setCoords] = useState(null);
 
-    
-       const pegarLoc = async () => {
-          alert('Aceitar Localizção');  
-          let {status} = await Location.requestForegroundPermissionsAsync();
 
-          
-          if (status !== 'granted' ) {
+    const pegarLoc = async () => {
+        alert('Aceitar Localizção');
+        let { status } = await Location.requestForegroundPermissionsAsync();
+
+
+        if (status !== 'granted') {
             setErrorMsg('Permissão negada para acessar a Localização!')
             return;
-          }
-  
-          let location = await Location.getLastKnownPositionAsync({});
-          setCoords(location.coords.latitude,location.coords.longitude);
-         
-        
-        };
+        }
 
-  
-        
+        let location = await Location.getLastKnownPositionAsync({});
+        setCoords(location.coords.latitude, location.coords.longitude);
 
 
+    };
 
     return (
         <SafeAreaView style={styles.container}>
 
             <TouchableOpacity style={styles.iconeVoltar} onPress={AbrirHome}>
-            <Ionicons name="arrow-back-circle-outline" size={50} color="black" />
+                <Ionicons name="arrow-back-circle-outline" size={50} color="black" />
             </TouchableOpacity>
 
             <TextInput style={styles.inputLocal} placeholder='Onde você está?'>{coords}</TextInput>
 
-            <MaterialIcons style={styles.iconeLocal} name="my-location" size={24} color="black" onPress={pegarLoc}/>
-            <Text style={styles.texto}>É hora de dar banho {coords}</Text>
+            <MaterialIcons style={styles.iconeLocal} name="my-location" size={24} color="black" onPress={pegarLoc} />
+            <Text style={styles.texto}>É hora de dar banho</Text>
 
             <Text style={styles.texto}>no seu pet!</Text>
 
-            <TextInput style={styles.inputPesquisar} placeholder={'Pesquise pelo seu PetShop favorito'} value={searchText} onChangeText={(t) => setSearchText(t)}/>
+            <TextInput style={styles.inputPesquisar} placeholder={'Pesquise pelo seu PetShop favorito'} value={searchText} onChangeText={(t) => setSearchText(t)} />
 
             <AntDesign style={styles.iconePesquisa} name="search1" size={24} color="black" />
-            
+
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={list}
                 renderItem={({ item }) => (
-                
+
+
                     <TouchableOpacity onPress={() => AbrirAgendamento(item.empresa, item.cidade, item.telefone)}>
-                        
+
                         <View style={styles.boxLista}>
 
                             <Text style={{ color: 'black', fontSize: 25, left: 35, top: 30, fontWeight: 'bold', color: '#FF5700' }}>{item.empresa}</Text>
@@ -150,11 +152,12 @@ export default function TelaBanho() {
 
                         </View>
                     </TouchableOpacity>
-                    
+
                 )}
+                
             />
-            
-            
+
+
         </SafeAreaView>
     )
 }

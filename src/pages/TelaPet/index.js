@@ -27,6 +27,7 @@ export default function TelaPet(route) {
     const user_id = firebase.auth().currentUser.uid
 
     const [data, setData] = useState('')
+    const [qtd,setQtd] = useState('')
 
     useEffect(() => {
         firebase.firestore()
@@ -42,6 +43,7 @@ export default function TelaPet(route) {
                 })
             })
             setData(data)
+            setQtd(data.length)
         })
         
     }, []);
@@ -130,7 +132,7 @@ export default function TelaPet(route) {
                 <TouchableOpacity style={styles.iconeVoltar} onPress={AbrirHome}>
                     <Ionicons name="arrow-back-circle-outline" size={50} color="black" />
                 </TouchableOpacity>
-                <Text style={styles.texto}>Meu pet</Text>
+                <Text style={styles.texto}>Meu Pet</Text>
             </View>
 
 

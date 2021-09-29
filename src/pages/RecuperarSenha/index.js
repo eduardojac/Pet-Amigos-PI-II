@@ -21,7 +21,7 @@ export default function RecuperarSenha() {
             console.log(email);
             firebase.auth().sendPasswordResetEmail(email).then(
                 (response) => {
-                    Alert.alert('Atenção', `Enviamos um email de recuperação de senha para o seguinte endereço ${email}`,
+                    Alert.alert('Atenção', `Enviamos um email de recuperação de senha para o seguinte endereço: ${email}`,
                      [{text: 'OK', onPress: ()=> AbrirFazerLogin()}]
                     )  
                 }
@@ -33,7 +33,7 @@ export default function RecuperarSenha() {
                             Alert.alert('Erro', `${email} não encontrado ou não cadastrado`);
                             break;
                         case 'auth/invalid-email':
-                            Alert.alert('Erro', ` endereço ${email} não encontrado ou não cadastrado `);
+                            Alert.alert('Erro', `Endereço ${email} não encontrado ou não cadastrado `);
                             break;
                         case 'auth/user-disabled':
                             Alert.alert('Erro', `${email} não encontrado ou não cadastrado`);

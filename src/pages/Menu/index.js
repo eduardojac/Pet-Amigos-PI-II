@@ -31,7 +31,7 @@ export default function Menu(props) {
 
   const AbrirPerfil = () => {
     navigation.reset({
-      routes: [{ name: 'Usuario' }]
+      routes: [{ name: 'Perfil' }]
     })
   }
 

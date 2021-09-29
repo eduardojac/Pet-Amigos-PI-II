@@ -8,7 +8,7 @@ import {
 
 import { View, Text } from 'react-native'
 import Home from '../Home'
-import Usuario from '../Usuario'
+import Perfil from '../Perfil'
 import Mensagens from '../Mensagens'
 import Menu from '../Menu'
 import TelaBanho from '../TelaBanho'
@@ -50,8 +50,8 @@ export default () => (
       component={Agenda}
     />
     <Drawer.Screen
-      name="Usuario"
-      component={Usuario}
+      name="Perfil"
+      component={Perfil}
     />
     <Drawer.Screen
       name="AgendamentoPasseio"
