@@ -3,6 +3,10 @@ import { View, Text, TextInput, SafeAreaView, TouchableOpacity, Image, Alert } f
 import { styles } from '../CadastrarUsuario/styles.js'
 import { useNavigation } from '@react-navigation/native';
 import firebase from '../../../firebaseconection';
+import UserPermissions from '../../../utilities/UserPermissions.js';
+import * as ImagePicker from 'expo-image-picker'
+import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons'; 
 
 export default function CadastrarUsuario() {
 
@@ -14,6 +18,37 @@ export default function CadastrarUsuario() {
             routes: [{ name: 'FazerLogin' }]
         })
     }
+
+    // Pegar foto
+    const [foto,setFoto] = useState(null)
+
+    state = {
+        user: {
+            nome: "",
+            email: "",
+            senha: "",
+            avatar: null
+        },
+        errorMessage: null
+    }
+
+
+
+    escolherFoto = async () => {
+        UserPermissions.getCameraPermission()
+
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3]
+        });
+
+        if (!result.cancelled) {
+            setFoto(result.uri)
+        }
+    }
+
+
 
     // Cadastrar no banco e autenticação
     const [nome, setNome] = useState('')
@@ -69,14 +104,19 @@ export default function CadastrarUsuario() {
         setSenha(txtSenha)
     }
 
-
+    //{require('../../../assets/src/adicionarAvatar.png')}
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.textoPet}>Pet</Text>
 
             <Text style={styles.textoAmigos}>Amigos</Text>
 
-            <Image style={styles.logo} source={require('../../../assets/src/patinhaLogin.png')} />
+            <TouchableOpacity onPress={this.escolherFoto} style={styles.avatarPlaceHolder}>
+                <Image style={styles.logo} source={{ uri: foto }} style={styles.avatar} />
+                <MaterialIcons name="add-a-photo" size={50} color="white" style={{ marginTop: 6, marginLeft: 2 }} >
+
+                </MaterialIcons>
+            </TouchableOpacity>
 
             <TextInput
                 style={styles.inputNome}

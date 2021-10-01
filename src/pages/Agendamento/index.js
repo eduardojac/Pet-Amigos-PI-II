@@ -142,7 +142,7 @@ export default function Agendamento({ route }) {
         }
     }
     const agendado = () =>
-        Alert.alert("Cadastro realizado com sucesso!")
+        Alert.alert("Agendamento realizado com sucesso!")
 
     const falhaAgendamento = () =>
         Alert.alert("Não foi possível realizar seu agendamento!",
