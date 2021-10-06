@@ -8,9 +8,10 @@ import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import firebase from '../../../firebaseconection';
 import { firestore } from 'firebase';
-import * as Location from 'expo-location';
-import Geocoder from 'react-native-geocoding';
-import { ListItem } from 'react-native-elements';
+//import * as Location from 'expo-location';
+//import Geocoder from 'react-native-geocoding';
+//import { ListItem } from 'react-native-elements';
+
 
 
 //import { request, PERMISSIONS } from 'react-native-permissions';
@@ -96,7 +97,8 @@ export default function TelaBanho() {
 
     // pegar localização do usuário
 
-    const [errorMsg, setErrorMsg] = useState(null);
+
+   /* const [errorMsg, setErrorMsg] = useState(null);
     const [coords, setCoords] = useState(null);
 
 
@@ -111,10 +113,15 @@ export default function TelaBanho() {
         }
 
         let location = await Location.getLastKnownPositionAsync({});
-        setCoords(location.coords.latitude, location.coords.longitude);
+        setCoords(location.coords.latitude, location.coords.longitude);*/
 
 
-    };
+
+        const pegarLoc = async () => {
+            
+            navigation.navigate('Mapa');
+
+        } 
 
     return (
         <SafeAreaView style={styles.container}>
@@ -123,7 +130,7 @@ export default function TelaBanho() {
                 <Ionicons name="arrow-back-circle-outline" size={50} color="black" />
             </TouchableOpacity>
 
-            <TextInput style={styles.inputLocal} placeholder='Onde você está?'>{coords}</TextInput>
+            <TextInput style={styles.inputLocal} placeholder='Onde você está?'></TextInput>
 
             <MaterialIcons style={styles.iconeLocal} name="my-location" size={24} color="black" onPress={pegarLoc} />
             <Text style={styles.texto}>É hora de dar banho</Text>
@@ -161,3 +168,4 @@ export default function TelaBanho() {
         </SafeAreaView>
     )
 }
+                

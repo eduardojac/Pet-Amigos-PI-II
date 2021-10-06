@@ -26,7 +26,7 @@ export default function Home() {
     });
 
     // Pegar o nome do usuário logado
-    /*const emailDoLogado = firebase.auth().currentUser.email
+    const emailDoLogado = firebase.auth().currentUser.email
 
     firebase.firestore().collection('clientes').where("email", "==", emailDoLogado)
         .get()
@@ -41,8 +41,7 @@ export default function Home() {
             console.log("Error getting documents: ", error);
         }); 
 
-    const [pegar, setPegar] = useState(''); */ //Estreia no dia 28/09
-
+    const [pegar, setPegar] = useState(''); 
 
     // Navegação entre telas
     const navigation = useNavigation();
@@ -74,7 +73,7 @@ export default function Home() {
 
         <SafeAreaView style={styles.container}>
             <View>
-                <Text style={styles.ola}>Olá,</Text>
+                <Text style={styles.ola}>Olá, {pegar}</Text>
                 <Text style={styles.papai}>o que deseja?</Text>
 
                 <Text style={styles.pet}>Pet</Text>

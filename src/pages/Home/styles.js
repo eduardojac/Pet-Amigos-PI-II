@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
 
     ola:{
         fontSize: hp('3.5%'),
-        alignItems: 'center',
+        //alignItems: 'center',
         padding: 10,
         top:hp('25%')
     },

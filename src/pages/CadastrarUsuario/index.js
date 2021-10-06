@@ -6,7 +6,7 @@ import firebase from '../../../firebaseconection';
 import UserPermissions from '../../../utilities/UserPermissions.js';
 import * as ImagePicker from 'expo-image-picker'
 import { Ionicons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons'; 
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function CadastrarUsuario() {
 
@@ -19,10 +19,13 @@ export default function CadastrarUsuario() {
         })
     }
 
-    // Pegar foto
-    const [foto,setFoto] = useState(null)
+    // Cadastrar foto no firebase
 
-    state = {
+
+    // Pegar foto
+    const [foto, setFoto] = useState(null)
+
+    /*state = {
         user: {
             nome: "",
             email: "",
@@ -30,11 +33,11 @@ export default function CadastrarUsuario() {
             avatar: null
         },
         errorMessage: null
-    }
+    } */
 
 
 
-    escolherFoto = async () => {
+    const escolherFoto = async () => {
         UserPermissions.getCameraPermission()
 
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -44,7 +47,7 @@ export default function CadastrarUsuario() {
         });
 
         if (!result.cancelled) {
-            setFoto(result.uri)
+            setFoto(result.uri, "test-image")
         }
     }
 
@@ -57,12 +60,12 @@ export default function CadastrarUsuario() {
     const [senha, setSenha] = useState('')
 
     const Inserir = () => {
-        firebase.firestore().collection('clientes').add({ nome: nome, email: email, senha: password });
+        firebase.firestore().collection('clientes').add({ nome: nome, email: email, senha: password});
 
     }
 
     const Cadastramento = () => {
-        if (senha === password) {
+        /*if (senha === password) {
 
             firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
                 Inserir()
@@ -79,7 +82,8 @@ export default function CadastrarUsuario() {
         } else {
             Alert.alert("As senhas precisam ser as mesmas!")
             return;
-        }
+        } */
+        console.warn(url)
     }
 
     const cadastrado = () =>
@@ -105,13 +109,13 @@ export default function CadastrarUsuario() {
     }
 
     //{require('../../../assets/src/adicionarAvatar.png')}
-    return (
+    return ( 
         <SafeAreaView style={styles.container}>
             <Text style={styles.textoPet}>Pet</Text>
 
             <Text style={styles.textoAmigos}>Amigos</Text>
 
-            <TouchableOpacity onPress={this.escolherFoto} style={styles.avatarPlaceHolder}>
+            <TouchableOpacity onPress={escolherFoto} style={styles.avatarPlaceHolder}>
                 <Image style={styles.logo} source={{ uri: foto }} style={styles.avatar} />
                 <MaterialIcons name="add-a-photo" size={50} color="white" style={{ marginTop: 6, marginLeft: 2 }} >
 
@@ -152,5 +156,7 @@ export default function CadastrarUsuario() {
 
         </SafeAreaView>
 
+
     )
 }
+ 

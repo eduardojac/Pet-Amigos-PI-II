@@ -16,6 +16,7 @@ import Agendamento from '../Agendamento'
 import Agenda from '../Agenda'
 import Usuario from '../Usuario'
 import AgendamentoPasseio from '../AgendamentoPasseio'
+import Mapa from '../Mapa'
 
 const Stack = createStackNavigator();
 
@@ -44,6 +45,7 @@ export default () => (
         <Stack.Screen name="Agenda" component={Agenda} />
         <Stack.Screen name="Usuario" component={Usuario} />
         <Stack.Screen name="AgendamentoPasseio" component={AgendamentoPasseio} />
+        <Stack.Screen name="Mapa" component={Mapa} />
     </Stack.Navigator>
 
 

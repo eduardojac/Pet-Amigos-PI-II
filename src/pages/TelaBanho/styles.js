@@ -72,6 +72,9 @@ const styles = StyleSheet.create({
         height: 90,
         right: wp ('30%'),
         bottom: hp ('4%')
+    },
+    maps: {
+        flex: 1
     }
 })
 
