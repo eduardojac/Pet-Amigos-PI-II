@@ -8,7 +8,7 @@ import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import firebase from '../../../firebaseconection';
 import { firestore } from 'firebase';
-//import * as Location from 'expo-location';
+import * as Location from 'expo-location';
 //import Geocoder from 'react-native-geocoding';
 //import { ListItem } from 'react-native-elements';
 
@@ -98,13 +98,13 @@ export default function TelaBanho() {
     // pegar localização do usuário
 
 
-   /* const [errorMsg, setErrorMsg] = useState(null);
+   /* 
     const [coords, setCoords] = useState(null);
 
 
     const pegarLoc = async () => {
         alert('Aceitar Localizção');
-        let { status } = await Location.requestForegroundPermissionsAsync();
+        
 
 
         if (status !== 'granted') {
@@ -116,10 +116,18 @@ export default function TelaBanho() {
         setCoords(location.coords.latitude, location.coords.longitude);*/
 
 
-
+       
+        
         const pegarLoc = async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync();
+
+            if (status !== 'granted') {
+                alert('Permissão negada para acessar a Localização!');
+                return;
+            } else {
+                navigation.navigate('Mapa');
+            }
             
-            navigation.navigate('Mapa');
 
         } 
 

@@ -73,7 +73,7 @@ export default function Home() {
 
         <SafeAreaView style={styles.container}>
             <View>
-                <Text style={styles.ola}>Olá, {pegar}</Text>
+                <Text style={styles.ola}>Olá {pegar},</Text>
                 <Text style={styles.papai}>o que deseja?</Text>
 
                 <Text style={styles.pet}>Pet</Text>

@@ -8,8 +8,8 @@ const styles = StyleSheet.create({
     },
 
     iconeVoltar:{
-        right: wp('38%'),
-        top: hp('2%')
+        right: wp('45%'),
+        bottom: hp('2.8%')
     
     },
 
@@ -17,24 +17,40 @@ const styles = StyleSheet.create({
         backgroundColor: '#ff6347',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 50,
-        borderRadius: 30,
-        width: 300,
-        top: 500,
-        left: wp('10%'),
+        bottom: hp('40%'),
+        height: hp('7%'),
+        width: '90%',
+        borderRadius: wp ('6%'),
+        borderBottomWidth: 2, 
+        borderLeftWidth: 2,
+        borderRightWidth: 2,
+        borderTopWidth: 2,
+        borderBottomColor: 'white',
+        borderLeftColor: 'white',
+        borderTopColor: 'white',
+        borderRightColor: 'white',
+        
         
 
-        
-        
-        
         
     },
 
     textBotaoConfirmar:{
         color:'black',
         fontSize: 17,
+        bottom: 30
         
         
+    },
+
+    indicarLocal:{
+        backgroundColor: 'black',
+        
+    },
+    textoIndicar:{
+        top: hp('3.5%'),
+        fontSize: 15,
+        fontWeight: 'bold'
     }
 
 })
@@ -45,5 +61,5 @@ export {styles};
         
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: wp ('6%'),
+        
         top: hp ('74.5%'),*/
