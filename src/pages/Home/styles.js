@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
         width: wp('90%'),
         height: hp('5%'),
         backgroundColor: "#FFFFFF",
-        bottom: hp('7%'),
+        bottom: hp('10%'),
         alignItems: 'center',
         justifyContent: 'center',
         borderBottomWidth: 1, 
@@ -180,6 +180,10 @@ const styles = StyleSheet.create({
         right: wp('40%'),
         bottom: hp('1.5%'),
         
+    },
+    loading:{
+        top: hp('12%'),
+        left: wp('5%'),
     }
     
 

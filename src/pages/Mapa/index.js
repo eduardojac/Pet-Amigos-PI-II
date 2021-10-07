@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, Modal } from 'react-native';
 import MapView from 'react-native-maps';
 import { styles } from '../Mapa/styles.js';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
@@ -64,5 +64,7 @@ export default function Mapa() {
                 <Text style={{ fontWeight: 'bold' }}>CONFIRMAR LOCAL</Text>
             </TouchableOpacity>
         </View >
+
+
     );
 }

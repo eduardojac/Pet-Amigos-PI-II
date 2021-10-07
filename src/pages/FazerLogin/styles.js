@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         borderLeftColor: '#000',
         borderTopColor: '#000',
         borderRightColor: '#000',
-        top: hp ('2%')
+        bottom: hp ('1%')
     },
     
     textBotaoAcessar:{
@@ -83,11 +83,11 @@ const styles = StyleSheet.create({
         
     },
     botaoEsqueceuSenha:{
-        top: hp('12%')
+        top: hp('6%')
     },
     
     botaoCadastro:{
-        top: hp('7,6%')
+        top: hp('2%')
     },
     iconeEmail:{
         right: wp('9%'),
