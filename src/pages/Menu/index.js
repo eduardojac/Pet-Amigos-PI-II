@@ -35,18 +35,8 @@ export default function Menu(props) {
     })
   }
 
-    // Passar o email para a tela
-    const [email, setEmail] = useState('');
-
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setEmail(user.email);
-      }
-  
-    });
-
     // Pegar o nome do usuário logado
-    /*const emailDoLogado = firebase.auth().currentUser.email
+    const emailDoLogado = firebase.auth().currentUser.email
 
     firebase.firestore().collection('clientes').where("email", "==", emailDoLogado)
         .get()
@@ -61,14 +51,14 @@ export default function Menu(props) {
             console.log("Error getting documents: ", error);
         }); 
 
-    const [pegar, setPegar] = useState(''); */
+    const [pegar, setPegar] = useState(''); 
 
 
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.viewPerfil}>
         <Text style={styles.textoMenu}>Pet Amigos</Text>
-        <Text style={styles.textoUsuario}>{email}</Text>
+        <Text style={styles.textoUsuario}>{pegar}</Text>
 
         <Image style={styles.avatar} source={require('../../../assets/src/MenuAvatar.png')} />
       </View>

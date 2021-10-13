@@ -4,7 +4,7 @@ import {View, Text} from 'react-native'
 export default function Usuario () {
     return(
         <View>
-        <Text>Perfil</Text>
+        <Text>Teste</Text>
         </View>
     )
 }
