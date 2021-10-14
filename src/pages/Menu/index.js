@@ -45,6 +45,7 @@ export default function Menu(props) {
                 // doc.data() is never undefined for query doc snapshots
                 //console.log(doc.id, " => ", doc.data().nome);
                 setPegar(doc.data().nome);
+                setFotoUrl(doc.data().foto)
             });
         })
         .catch((error) => {
@@ -52,15 +53,13 @@ export default function Menu(props) {
         }); 
 
     const [pegar, setPegar] = useState(''); 
-
+    const [fotoUrl, setFotoUrl] = useState('https://www.immotop.lu/files/default-logo.png')
 
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.viewPerfil}>
-        <Text style={styles.textoMenu}>Pet Amigos</Text>
-        <Text style={styles.textoUsuario}>{pegar}</Text>
-
-        <Image style={styles.avatar} source={require('../../../assets/src/MenuAvatar.png')} />
+        <Text style={styles.textoMenu}>{pegar}</Text>
+        <Image style={styles.avatar} source={{uri: fotoUrl}} />
       </View>
       <DrawerContentScrollView {...props}>
 

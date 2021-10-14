@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 
     textoNome: {
         fontSize: hp('2.5%'),
-        fontFamily: 'Arial',
+        //fontFamily: 'Arial',
         fontWeight: 'bold',
         color: 'white',
         //alignItems: 'center',
@@ -52,21 +52,21 @@ const styles = StyleSheet.create({
     textoEmail: {
         fontSize: hp('1.8%'),
         color: '#7d7c7c',
-        fontFamily: 'Gill Sans'
+        //fontFamily: 'Gill Sans'
 
     },
     textoPets: {
         fontSize: hp('1.8%'),
         paddingTop: hp('1.5%'),
         color: '#7d7c7c',
-        fontFamily: 'Gill Sans'
+        //fontFamily: 'Gill Sans'
 
     },
     textoAgendamentos: {
         fontSize: hp('1.8%'),
         paddingTop: hp('1.5%'),
         color: '#7d7c7c',
-        fontFamily: 'Gill Sans'
+        //fontFamily: 'Gill Sans'
 
     },
     textoDados: {

@@ -8,11 +8,14 @@ import * as Location from 'expo-location';
 import { StyleSheet } from 'react-native';
 import { BackgroundImage } from 'react-native-elements/dist/config';
 import Modal from 'react-native-modal';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
+
 
 
 export default function Mapa() {
 
     const navigation = useNavigation();
+
     const AbrirTelaBanho = () => {
         navigation.reset({
             routes: [{ name: 'TelaBanho' }]
@@ -44,11 +47,11 @@ export default function Mapa() {
     }, []);
 
 
-    const [mostrarMapa, setMostrarMapa] = useState(false);
+    const [mostrarModal, setMostrarModal] = useState(false);
 
     const ConfirmarLocal = () => {
         
-        setMostrarMapa(true)
+        setMostrarModal(true)
 
     
         
@@ -80,14 +83,30 @@ export default function Mapa() {
         setBairro(txtBairro)
     }
 
-    const pegarInfo = (endereco, numero, complemento, pontRef, bairro) => {
-        navigation.navigate('TelaBanho', {
-            endereco: endereco,
-            numero: numero,
-            complemento: complemento,
-            pontRef: pontRef,
-            bairro: bairro
-        })
+    
+
+    const preencherLoc = (endereco, numero, complemento, pontRef, bairro) => {
+
+        if (endereco == "" || numero == "" || complemento == "") {
+            alert('Preencha os campos obrigatórios!');
+        } else {
+
+            navigation.navigate('TelaBanho', {
+                endereco: endereco,
+                numero: numero,
+                complemento: complemento,
+                pontRef: pontRef,
+                bairro: bairro
+            })
+            
+           
+           setMostrarModal(false);
+           
+
+
+        }
+        
+        
     }
 
 
@@ -111,11 +130,11 @@ export default function Mapa() {
                 <Text style={{ fontWeight: 'bold' }}>CONFIRMAR LOCAL</Text>
             </TouchableOpacity>
 
+            
             <Modal
-                    onBackdropPress={() => setMostrarMapa(false)}
-                    isVisible={mostrarMapa}
+                    onBackdropPress={() => setMostrarModal(false)}
+                    isVisible={mostrarModal}
                     >
-
 
                 <View style={{
                     flex: 1,
@@ -130,6 +149,8 @@ export default function Mapa() {
                         
                 </View> 
 
+                
+                    
                 <Text style ={{bottom: '55%'}}>
                    Esse é o endereço do local indicado no mapa.
                </Text>  
@@ -138,7 +159,8 @@ export default function Mapa() {
                </Text>       
                 
                 
-                <View style={styles.inputArea}>
+                <View style={styles.inputArea} >
+                    
 
                 <TextInput style={styles.inputEndereco} placeholder='Endereço' placeholderTextColor='#808080' value={endereco} onChangeText={txtEndereco => onChangeEndereco(txtEndereco)}></TextInput>
 
@@ -152,7 +174,7 @@ export default function Mapa() {
 
 
 
-                <TouchableOpacity style={styles.botaoContinuar} onPress={pegarInfo}>
+                <TouchableOpacity style={styles.botaoContinuar} onPress={() => preencherLoc(endereco, numero, complemento)}>
                 <Text >CONTINUAR</Text>
                 </TouchableOpacity>
 

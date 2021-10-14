@@ -12,13 +12,14 @@ const styles = StyleSheet.create({
         fontSize: wp ('4.5%'),
         fontWeight: 'bold',
         color: '#FFF', 
-        top: hp ('6.5%'),
+        top: hp ('8.5%'),
         color: 'black',
         
     },
     textoMenu:{
-        left: wp('4%'),
+        left: wp('7%'),
         fontSize: wp ('7%'),
+        top: hp ('6%'),
         fontWeight: 'bold',
         color: 'black',
         
@@ -29,11 +30,14 @@ const styles = StyleSheet.create({
     avatar: {
         alignItems: 'center',
         justifyContent: 'center',
-        width: 50,
-        height: 50,
-        right: wp ('27%'),
-        bottom: hp ('10%')
-    
+        width: 70,
+        height: 70,
+        right: wp ('24%'),
+        bottom: hp ('2%'),
+        borderBottomLeftRadius: 32,
+        borderBottomRightRadius: 32,
+        borderTopLeftRadius: 32,
+        borderTopRightRadius: 32
     }
 }) 
 

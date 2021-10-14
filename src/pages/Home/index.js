@@ -14,6 +14,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { DotIndicator } from 'react-native-indicators';
 
 export default function Home() {
+    const user_id = firebase.auth().currentUser.uid
+
 
     //Passar o email para a tela
     const [email, setEmail] = useState('');
@@ -29,7 +31,6 @@ export default function Home() {
         "Animated: `useNativeDriver` was not specified. This is a required option and must be explicitly set to `true` or `false`"
     ])
 
-
     const [animacao, setAnimacao] = useState(true)
 
     const emailDoLogado = firebase.auth().currentUser.email
@@ -42,6 +43,7 @@ export default function Home() {
                 //console.log(doc.id, " => ", doc.data().nome);
                 setPegar(doc.data().nome);
                 setAnimacao(false)
+
             });
         })
         .catch((error) => {
@@ -82,7 +84,7 @@ export default function Home() {
             <View>
                 <Text style={styles.ola}>Olá {pegar},</Text>
                 <Text style={styles.papai}>o que deseja?</Text>
-                <DotIndicator  animating={animacao} size={8} style={styles.loading} />
+                <DotIndicator animating={animacao} size={8} style={styles.loading} />
                 <Text style={styles.pet}>Pet</Text>
                 <Text style={styles.amigos}>Amigos</Text>
 

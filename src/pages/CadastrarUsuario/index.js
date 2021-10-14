@@ -80,7 +80,8 @@ export default function CadastrarUsuario() {
         if (senha === password) {
             
             firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {  
-                enviarFoto()
+                //enviarFoto()
+                firebase.firestore().collection('clientes').add({ nome: nome, email: email, senha: password});
                 cadastrado()
                 navigation.navigate('FazerLogin')
                  

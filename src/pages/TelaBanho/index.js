@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, SafeAreaView, TouchableOpacity, TextInput, Image, FlatList } from 'react-native';
+import { Text, View, SafeAreaView, TouchableOpacity, TextInput, Image, FlatList, PermissionsAndroid } from 'react-native';
 import { styles } from '../TelaBanho/styles.js';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
@@ -9,6 +9,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import firebase from '../../../firebaseconection';
 import { firestore } from 'firebase';
 import * as Location from 'expo-location';
+
 //import Geocoder from 'react-native-geocoding';
 //import { ListItem } from 'react-native-elements';
 
@@ -72,15 +73,13 @@ export default function TelaBanho({route}) {
     }, [])
 
     // Filtro das empresas
-
-    const [searchText, setSearchText] = useState('');
     const [list, setList] = useState(data);
+    const [searchText, setSearchText] = useState('');
 
-    useEffect(() => {
-        if (searchText === '') {
+    useEffect(() =>  {
+        if (searchText == "") {
             setList(data);
-            //console.log(list)
-            //console.log(data)
+        
         } else {
             setList(
                 data.filter(item => {
@@ -93,6 +92,8 @@ export default function TelaBanho({route}) {
             );
         }
     }, [searchText]);
+    
+
 
 
     // pegar localização do usuário
@@ -115,6 +116,8 @@ export default function TelaBanho({route}) {
         let location = await Location.getLastKnownPositionAsync({});
         setCoords(location.coords.latitude, location.coords.longitude);*/
 
+        
+
 
        
         
@@ -131,20 +134,31 @@ export default function TelaBanho({route}) {
 
         } 
 
-    return (
+        
+        
+        
+        
+
+    return(
+
         <SafeAreaView style={styles.container}>
+            
+            
 
             <TouchableOpacity style={styles.iconeVoltar} onPress={AbrirHome}>
                 <Ionicons name="arrow-back-circle-outline" size={50} color="black" />
             </TouchableOpacity>
 
-            <TextInput style={styles.inputLocal} placeholder='Onde você está?'>{route.params?.endereco}</TextInput>
+            <TextInput style={styles.inputLocal} placeholder='Onde você está?' > 
+            {route.params?.endereco } {route.params?.numero}  {route.params?.complemento} 
+
+            </TextInput>
 
             <MaterialIcons style={styles.iconeLocal} name="my-location" size={24} color="black" onPress={pegarLoc} />
             <Text style={styles.texto}>É hora de dar banho</Text>
 
             <Text style={styles.texto}>no seu pet!</Text>
-
+           
             <TextInput style={styles.inputPesquisar} placeholder={'Pesquise pelo seu PetShop favorito'} value={searchText} onChangeText={(t) => setSearchText(t)} />
 
             <AntDesign style={styles.iconePesquisa} name="search1" size={24} color="black" />
@@ -152,8 +166,9 @@ export default function TelaBanho({route}) {
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={list}
+                
                 renderItem={({ item }) => (
-
+                
 
                     <TouchableOpacity onPress={() => AbrirAgendamento(item.empresa, item.cidade, item.telefone)}>
 
@@ -167,13 +182,17 @@ export default function TelaBanho({route}) {
 
                         </View>
                     </TouchableOpacity>
-
+        
                 )}
                 
-            />
-
-
-        </SafeAreaView>
-    )
-}
                 
+            />
+                
+
+        </SafeAreaView>      
+        
+
+    )
+
+
+}           

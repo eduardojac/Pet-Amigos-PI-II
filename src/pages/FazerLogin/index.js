@@ -33,6 +33,9 @@ export default function FazerLogin() {
 
     const [loading, setLoading] = useState('true')
 
+    
+
+
     //Fazer login
     const [esconderSenha, setEsconderSenha] = useState(true)
     const [email, setEmail] = useState('')

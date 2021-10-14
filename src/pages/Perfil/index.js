@@ -1,6 +1,6 @@
 import React from 'react'
 import { styles } from '../Perfil/styles'
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Feather } from '@expo/vector-icons';
 import { DrawerItem } from '@react-navigation/drawer';
@@ -35,6 +35,8 @@ export default function Perfil() {
                 // doc.data() is never undefined for query doc snapshots
                 //console.log(doc.id, " => ", doc.data().nome);
                 setNome(doc.data().nome);
+                setFotoUrl(doc.data().foto)
+                
             });
         })
         .catch((error) => {
@@ -86,12 +88,13 @@ export default function Perfil() {
 
     // Pegar foto
     const [foto, setFoto] = useState(null)
+    const [fotoUrl, setFotoUrl] = useState('https://www.immotop.lu/files/default-logo.png')
 
     // Cadastrar foto no firebase
-    const [fotoCadastrada, setFotoCadastrada] = useState('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png')
+    const [fotoCadastrada, setFotoCadastrada] = useState('https://www.immotop.lu/files/default-logo.png')
 
     const enviarFoto = async () => {
-
+        setAnimacao(true)
         const uploadUri = foto
         let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1)
         const response = await fetch(foto)
@@ -105,14 +108,16 @@ export default function Perfil() {
 
             task.then(async () => {
                 const url = await firebase.storage().ref(filename).getDownloadURL();
-                console.log(url)
+                console.log(url) 
+                firebase.firestore().collection('clientes').doc('LA9dnHt3GZbR6U0BHbSu').update({foto: url });
                 setFotoCadastrada(url)
                 setMostraModal(false)
-                //firebase.firestore().collection('clientes').add({ nome: nome, email: email, senha: password, foto: url });
+                setAnimacao(false)
             });
 
         } catch (e) {
             console.log(e)
+            setAnimacao(false)
         }
 
     }
@@ -137,11 +142,13 @@ export default function Perfil() {
         setMostraModal(true)
     }
 
+    const [animacao, setAnimacao] = useState(false)
+
     return (
         <View style={styles.container}>
             <View style={styles.containerTexto}>
 
-                <Image style={styles.avatar} source={{uri: fotoCadastrada}} />
+                <Image style={styles.avatar} source={{ uri: fotoUrl }} />
                 <Text style={styles.textoNome}>{nome}</Text>
                 <TouchableOpacity>
                     <MaterialIcons name="add-a-photo" size={50} color="white" style={{ marginTop: 120, marginLeft: 150 }} onPress={abrirModal} />
@@ -172,7 +179,7 @@ export default function Perfil() {
                             <MaterialIcons name="add-a-photo" size={50} color="white" style={{ marginTop: 6, marginLeft: 2 }} >
                             </MaterialIcons>
                         </TouchableOpacity>
-
+                        <ActivityIndicator color="black" size='large' animating={animacao}/>
                         <TouchableOpacity style={styles.botaoCadastrar} onPress={enviarFoto}>
                             <Text style={styles.textBotaoCadastrar}>Salvar</Text>
                         </TouchableOpacity>
