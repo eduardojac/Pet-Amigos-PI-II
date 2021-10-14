@@ -25,23 +25,6 @@ export default function CadastrarUsuario() {
     // Pegar foto
     const [foto, setFoto] = useState(null)
 
-
-    /*state = {
-        user: {
-            nome: "",
-            email: "",
-            senha: "",
-            avatar: null
-        },
-        errorMessage: null
-    } */
-
-
-    
-
-
-
-
     // Cadastrar foto no firebase
     const [fotoCadastrada, setFotoCadastrada] = useState('')
 
@@ -146,7 +129,6 @@ export default function CadastrarUsuario() {
             <TouchableOpacity onPress={escolherFoto} style={styles.avatarPlaceHolder}>
                 <Image style={styles.logo} source={{ uri: foto }} style={styles.avatar} />
                 <MaterialIcons name="add-a-photo" size={50} color="white" style={{ marginTop: 6, marginLeft: 2 }} >
-
                 </MaterialIcons>
             </TouchableOpacity>
 

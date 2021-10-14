@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white',
         //alignItems: 'center',
-        top: hp('14%')
+        top: hp('30%')
     },
     informacoesPerfil: {
         paddingLeft: hp('5%'),
@@ -86,7 +86,65 @@ const styles = StyleSheet.create({
         borderRadius: 1,
         // boxShadow: '3px',
         shadowColor: 'green',
-      }
+      },
+      viewModal:{
+        flex: 1,
+        justifyContent: 'center', 
+    },
+    telaModal:{
+        backgroundColor: 'white',
+        borderRadius: 10,
+        minHeight: 300,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      },
+      logo:{
+        marginVertical: 10,
+        bottom: 25,
+        height: 180,
+        width: 180
+    },  
+    
+    avatarPlaceHolder:{
+        width: 160,
+        height: 160,
+        borderRadius: 80,
+        backgroundColor: "gray",
+        marginTop: 60,
+        justifyContent: "center",
+        alignItems: "center",
+        bottom: 35
+    },
+    avatar:{
+        position: "absolute",
+        width: 160,
+        height: 160,
+        borderRadius: 80,
+
+    },
+    botaoCadastrar:{
+        marginVertical: 20,
+        backgroundColor: '#C41D00',
+        height: hp('6.5%'),
+        width: wp('40%'),
+        borderRadius: wp ('2%'),
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderBottomWidth: 2, 
+        borderLeftWidth: 2,
+        borderRightWidth: 2,
+        borderTopWidth: 2,
+        borderBottomColor: '#000',
+        borderLeftColor: '#000',
+        borderTopColor: '#000',
+        borderRightColor: '#000'
+    },
+
+    textBotaoCadastrar:{
+        color: '#FFF',
+        fontWeight: 'bold',
+        fontSize: hp('2.5%') 
+    }
 })
 
 export { styles };
