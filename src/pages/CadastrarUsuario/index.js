@@ -7,6 +7,7 @@ import UserPermissions from '../../../utilities/UserPermissions.js';
 import * as ImagePicker from 'expo-image-picker'
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import storage from '@react-native-firebase/storage'
 
 export default function CadastrarUsuario() {
 
@@ -25,6 +26,7 @@ export default function CadastrarUsuario() {
     // Pegar foto
     const [foto, setFoto] = useState(null)
 
+
     /*state = {
         user: {
             nome: "",
@@ -34,7 +36,6 @@ export default function CadastrarUsuario() {
         },
         errorMessage: null
     } */
-
 
 
     const escolherFoto = async () => {
@@ -47,8 +48,21 @@ export default function CadastrarUsuario() {
         });
 
         if (!result.cancelled) {
-            setFoto(result.uri, "test-image")
+            setFoto(result.uri)
         }
+    }
+
+    // Cadastrar foto no firebase
+    const enviarFoto = async () => {
+        const uploadUri = foto
+        let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1)
+        const response = await fetch(foto)
+        const blob = await response.blob();
+        var ref = firebase.storage().ref().child(filename);
+        const url = await storage().ref('82c55794-d963-45f5-a0f4-1d36567fdebb.jpg').getDownloadURL();
+        console.log(url)
+        return ref.put(blob)
+        
     }
 
 
@@ -60,12 +74,12 @@ export default function CadastrarUsuario() {
     const [senha, setSenha] = useState('')
 
     const Inserir = () => {
-        firebase.firestore().collection('clientes').add({ nome: nome, email: email, senha: password});
+        firebase.firestore().collection('clientes').add({ nome: nome, email: email, senha: password });
 
     }
 
     const Cadastramento = () => {
-        /*if (senha === password) {
+        if (senha === password) {
 
             firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
                 Inserir()
@@ -82,8 +96,7 @@ export default function CadastrarUsuario() {
         } else {
             Alert.alert("As senhas precisam ser as mesmas!")
             return;
-        } */
-        console.warn(url)
+        }
     }
 
     const cadastrado = () =>
@@ -109,7 +122,7 @@ export default function CadastrarUsuario() {
     }
 
     //{require('../../../assets/src/adicionarAvatar.png')}
-    return ( 
+    return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.textoPet}>Pet</Text>
 
@@ -147,6 +160,9 @@ export default function CadastrarUsuario() {
             <TouchableOpacity style={styles.botaoCadastrar} onPress={Cadastramento}>
                 <Text style={styles.textBotaoCadastrar}>CADASTRAR</Text>
             </TouchableOpacity>
+            <TouchableOpacity onPress={enviarFoto}>
+                <Text>teste</Text>
+            </TouchableOpacity>
 
             <TouchableOpacity style={styles.botaoJaTemCadastro} onPress={AbrirFazerLogin}>
                 <Text style={{ fontSize: 17 }}>Já tem cadastro? Acesse!</Text>
@@ -159,4 +175,3 @@ export default function CadastrarUsuario() {
 
     )
 }
- 

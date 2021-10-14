@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, Modal } from 'react-native';
+import { Text, View, TouchableOpacity, TextInput} from 'react-native';
 import MapView from 'react-native-maps';
 import { styles } from '../Mapa/styles.js';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import { StyleSheet } from 'react-native';
 import { BackgroundImage } from 'react-native-elements/dist/config';
+import Modal from 'react-native-modal';
 
 
 export default function Mapa() {
@@ -43,9 +44,23 @@ export default function Mapa() {
     }, []);
 
 
+    const [mostrarMapa, setMostrarMapa] = useState(false);
+
     const ConfirmarLocal = () => {
-        alert('Que pressa é essa ? Relaxa.. Cena dos próximos capítulos!')
+        
+        setMostrarMapa(true)
+
+    
+        
     }
+
+
+    // Abrir modal de Mapa
+
+    
+
+
+   
 
 
     return (
@@ -63,6 +78,51 @@ export default function Mapa() {
             <TouchableOpacity style={styles.botaoConfirmar} onPress={ConfirmarLocal}>
                 <Text style={{ fontWeight: 'bold' }}>CONFIRMAR LOCAL</Text>
             </TouchableOpacity>
+
+            <Modal
+                    onBackdropPress={() => setMostrarMapa(false)}
+                    isVisible={mostrarMapa}
+                    >
+
+
+               
+
+                <View style={{
+                    flex: 1,
+                    justifyContent: 'flex-end',
+                    backgroundColor: '#FFFFFF',
+                    borderTopRightRadius: 10,
+                    borderTopLeftRadius: 10,
+                    width: '110.3%',
+                    right: '5.5%',
+                    top: '20%'
+                    }} >
+                        
+                </View> 
+
+                <Text style ={{bottom: '55%'}}>
+                   Esse é o endereço do local indicado no mapa.
+               </Text>  
+               <Text style ={{bottom: '55%'}}>
+                   Você pode editar o texto, se necessário.
+               </Text>       
+                
+                
+                <View style={styles.inputArea}>
+                <TextInput style={styles.inputEndereco} placeholder='Endereço' placeholderTextColor='#808080'>
+                </TextInput>
+                </View>
+
+                
+                
+                
+
+
+                
+                 
+                    
+            </Modal>
+            
         </View >
 
 

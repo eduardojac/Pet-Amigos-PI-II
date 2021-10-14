@@ -51,7 +51,37 @@ const styles = StyleSheet.create({
         top: hp('3.5%'),
         fontSize: 15,
         fontWeight: 'bold'
-    }
+    },
+    inputArea:{
+        flexDirection: 'row',
+        width: '90%',
+        
+    }, 
+    inputEndereco:{
+        backgroundColor: '#FFFFFF',
+        borderRadius: wp ('3%'),
+        width: wp('90%'),
+        height: hp('8%'),
+        padding: 10,
+        borderBottomWidth: 1, 
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+        borderTopWidth: 1,
+        bottom: '100%'
+    },
+
+    inputNumero:{
+        backgroundColor: '#FFFFFF',
+        borderRadius: wp ('3%'),
+        width: wp('90%'),
+        height: hp('8%'),
+        padding: 10,
+        borderBottomWidth: 1, 
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+        borderTopWidth: 1,
+        bottom: '60%'
+    },
 
 })
 

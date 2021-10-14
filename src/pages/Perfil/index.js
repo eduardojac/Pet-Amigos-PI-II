@@ -1,8 +1,11 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { styles } from '../Perfil/styles'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { useNavigation, useRoute } from '@react-navigation/native'
+import { Feather } from '@expo/vector-icons';
+import { DrawerItem } from '@react-navigation/drawer';
 import firebase from '../../../firebaseconection';
 import { useState, useEffect } from 'react';
-import { useNavigation } from '@react-navigation/native';
 
 export default function Perfil() {
 
@@ -36,51 +39,60 @@ export default function Perfil() {
     // Quantidade de Pets e Quantidade de Agendamentos
     const user_id = firebase.auth().currentUser.uid
 
-    const [qtdPet,setQtdPet] = useState('')
+    const [qtdPet, setQtdPet] = useState('')
     const [qtdAgenda, setQtdAgenda] = useState('')
+    const navigation = useNavigation();
 
     useEffect(() => {
         firebase.firestore()
-        .collection('pet')
-        .where('user_id', '==', user_id)
-        .onSnapshot((query) => {
-            const data = []
-            query.forEach(doc => {
-                data.push({
-                    ...doc.data(),
-                    id: doc.id,
-                       
+            .collection('pet')
+            .where('user_id', '==', user_id)
+            .onSnapshot((query) => {
+                const data = []
+                query.forEach(doc => {
+                    data.push({
+                        ...doc.data(),
+                        id: doc.id,
+
+                    })
                 })
+                setQtdPet(data.length)
             })
-            setQtdPet(data.length)
-        })
-        
+
     }, []);
 
     useEffect(() => {
         firebase.firestore()
-        .collection('agendamento')
-        .where('user_id', '==', user_id)
-        .onSnapshot((query) => {
-            const data = []
-            query.forEach(doc => {
-                data.push({
-                    ...doc.data(),
-                    id: doc.id,
-                       
+            .collection('agendamento')
+            .where('user_id', '==', user_id)
+            .onSnapshot((query) => {
+                const data = []
+                query.forEach(doc => {
+                    data.push({
+                        ...doc.data(),
+                        id: doc.id,
+
+                    })
                 })
+                setQtdAgenda(data.length)
             })
-            setQtdAgenda(data.length)
-        })
-        
+
     }, []);
 
     return (
-        <View>
-            <Text>Nome: {nome}</Text>
-            <Text>Email: {email}</Text>
-            <Text>Pets Cadastrados: {qtdPet}</Text>
-            <Text>Agendamentos Ativos: {qtdAgenda}</Text>
+        <View style={styles.container}>
+            <View style={styles.containerTexto}>
+                <Image style={styles.avatar} source={require('../../../assets/src/MenuAvatar.png')} />
+                <Text style={styles.textoNome}>{nome}</Text>
+            </View>
+            <View style={styles.informacoesPerfil}>
+                <Text style={styles.textoEmail}>Email: {email}</Text>
+                <Text style={styles.textoPets}>Pets Cadastrados: {qtdPet}</Text>
+                <Text style={styles.textoAgendamentos}>Agendamentos Ativos: {qtdAgenda}</Text>
+            </View>
+            <TouchableOpacity style={styles.acessoMenu} onPress={() => navigation.openDrawer()}>
+                <Feather name="menu" size={35} color="black" />
+            </TouchableOpacity>
         </View>
     )
 }
