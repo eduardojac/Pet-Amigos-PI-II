@@ -54,15 +54,47 @@ export default function Mapa() {
         
     }
 
+    const [endereco, setEndereco] = useState('');
+    const [numero, setNumero] = useState('');
+    const [complemento, setComplemento] = useState('');
+    const [pontRef, setPontRef] = useState('');
+    const [bairro, setBairro] = useState('');
 
-    // Abrir modal de Mapa
+    const onChangeEndereco = (txtEndereco) => {
+        setEndereco(txtEndereco)
+    }
+
+    const onChangeNumero = (txtNumero) => {
+        setNumero(txtNumero)
+    }
+
+    const onChangeComplemento = (txtComplemento) => {
+        setComplemento(txtComplemento)
+    }
+
+    const onChangePontRef = (txtPontRef) => {
+        setPontRef(txtPontRef)
+    }
+
+    const onChangeBairro = (txtBairro) => {
+        setBairro(txtBairro)
+    }
+
+    const pegarInfo = (endereco, numero, complemento, pontRef, bairro) => {
+        navigation.navigate('TelaBanho', {
+            endereco: endereco,
+            numero: numero,
+            complemento: complemento,
+            pontRef: pontRef,
+            bairro: bairro
+        })
+    }
+
+
+
+
 
     
-
-
-   
-
-
     return (
         <View style={{backgroundColor: 'white', alignItems: 'center',}}>
 
@@ -85,8 +117,6 @@ export default function Mapa() {
                     >
 
 
-               
-
                 <View style={{
                     flex: 1,
                     justifyContent: 'flex-end',
@@ -104,15 +134,33 @@ export default function Mapa() {
                    Esse é o endereço do local indicado no mapa.
                </Text>  
                <Text style ={{bottom: '55%'}}>
-                   Você pode editar o texto, se necessário.
+                   Você pode editar o texto, se necessário. 
                </Text>       
                 
                 
                 <View style={styles.inputArea}>
-                <TextInput style={styles.inputEndereco} placeholder='Endereço' placeholderTextColor='#808080'>
-                </TextInput>
+
+                <TextInput style={styles.inputEndereco} placeholder='Endereço' placeholderTextColor='#808080' value={endereco} onChangeText={txtEndereco => onChangeEndereco(txtEndereco)}></TextInput>
+
+                <TextInput style={styles.inputNumero} placeholder='Número' placeholderTextColor='#808080' value={numero} onChangeText={txtNumero => onChangeNumero(txtNumero)}></TextInput>
+
+                <TextInput style={styles.inputComplemento} placeholder='Complemento' placeholderTextColor='#808080' value={complemento} onChangeText={txtComplemento => onChangeComplemento(txtComplemento)}></TextInput>
+
+                <TextInput style={styles.inputPontoRef} placeholder='Ponto de Referência (opcional)' placeholderTextColor='#808080' value={pontRef} onChangeText={txtPontRef => onChangePontRef(txtPontRef)}></TextInput>
+
+                <TextInput style={styles.inputBairro} placeholder='Bairro' placeholderTextColor='#808080' value={bairro} onChangeText={txtBairro => onChangeBairro(txtBairro)}></TextInput>
+
+
+
+                <TouchableOpacity style={styles.botaoContinuar} onPress={pegarInfo}>
+                <Text >CONTINUAR</Text>
+                </TouchableOpacity>
+
                 </View>
 
+                
+                
+                
                 
                 
                 

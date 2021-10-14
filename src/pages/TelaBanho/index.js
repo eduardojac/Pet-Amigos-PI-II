@@ -19,7 +19,7 @@ import * as Location from 'expo-location';
 // import { Platform } from 'react-native';
 
 
-export default function TelaBanho() {
+export default function TelaBanho({route}) {
 
     //Navegação entre telas
     const navigation = useNavigation();
@@ -138,7 +138,7 @@ export default function TelaBanho() {
                 <Ionicons name="arrow-back-circle-outline" size={50} color="black" />
             </TouchableOpacity>
 
-            <TextInput style={styles.inputLocal} placeholder='Onde você está?'></TextInput>
+            <TextInput style={styles.inputLocal} placeholder='Onde você está?'>{route.params?.endereco}</TextInput>
 
             <MaterialIcons style={styles.iconeLocal} name="my-location" size={24} color="black" onPress={pegarLoc} />
             <Text style={styles.texto}>É hora de dar banho</Text>

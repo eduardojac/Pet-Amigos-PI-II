@@ -7,7 +7,6 @@ import UserPermissions from '../../../utilities/UserPermissions.js';
 import * as ImagePicker from 'expo-image-picker'
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import storage from '@react-native-firebase/storage'
 
 export default function CadastrarUsuario() {
 
@@ -38,6 +37,39 @@ export default function CadastrarUsuario() {
     } */
 
 
+    
+
+
+
+
+    // Cadastrar foto no firebase
+    const [fotoCadastrada, setFotoCadastrada] = useState('')
+
+    const enviarFoto = async () => {
+
+        const uploadUri = foto
+        let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1)
+        const response = await fetch(foto)
+        const blob = await response.blob();
+        var ref = firebase.storage().ref().child(filename);
+        try {
+            const task = ref.put(blob)
+            task.on('state_changed', taskSnapshot => {
+                console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
+            });
+
+            task.then( async () => {
+                const url = await firebase.storage().ref(filename).getDownloadURL();
+                console.log(url)
+                firebase.firestore().collection('clientes').add({ nome: nome, email: email, senha: password, foto: url});
+            });
+
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
+
     const escolherFoto = async () => {
         UserPermissions.getCameraPermission()
 
@@ -49,20 +81,8 @@ export default function CadastrarUsuario() {
 
         if (!result.cancelled) {
             setFoto(result.uri)
+            
         }
-    }
-
-    // Cadastrar foto no firebase
-    const enviarFoto = async () => {
-        const uploadUri = foto
-        let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1)
-        const response = await fetch(foto)
-        const blob = await response.blob();
-        var ref = firebase.storage().ref().child(filename);
-        const url = await storage().ref('82c55794-d963-45f5-a0f4-1d36567fdebb.jpg').getDownloadURL();
-        console.log(url)
-        return ref.put(blob)
-        
     }
 
 
@@ -73,19 +93,14 @@ export default function CadastrarUsuario() {
     const [password, setPassword] = useState('')
     const [senha, setSenha] = useState('')
 
-    const Inserir = () => {
-        firebase.firestore().collection('clientes').add({ nome: nome, email: email, senha: password });
-
-    }
-
     const Cadastramento = () => {
         if (senha === password) {
-
-            firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
-                Inserir()
+            
+            firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {  
+                enviarFoto()
                 cadastrado()
                 navigation.navigate('FazerLogin')
-
+                 
             }).catch(() => {
                 falhacadastro()
             })

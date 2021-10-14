@@ -86,9 +86,15 @@ export default function Perfil() {
                 <Text style={styles.textoNome}>{nome}</Text>
             </View>
             <View style={styles.informacoesPerfil}>
-                <Text style={styles.textoEmail}>Email: {email}</Text>
-                <Text style={styles.textoPets}>Pets Cadastrados: {qtdPet}</Text>
-                <Text style={styles.textoAgendamentos}>Agendamentos Ativos: {qtdAgenda}</Text>
+                <Text style={styles.textoEmail}>Email: </Text>
+                <Text style={styles.textoDados}>{email}</Text>
+                <View style={styles.hdivider}/>
+                <Text style={styles.textoPets}>Pets Cadastrados: </Text>
+                <Text style={styles.textoDados}>{qtdPet}</Text>
+                <View style={styles.hdivider}/>
+                <Text style={styles.textoAgendamentos}>Agendamentos Ativos: </Text>
+                <Text style={styles.textoDados}>{qtdAgenda}</Text>
+                <View style={styles.hdivider}/>
             </View>
             <TouchableOpacity style={styles.acessoMenu} onPress={() => navigation.openDrawer()}>
                 <Feather name="menu" size={35} color="black" />
