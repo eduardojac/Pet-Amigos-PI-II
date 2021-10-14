@@ -150,7 +150,7 @@ export default function TelaBanho({route}) {
             </TouchableOpacity>
 
             <TextInput style={styles.inputLocal} placeholder='Onde você está?' > 
-            {route.params?.endereco } {route.params?.numero}  {route.params?.complemento} 
+            {route.params?.endereco} {route.params?.numero}  {route.params?.complemento} 
 
             </TextInput>
 

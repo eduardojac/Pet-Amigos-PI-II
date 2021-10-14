@@ -155,23 +155,23 @@ export default function TelaPet(route) {
                             <Text style={styles.textoPet}>Novo Pet</Text>
 
                             <View>
-                                <TextInput style={styles.input} placeholder={'Nome'} onChangeText={txtNome => onChangeNome(txtNome)}></TextInput>
+                                <TextInput style={styles.input} placeholder={'Nome'} placeholderTextColor='#808080' onChangeText={txtNome => onChangeNome(txtNome)}></TextInput>
                                 <MaterialCommunityIcons name="tag-text-outline" size={24} color="black" style={styles.icone} />
                             </View>
 
                             <View>
 
-                                <TextInput style={styles.input} placeholder={'Espécie'} onChangeText={txtEspecie => onChangeEspecie(txtEspecie)}></TextInput>
+                                <TextInput style={styles.input} placeholder={'Espécie'} placeholderTextColor='#808080' onChangeText={txtEspecie => onChangeEspecie(txtEspecie)}></TextInput>
                                 <MaterialIcons name="pets" size={24} color="black" style={styles.icone} />
                             </View>
 
                             <View>
-                                <TextInput style={styles.input} placeholder={'Sexo'} onChangeText={txtSexo => onChangeSexo(txtSexo)}></TextInput>
+                                <TextInput style={styles.input} placeholder={'Sexo'}  placeholderTextColor='#808080' onChangeText={txtSexo => onChangeSexo(txtSexo)}></TextInput>
                                 <FontAwesome name="intersex" size={24} color="black" style={styles.icone} />
                             </View>
 
                             <View>
-                                <TextInput type={Number} style={styles.input} placeholder={'Idade'} onChangeText={txtIdade => onChangeIdade(txtIdade)}></TextInput>
+                                <TextInput type={Number} style={styles.input} placeholder={'Idade'} placeholderTextColor='#808080' onChangeText={txtIdade => onChangeIdade(txtIdade)}></TextInput>
                                 <FontAwesome name="birthday-cake" size={24} color="black" style={styles.icone} />
                             </View>
 

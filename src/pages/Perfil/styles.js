@@ -42,9 +42,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white',
         //alignItems: 'center',
-        top: hp('30%')
+        top: hp('28%') // Só p apresentar pro prof (Voltar pro 30%)
     },
     informacoesPerfil: {
+        flex: 0.1, // Só p apresentar pro prof
         paddingLeft: hp('5%'),
         paddingTop: hp('1.5%'),
         top: hp('5%')
