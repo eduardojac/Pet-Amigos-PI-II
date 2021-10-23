@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: 150,
         height: 150,
-        // right: wp('47%'),
-        // bottom: hp('10%'),
+        right: wp('47%'),
+         bottom: hp('10%'),
         position: 'absolute',
     },
     acessoMenu: {

@@ -146,7 +146,7 @@ export default function Perfil() {
 
                 <Image style={styles.avatar} source={{ uri: fotoUrl }} />
                 <Text style={styles.textoNome}>{nome}</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={abrirModal}>
                     <MaterialIcons name="add-a-photo" size={50} color="white" style={{ marginTop: 120, marginLeft: 150, top: 15}} onPress={abrirModal} />
                 </TouchableOpacity>
             </View>

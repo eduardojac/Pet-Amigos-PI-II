@@ -34,10 +34,10 @@ const styles = StyleSheet.create({
         height: 70,
         right: wp ('24%'),
         bottom: hp ('2%'),
-        borderBottomLeftRadius: 32,
-        borderBottomRightRadius: 32,
-        borderTopLeftRadius: 32,
-        borderTopRightRadius: 32
+        borderBottomLeftRadius: 35,
+        borderBottomRightRadius: 35,
+        borderTopLeftRadius: 35,
+        borderTopRightRadius: 35
     }
 }) 
 
