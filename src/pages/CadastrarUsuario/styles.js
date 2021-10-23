@@ -26,8 +26,9 @@ const styles = StyleSheet.create({
     logo:{
         marginVertical: 10,
         bottom: 25,
+        right: 10,
+        width: 210,
         height: 180,
-        width: 180
     },  
     
     avatarPlaceHolder:{

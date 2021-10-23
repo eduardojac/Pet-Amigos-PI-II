@@ -35,16 +35,22 @@ export default function Menu(props) {
     })
   }
 
-    // Pegar o nome do usuário logado
-    const emailDoLogado = firebase.auth().currentUser.email
+  const AbrirMensagens = () => {
+    navigation.reset({
+      routes: [{ name: 'Mensagens' }]
+    })
+  }
 
-    firebase.firestore().collection('clientes').where("email", "==", emailDoLogado)
+    // Pegar o nome do usuário logado
+    const user_id = firebase.auth().currentUser.uid
+
+    firebase.firestore().collection('clientes').where("id", "==", user_id)
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
                 //console.log(doc.id, " => ", doc.data().nome);
-                setPegar(doc.data().nome);
+                setNome(doc.data().nome.split(" ")[0]);
                 setFotoUrl(doc.data().foto)
             });
         })
@@ -52,13 +58,13 @@ export default function Menu(props) {
             console.log("Error getting documents: ", error);
         }); 
 
-    const [pegar, setPegar] = useState(''); 
+    const [nome, setNome] = useState(''); 
     const [fotoUrl, setFotoUrl] = useState('https://www.immotop.lu/files/default-logo.png')
 
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.viewPerfil}>
-        <Text style={styles.textoMenu}>{pegar}</Text>
+        <Text style={styles.textoMenu}>{nome}</Text>
         <Image style={styles.avatar} source={{uri: fotoUrl}} />
       </View>
       <DrawerContentScrollView {...props}>
@@ -73,7 +79,7 @@ export default function Menu(props) {
             <FontAwesome name="user-circle-o" size={24} color="black" />
           )}
           label="Perfil" />
-        <DrawerItem
+        <DrawerItem onPress={AbrirMensagens}
           icon={({ size, color }) => (
             <Feather name="message-circle" size={24} color="black" />
           )}

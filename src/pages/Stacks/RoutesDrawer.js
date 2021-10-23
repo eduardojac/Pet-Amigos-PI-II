@@ -57,6 +57,10 @@ export default () => (
       name="AgendamentoPasseio"
       component={AgendamentoPasseio}
     />
+    <Drawer.Screen
+      name="Mensagens"
+      component={Mensagens}
+    />
 
   </Drawer.Navigator>
 

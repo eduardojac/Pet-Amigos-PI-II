@@ -19,57 +19,6 @@ export default function CadastrarUsuario() {
         })
     }
 
-    // Cadastrar foto no firebase
-
-
-    // Pegar foto
-    const [foto, setFoto] = useState(null)
-
-    // Cadastrar foto no firebase
-    const [fotoCadastrada, setFotoCadastrada] = useState('')
-
-    const enviarFoto = async () => {
-
-        const uploadUri = foto
-        let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1)
-        const response = await fetch(foto)
-        const blob = await response.blob();
-        var ref = firebase.storage().ref().child(filename);
-        try {
-            const task = ref.put(blob)
-            task.on('state_changed', taskSnapshot => {
-                console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
-            });
-
-            task.then( async () => {
-                const url = await firebase.storage().ref(filename).getDownloadURL();
-                console.log(url)
-                firebase.firestore().collection('clientes').add({ nome: nome, email: email, senha: password, foto: url});
-            });
-
-        } catch (e) {
-            console.log(e)
-        }
-
-    }
-
-    const escolherFoto = async () => {
-        UserPermissions.getCameraPermission()
-
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3]
-        });
-
-        if (!result.cancelled) {
-            setFoto(result.uri)
-            
-        }
-    }
-
-
-
     // Cadastrar no banco e autenticação
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
@@ -77,11 +26,9 @@ export default function CadastrarUsuario() {
     const [senha, setSenha] = useState('')
 
     const Cadastramento = () => {
-        if (senha === password) {
-            
+        if (senha === password) {   
             firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {  
-                //enviarFoto()
-                firebase.firestore().collection('clientes').add({ nome: nome, email: email, senha: password});
+                firebase.firestore().collection('clientes').add({ nome: nome, email: email, senha: password, id: firebase.auth().currentUser.uid, foto: 'https://www.immotop.lu/files/default-logo.png'});
                 cadastrado()
                 navigation.navigate('FazerLogin')
                  
@@ -120,18 +67,13 @@ export default function CadastrarUsuario() {
         setSenha(txtSenha)
     }
 
-    //{require('../../../assets/src/adicionarAvatar.png')}
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.textoPet}>Pet</Text>
 
             <Text style={styles.textoAmigos}>Amigos</Text>
 
-            <TouchableOpacity onPress={escolherFoto} style={styles.avatarPlaceHolder}>
-                <Image style={styles.logo} source={{ uri: foto }} style={styles.avatar} />
-                <MaterialIcons name="add-a-photo" size={50} color="white" style={{ marginTop: 6, marginLeft: 2 }} >
-                </MaterialIcons>
-            </TouchableOpacity>
+            <Image style={styles.logo} source={require('../../../assets/src/patinha.png')} />
 
             <TextInput
                 style={styles.inputNome}
@@ -158,15 +100,10 @@ export default function CadastrarUsuario() {
             <TouchableOpacity style={styles.botaoCadastrar} onPress={Cadastramento}>
                 <Text style={styles.textBotaoCadastrar}>CADASTRAR</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={enviarFoto}>
-                <Text>teste</Text>
-            </TouchableOpacity>
 
             <TouchableOpacity style={styles.botaoJaTemCadastro} onPress={AbrirFazerLogin}>
                 <Text style={{ fontSize: 17 }}>Já tem cadastro? Acesse!</Text>
             </TouchableOpacity>
-
-
 
         </SafeAreaView>
 

@@ -134,11 +134,6 @@ export default function TelaBanho({route}) {
 
         } 
 
-        
-        
-        
-        
-
     return(
 
         <SafeAreaView style={styles.container}>

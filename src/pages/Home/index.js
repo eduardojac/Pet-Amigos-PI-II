@@ -14,44 +14,6 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { DotIndicator } from 'react-native-indicators';
 
 export default function Home() {
-    const user_id = firebase.auth().currentUser.uid
-
-
-    //Passar o email para a tela
-    const [email, setEmail] = useState('');
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            setEmail(user.email);
-
-        }
-    });
-
-    // Pegar o nome do usuário logado
-    LogBox.ignoreLogs([
-        "Animated: `useNativeDriver` was not specified. This is a required option and must be explicitly set to `true` or `false`"
-    ])
-
-    const [animacao, setAnimacao] = useState(true)
-
-    const emailDoLogado = firebase.auth().currentUser.email
-
-    firebase.firestore().collection('clientes').where("email", "==", emailDoLogado)
-        .get()
-        .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                // doc.data() is never undefined for query doc snapshots
-                //console.log(doc.id, " => ", doc.data().nome);
-                setPegar(doc.data().nome);
-                setAnimacao(false)
-
-            });
-        })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
-        });
-
-    const [pegar, setPegar] = useState(pegar);
-
     // Navegação entre telas
     const navigation = useNavigation();
 
@@ -78,11 +40,51 @@ export default function Home() {
         })
     }
 
+
+    // Warnings para ignorar
+    LogBox.ignoreLogs([
+        "Animated: `useNativeDriver` was not specified. This is a required option and must be explicitly set to `true` or `false`",
+        "Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function"
+    ])
+
+    //Passar o email para a tela
+    const [email, setEmail] = useState('');
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            setEmail(user.email);
+
+        }
+    });
+
+    // Pegar o nome do usuário logado
+    const user_id = firebase.auth().currentUser.uid
+
+    const [animacao, setAnimacao] = useState(true)
+    const [nome, setNome] = useState(nome);
+
+    firebase.firestore().collection('clientes').where("id", "==", user_id)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                //console.log(doc.id, " => ", doc.data().nome);
+                setNome(doc.data().nome.split(" ")[0]);
+                setAnimacao(false)
+
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+
+        //const nomeCurto = nome.split(" ")[0]
+
+
     return (
 
         <SafeAreaView style={styles.container}>
             <View>
-                <Text style={styles.ola}>Olá {pegar},</Text>
+                <Text style={styles.ola}>Olá {nome},</Text>
                 <Text style={styles.papai}>o que deseja?</Text>
                 <DotIndicator animating={animacao} size={8} style={styles.loading} />
                 <Text style={styles.pet}>Pet</Text>
@@ -107,9 +109,6 @@ export default function Home() {
                     <Text style={styles.textSair}>AGENDA</Text>
                     <AntDesign name="calendar" size={30} color="black" />
                 </TouchableOpacity>
-
-
-
 
             </View>
 

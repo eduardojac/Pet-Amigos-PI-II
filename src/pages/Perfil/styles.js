@@ -37,12 +37,12 @@ const styles = StyleSheet.create({
     },
 
     textoNome: {
-        fontSize: hp('2.5%'),
+        fontSize: hp('3.5%'),
         //fontFamily: 'Arial',
         fontWeight: 'bold',
         color: 'white',
         //alignItems: 'center',
-        top: hp('28%') // Só p apresentar pro prof (Voltar pro 30%)
+        top: hp('35%') // Só p apresentar pro prof (Voltar pro 30%)
     },
     informacoesPerfil: {
         flex: 0.1, // Só p apresentar pro prof

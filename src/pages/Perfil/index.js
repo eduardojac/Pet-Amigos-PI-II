@@ -14,8 +14,6 @@ import * as ImagePicker from 'expo-image-picker'
 
 export default function Perfil() {
 
-    // Foto de Perfil
-
     // Nome e email do usuário
     const [email, setEmail] = useState('');
     firebase.auth().onAuthStateChanged((user) => {
@@ -25,10 +23,10 @@ export default function Perfil() {
         }
     });
 
-    const emailDoLogado = firebase.auth().currentUser.email
     const [nome, setNome] = useState('');
+    const user_id = firebase.auth().currentUser.uid
 
-    firebase.firestore().collection('clientes').where("email", "==", emailDoLogado)
+    firebase.firestore().collection('clientes').where("id", "==", user_id)
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
@@ -44,8 +42,6 @@ export default function Perfil() {
         });
 
     // Quantidade de Pets e Quantidade de Agendamentos
-    const user_id = firebase.auth().currentUser.uid
-
     const [qtdPet, setQtdPet] = useState('')
     const [qtdAgenda, setQtdAgenda] = useState('')
     const navigation = useNavigation();
@@ -151,7 +147,7 @@ export default function Perfil() {
                 <Image style={styles.avatar} source={{ uri: fotoUrl }} />
                 <Text style={styles.textoNome}>{nome}</Text>
                 <TouchableOpacity>
-                    <MaterialIcons name="add-a-photo" size={50} color="white" style={{ marginTop: 120, marginLeft: 150 }} onPress={abrirModal} />
+                    <MaterialIcons name="add-a-photo" size={50} color="white" style={{ marginTop: 120, marginLeft: 150, top: 15}} onPress={abrirModal} />
                 </TouchableOpacity>
             </View>
             <View style={styles.informacoesPerfil}>
