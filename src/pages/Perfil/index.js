@@ -13,12 +13,12 @@ import * as ImagePicker from 'expo-image-picker'
 import { DotIndicator } from 'react-native-indicators';
 
 export default function Perfil() {
+
     // Warnings para ignorar
     LogBox.ignoreLogs([
         "Animated: `useNativeDriver` was not specified. This is a required option and must be explicitly set to `true` or `false`",
         "Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function"
     ])
-
 
     // Nome e email do usuário
     const [email, setEmail] = useState('');
@@ -32,7 +32,6 @@ export default function Perfil() {
     const [nome, setNome] = useState('');
     const user_id = firebase.auth().currentUser.uid
     const [id, setId] = useState('')
-
 
     firebase.firestore().collection('clientes').where("id", "==", user_id)
         .get()
@@ -92,12 +91,9 @@ export default function Perfil() {
 
     }, []);
 
-    // Pegar foto
+    // Cadastrar foto no firebase
     const [foto, setFoto] = useState(null)
     const [fotoUrl, setFotoUrl] = useState('https://www.immotop.lu/files/default-logo.png')
-
-    // Cadastrar foto no firebase
-    const [fotoCadastrada, setFotoCadastrada] = useState('https://www.immotop.lu/files/default-logo.png')
 
     const enviarFoto = async () => {
         setAnimacao(true)
@@ -116,7 +112,6 @@ export default function Perfil() {
                 const url = await firebase.storage().ref(filename).getDownloadURL();
                 console.log(url)
                 firebase.firestore().collection('clientes').doc(id).update({ foto: url });
-                setFotoCadastrada(url)
                 setMostraModal(false)
                 setAnimacao(false)
             });
@@ -149,7 +144,7 @@ export default function Perfil() {
     }
 
     const [animacao, setAnimacao] = useState(false)
-    const [animacaoNome,setAnimacaoNome] = useState(true)
+    const [animacaoNome, setAnimacaoNome] = useState(true)
 
     return (
         <View style={styles.container}>
@@ -159,7 +154,7 @@ export default function Perfil() {
                 <Text style={styles.textoNome}>{nome}</Text>
                 <DotIndicator animating={animacaoNome} size={8} style={styles.loading} />
                 <TouchableOpacity onPress={abrirModal} style={styles.botaoModal}>
-                <MaterialIcons name="add-a-photo" size={50} color="white"/>
+                    <MaterialIcons name="add-a-photo" size={50} color="white" />
                 </TouchableOpacity>
             </View>
             <View style={styles.informacoesPerfil}>

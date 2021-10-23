@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, FlatList, Text, View, SafeAreaView, TouchableOpacity, TextInput } from 'react-native';
+import { Alert, FlatList, Text, View, SafeAreaView, TouchableOpacity, TextInput,LogBox } from 'react-native';
 import { styles } from '../Agenda/styles.js';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -9,6 +9,12 @@ import Modal from 'react-native-modal'
 import { EvilIcons } from '@expo/vector-icons';
 
 export default function Agenda() {
+
+    // Warnings para ignorar
+    LogBox.ignoreLogs([
+        "Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function"
+    ])
+
 
     // Navegação entre telas
     const navigation = useNavigation();
@@ -77,7 +83,7 @@ export default function Agenda() {
     const ExcluirAgendamento = async (id) => {
         firebase.firestore().collection('agendamento').doc(id).delete()
     }
-//a
+    //a
     return (
         <View style={{ flex: 1 }}>
 
@@ -102,18 +108,18 @@ export default function Agenda() {
                 isVisible={mostraEscolha}>
                 <View style={styles.viewModal}>
                     <View style={styles.telaModal}>
-                        <TouchableOpacity  style={{ right: 140 }} onPress={() => { setMostraEscolha(false) }}>
+                        <TouchableOpacity style={{ right: 140 }} onPress={() => { setMostraEscolha(false) }}>
                             <EvilIcons name="chevron-down" size={50} color="black" />
                         </TouchableOpacity>
                         <Text style={styles.textoPet}>Agendar</Text>
 
                         <TouchableOpacity onPress={AbrirTelaBanho} style={styles.botaoBanho}>
-                            <Text style={{fontSize: 20, fontWeight: 'bold', alignItems: 'center'}}>Banho</Text>
+                            <Text style={{ fontSize: 20, fontWeight: 'bold', alignItems: 'center' }}>Banho</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={AbrirTelaPasseio} style={styles.botaoPasseio}>
-                            <Text style={{fontSize: 20, fontWeight: 'bold'}}>Passeio</Text>
+                            <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Passeio</Text>
                         </TouchableOpacity>
-                        
+
                     </View>
                 </View>
             </Modal>
@@ -130,7 +136,7 @@ export default function Agenda() {
                         <TouchableOpacity disabled={true} >
 
                             <View style={styles.boxLista}>
-                                
+
 
                                 <TouchableOpacity style={styles.botaoExcluir} onPress={() => AlertaExcluir(item.id)}><AntDesign name="delete" size={24} color="#C41D00" /></TouchableOpacity>
 
@@ -139,7 +145,7 @@ export default function Agenda() {
                                 <Text style={styles.textoDia}>{item.dia}</Text>
                                 <Text style={styles.textoMes}>{item.mes}</Text>
                                 <Text style={styles.textoHorario}>{item.horario}</Text>
-                            
+
                                 <Text style={styles.textoPreco}>{item.preco}</Text>
 
                             </View>

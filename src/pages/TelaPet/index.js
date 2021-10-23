@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Text, Image, View, SafeAreaView, TouchableOpacity, TextInput, Alert, DrawerLayoutAndroidComponent } from 'react-native';
+import { FlatList, Text, Image, View, SafeAreaView, TouchableOpacity, TextInput, Alert, DrawerLayoutAndroidComponent, LogBox } from 'react-native';
 import { styles } from '../TelaPet/styles.js';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -14,6 +14,11 @@ import { Feather } from '@expo/vector-icons';
 
 export default function TelaPet(route) {
 
+    // Warnings para ignorar
+    LogBox.ignoreLogs([
+        "Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function"
+    ])
+
     // Navegação entre telas
     const navigation = useNavigation();
 
@@ -27,25 +32,25 @@ export default function TelaPet(route) {
     const user_id = firebase.auth().currentUser.uid
 
     const [data, setData] = useState('')
-    const [qtd,setQtd] = useState('')
+    const [qtd, setQtd] = useState('')
 
     useEffect(() => {
         firebase.firestore()
-        .collection('pet')
-        .where('user_id', '==', user_id)
-        .onSnapshot((query) => {
-            const data = []
-            query.forEach(doc => {
-                data.push({
-                    ...doc.data(),
-                    id: doc.id,
-                       
+            .collection('pet')
+            .where('user_id', '==', user_id)
+            .onSnapshot((query) => {
+                const data = []
+                query.forEach(doc => {
+                    data.push({
+                        ...doc.data(),
+                        id: doc.id,
+
+                    })
                 })
+                setData(data)
+                setQtd(data.length)
             })
-            setData(data)
-            setQtd(data.length)
-        })
-        
+
     }, []);
 
     // Cadastrar pet 
@@ -59,7 +64,7 @@ export default function TelaPet(route) {
         if (nome == "" || especie == "" || sexo == "" || idade == "") {
             falhacadastro()
         } else {
-            firebase.firestore().collection('pet').add({ nome: nome, especie: especie, sexo: sexo, idade: idade, user_id: user_id })    
+            firebase.firestore().collection('pet').add({ nome: nome, especie: especie, sexo: sexo, idade: idade, user_id: user_id })
             cadastrado()
             setMostraCadastro(false)
         }
@@ -89,7 +94,7 @@ export default function TelaPet(route) {
         firebase.firestore().collection('pet').doc(id).update({ nome: nome, especie: especie, sexo: sexo, idade: idade, user_id: user_id })
         atualizado(id);
         setMostraEdicao(false);
-    } 
+    }
     const atualizado = () =>
         Alert.alert("Atualizado com sucesso!")
 
@@ -149,7 +154,7 @@ export default function TelaPet(route) {
                     isVisible={mostraCadastro}>
                     <View style={styles.viewModal}>
                         <View style={styles.telaModal}>
-                            <TouchableOpacity style={{ right: 140 }} onPress={() => {setMostraCadastro(false) }}>
+                            <TouchableOpacity style={{ right: 140 }} onPress={() => { setMostraCadastro(false) }}>
                                 <EvilIcons name="chevron-down" size={50} color="black" />
                             </TouchableOpacity>
                             <Text style={styles.textoPet}>Novo Pet</Text>
@@ -166,7 +171,7 @@ export default function TelaPet(route) {
                             </View>
 
                             <View>
-                                <TextInput style={styles.input} placeholder={'Sexo'}  placeholderTextColor='#808080' onChangeText={txtSexo => onChangeSexo(txtSexo)}></TextInput>
+                                <TextInput style={styles.input} placeholder={'Sexo'} placeholderTextColor='#808080' onChangeText={txtSexo => onChangeSexo(txtSexo)}></TextInput>
                                 <FontAwesome name="intersex" size={24} color="black" style={styles.icone} />
                             </View>
 
@@ -188,7 +193,7 @@ export default function TelaPet(route) {
                     isVisible={mostraEdicao}>
                     <View style={styles.viewModal}>
                         <View style={styles.telaModal}>
-                            <TouchableOpacity style={{ right: 140 }} onPress={() => {setMostraEdicao(false) }}>
+                            <TouchableOpacity style={{ right: 140 }} onPress={() => { setMostraEdicao(false) }}>
                                 <EvilIcons name="chevron-down" size={50} color="black" />
                             </TouchableOpacity>
                             <Text style={styles.textoPet}>Editar Pet</Text>
@@ -225,14 +230,14 @@ export default function TelaPet(route) {
             </View>
             <View style={styles.viewLista}>
                 <FlatList
-                    
+
                     showsVerticalScrollIndicator={false}
                     data={data}
-                    renderItem={({ item }) => 
+                    renderItem={({ item }) =>
                     (
-                        
+
                         <TouchableOpacity disabled={true} >
-                            
+
                             <View style={styles.boxLista}>
                                 <TouchableOpacity style={styles.botaoEditar} onPress={() => abrirModalEditar(item.id)}><Feather name="edit" size={24} color="green" /></TouchableOpacity>
 
@@ -256,4 +261,4 @@ export default function TelaPet(route) {
         </View>
 
     )
-} 
+}
