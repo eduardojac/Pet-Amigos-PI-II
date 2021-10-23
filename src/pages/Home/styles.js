@@ -11,38 +11,39 @@ const styles = StyleSheet.create({
 
     ola:{
         fontSize: hp('3.5%'),
-        //alignItems: 'center',
-        padding: 10,
-        top:hp('25%')
+        top:hp('30%'),
+        //right: wp ('7%'),
+        alignItems: 'center'
+       
     },
 
     papai:{
         fontSize: hp('3.5%'),
         alignItems: 'center',
         padding: 10,
-        top:hp('22.5%'),
-        left:hp('5%')
+        top:hp('28.5%'),
+        left:hp('4%')
     },
 
     pet:{    
         fontSize: hp('6.5%'),
-        right: hp('0.2%'), 
+        right: hp('5%'), 
         color: '#C41D00',
         fontWeight: 'bold',
-        bottom:hp('7%')
+        bottom:hp('2%')
         
     },
     amigos:{
         fontSize: hp('6.5%'),
-        left: hp('6.0%'),
+        left: hp('4.0%'),
         fontWeight: 'bold',
-        bottom: hp('8.5%')     
+        bottom: hp('3.5%')     
     },
 
     botaoBanho:{
         backgroundColor:'#C41D00',   
         width: wp('35%'),
-        right:hp('9%'),
+        right:hp('12%'),
         borderRadius: 7,
         height: hp('16%'),
         alignItems: 'center',
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
         borderLeftColor: '#000',
         borderTopColor: '#000',
         borderRightColor: '#000',
-        top: hp('10%')
+        top: hp('15%')
     },
 
     textBanho:{
@@ -68,12 +69,11 @@ const styles = StyleSheet.create({
     botaoPasseio:{
         backgroundColor:'#C41D00',
         width: wp('35%'),
-        left:hp('15%'),
+        left:hp('12%'),
         borderRadius: 7,
         height: hp('16%'),
         alignItems: 'center',
         justifyContent:'center',
-        bottom:hp('2%'),
         borderBottomWidth: 2, 
         borderLeftWidth: 2,
         borderRightWidth: 2,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         borderLeftColor: '#000',
         borderTopColor: '#000',
         borderRightColor: '#000',
-        bottom: hp('5.8%')
+        bottom: hp ('1%')
     },
 
     textPasseio:{
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     botaoMeuPet:{
         backgroundColor:'#C41D00',
         width: wp('35%'),
-        right:hp('9%'),
+        right:hp('12%'),
         borderRadius: 7,
         height: hp('16%'),
         alignItems: 'center',
@@ -108,7 +108,8 @@ const styles = StyleSheet.create({
         borderLeftColor: '#000',
         borderTopColor: '#000',
         borderRightColor: '#000',
-    },
+        top: hp ('4%')
+    }, 
 
     textMeuPet:{
         fontWeight:'bold',
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
     botaoSair:{
         backgroundColor:'#C41D00',
         width: wp('35%'),
-        left:hp('15%'),
+        left:hp('12%'),
         borderRadius: 7,
         height: hp('16%'),
         alignItems: 'center',
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
         borderLeftColor: '#000',
         borderTopColor: '#000',
         borderRightColor: '#000',
-        bottom:hp('15.9%')
+        bottom:hp('11.9%')
     },
 
     textSair:{
@@ -148,7 +149,7 @@ const styles = StyleSheet.create({
         height: hp ('7%'),
         alignItems: 'center',
         justifyContent: 'center',
-        bottom: hp ('95%'),
+        bottom: hp ('91%'),
         right: wp ('38%'),
         borderRadius:9,
         borderTopLeftRadius:0.5,
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
         width: wp('90%'),
         height: hp('5%'),
         backgroundColor: "#FFFFFF",
-        bottom: hp('10%'),
+        bottom: hp('5%'),
         alignItems: 'center',
         justifyContent: 'center',
         borderBottomWidth: 1, 
@@ -182,8 +183,9 @@ const styles = StyleSheet.create({
         
     },
     loading:{
-        top: hp('12%'),
-        left: wp('5%'),
+        top: hp('20%'),
+        alignItems: 'center',
+        left: wp('15%')
     }
     
 

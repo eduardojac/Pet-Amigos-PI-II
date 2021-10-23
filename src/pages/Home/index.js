@@ -68,7 +68,7 @@ export default function Home() {
             querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
                 //console.log(doc.id, " => ", doc.data().nome);
-                setNome(doc.data().nome.split(" ")[0]);
+                setNome(doc.data().nome.split(" ")[0] + ",");
                 setAnimacao(false)
 
             });
@@ -77,16 +77,15 @@ export default function Home() {
             console.log("Error getting documents: ", error);
         });
 
-        //const nomeCurto = nome.split(" ")[0]
-
-
     return (
 
         <SafeAreaView style={styles.container}>
-            <View>
-                <Text style={styles.ola}>Olá {nome},</Text>
+            
+                
+                <Text style={styles.ola}>Olá {nome}</Text>
                 <Text style={styles.papai}>o que deseja?</Text>
                 <DotIndicator animating={animacao} size={8} style={styles.loading} />
+
                 <Text style={styles.pet}>Pet</Text>
                 <Text style={styles.amigos}>Amigos</Text>
 
@@ -110,7 +109,7 @@ export default function Home() {
                     <AntDesign name="calendar" size={30} color="black" />
                 </TouchableOpacity>
 
-            </View>
+            
 
             <TouchableOpacity style={styles.botaoEmail} disabled={true} >
                 <Text style={styles.textEmail}>{email}</Text>
@@ -122,7 +121,7 @@ export default function Home() {
             <TouchableOpacity style={styles.acessoMenu} onPress={() => navigation.openDrawer()}>
                 <Feather name="menu" size={35} color="black" />
             </TouchableOpacity>
-
+            
         </SafeAreaView >
 
     )

@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         
     },
     textoMenu:{
-        left: wp('7%'),
+        left: wp('9%'),
         fontSize: wp ('7%'),
         top: hp ('6%'),
         fontWeight: 'bold',

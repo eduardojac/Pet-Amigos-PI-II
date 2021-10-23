@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white',
         //alignItems: 'center',
-        top: hp('35%') // Só p apresentar pro prof (Voltar pro 30%)
+        top: hp('52%') // Só p apresentar pro prof (Voltar pro 30%)
     },
     informacoesPerfil: {
         flex: 0.1, // Só p apresentar pro prof
@@ -145,6 +145,17 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontWeight: 'bold',
         fontSize: hp('2.5%') 
+    },
+    loading:{
+        top: hp('23.5%'),
+        alignItems: 'center',
+        
+    },
+    botaoModal:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        bottom: hp('18%'),
+        left: wp('20%')
     }
 })
 

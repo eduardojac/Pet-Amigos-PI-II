@@ -1,6 +1,6 @@
 import React from 'react'
 import { styles } from '../Perfil/styles'
-import { View, Text, Image, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { View, Text, Image, TouchableOpacity, ActivityIndicator, LogBox } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Feather } from '@expo/vector-icons';
 import { DrawerItem } from '@react-navigation/drawer';
@@ -10,9 +10,15 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Modal from 'react-native-modal'
 import UserPermissions from '../../../utilities/UserPermissions.js';
 import * as ImagePicker from 'expo-image-picker'
-
+import { DotIndicator } from 'react-native-indicators';
 
 export default function Perfil() {
+    // Warnings para ignorar
+    LogBox.ignoreLogs([
+        "Animated: `useNativeDriver` was not specified. This is a required option and must be explicitly set to `true` or `false`",
+        "Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function"
+    ])
+
 
     // Nome e email do usuário
     const [email, setEmail] = useState('');
@@ -25,6 +31,8 @@ export default function Perfil() {
 
     const [nome, setNome] = useState('');
     const user_id = firebase.auth().currentUser.uid
+    const [id, setId] = useState('')
+
 
     firebase.firestore().collection('clientes').where("id", "==", user_id)
         .get()
@@ -33,8 +41,10 @@ export default function Perfil() {
                 // doc.data() is never undefined for query doc snapshots
                 //console.log(doc.id, " => ", doc.data().nome);
                 setNome(doc.data().nome);
+                setAnimacaoNome(false)
                 setFotoUrl(doc.data().foto)
-                
+                setId(doc.id)
+
             });
         })
         .catch((error) => {
@@ -55,7 +65,7 @@ export default function Perfil() {
                 query.forEach(doc => {
                     data.push({
                         ...doc.data(),
-                        id: doc.id,
+                        //id: doc.id,
 
                     })
                 })
@@ -73,7 +83,7 @@ export default function Perfil() {
                 query.forEach(doc => {
                     data.push({
                         ...doc.data(),
-                        id: doc.id,
+                        //id: doc.id,
 
                     })
                 })
@@ -104,8 +114,8 @@ export default function Perfil() {
 
             task.then(async () => {
                 const url = await firebase.storage().ref(filename).getDownloadURL();
-                console.log(url) 
-                firebase.firestore().collection('clientes').doc('LA9dnHt3GZbR6U0BHbSu').update({foto: url });
+                console.log(url)
+                firebase.firestore().collection('clientes').doc(id).update({ foto: url });
                 setFotoCadastrada(url)
                 setMostraModal(false)
                 setAnimacao(false)
@@ -139,6 +149,7 @@ export default function Perfil() {
     }
 
     const [animacao, setAnimacao] = useState(false)
+    const [animacaoNome,setAnimacaoNome] = useState(true)
 
     return (
         <View style={styles.container}>
@@ -146,8 +157,9 @@ export default function Perfil() {
 
                 <Image style={styles.avatar} source={{ uri: fotoUrl }} />
                 <Text style={styles.textoNome}>{nome}</Text>
-                <TouchableOpacity onPress={abrirModal}>
-                    <MaterialIcons name="add-a-photo" size={50} color="white" style={{ marginTop: 120, marginLeft: 150, top: 15}} onPress={abrirModal} />
+                <DotIndicator animating={animacaoNome} size={8} style={styles.loading} />
+                <TouchableOpacity onPress={abrirModal} style={styles.botaoModal}>
+                <MaterialIcons name="add-a-photo" size={50} color="white"/>
                 </TouchableOpacity>
             </View>
             <View style={styles.informacoesPerfil}>
@@ -175,7 +187,7 @@ export default function Perfil() {
                             <MaterialIcons name="add-a-photo" size={50} color="white" style={{ marginTop: 6, marginLeft: 2 }} >
                             </MaterialIcons>
                         </TouchableOpacity>
-                        <ActivityIndicator color="black" size='large' animating={animacao}/>
+                        <ActivityIndicator color="black" size='large' animating={animacao} />
                         <TouchableOpacity style={styles.botaoCadastrar} onPress={enviarFoto}>
                             <Text style={styles.textBotaoCadastrar}>Salvar</Text>
                         </TouchableOpacity>
