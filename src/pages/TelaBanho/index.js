@@ -149,7 +149,7 @@ export default function TelaBanho({route}) {
 
             </TextInput>
 
-            <MaterialIcons style={styles.iconeLocal} name="my-location" size={24} color="black" onPress={pegarLoc} />
+            <MaterialIcons style={styles.iconeLocal} name="my-location" size={24} color="black"  />
             <Text style={styles.texto}>É hora de dar banho</Text>
 
             <Text style={styles.texto}>no seu pet!</Text>
@@ -169,7 +169,7 @@ export default function TelaBanho({route}) {
 
                         <View style={styles.boxLista}>
 
-                            <Text style={{ color: 'black', fontSize: 25, left: 35, top: 30, fontWeight: 'bold', color: '#FF5700' }}>{item.empresa}</Text>
+                            <Text style={{ color: 'black', fontSize: 25, left: 35, top: 30, fontWeight: 'bold', color: '#C41D00' }}>{item.empresa}</Text>
 
                             <Text style={{ color: 'black', fontSize: 15, left: 45, top: 40, fontWeight: 'bold' }}>{item.cidade} - {item.telefone}</Text>
 

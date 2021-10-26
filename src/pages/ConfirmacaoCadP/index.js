@@ -23,7 +23,7 @@ export default function ConfirmacaoCadP() {
 
             <Image style={styles.logo} source={require('../../../assets/src/patinhaLogin.png')} />
 
-            <Text style={styles.InformacaoEmail}>Cadastro em análise, verifique seu email nos próximos 10 dias para verificar o retorno</Text>
+            <Text style={styles.informacaoEmail}>Cadastro em análise, verifique seu email nos próximos 10 dias para verificar o retorno</Text>
 
             <TouchableOpacity style={styles.botaoJaTemCadastro} onPress={AbrirFazerLogin}>
                 <Text style={{ fontSize: 17 }}>Voltar a tela inicial</Text>

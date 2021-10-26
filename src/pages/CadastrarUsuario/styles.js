@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         bottom: 20
     },
+
     logo:{
         marginVertical: 10,
         bottom: 25,
@@ -30,24 +31,6 @@ const styles = StyleSheet.create({
         width: 210,
         height: 180,
     },  
-    
-    avatarPlaceHolder:{
-        width: 160,
-        height: 160,
-        borderRadius: 80,
-        backgroundColor: "gray",
-        marginTop: 40,
-        justifyContent: "center",
-        alignItems: "center",
-        bottom: 35
-    },
-    avatar:{
-        position: "absolute",
-        width: 160,
-        height: 160,
-        borderRadius: 80,
-
-    },
 
     inputNome:{
         backgroundColor: '#FFF',

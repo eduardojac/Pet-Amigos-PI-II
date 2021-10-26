@@ -4,7 +4,7 @@ import {StyleSheet} from 'react-native'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#C0C0C0',
+        backgroundColor: '#E1E2E1',
         alignItems: 'center',
         
     },
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     textoPet:{
         fontSize: hp('6.5%'),
         right: hp('6.5%'), 
-        color: '#FF5700',
+        color: '#C41D00',
         fontWeight: 'bold',
         
     },
@@ -29,6 +29,10 @@ const styles = StyleSheet.create({
 
     botaoJaTemCadastro:{
         top: wp('20%')
+    },
+    informacaoEmail:{
+        fontSize:hp('2.5%'),
+        fontWeight: 'bold',
     }
 
 })

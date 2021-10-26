@@ -65,12 +65,12 @@ export default function CadastrarParceiro() {
             <Image style={styles.logo} source={require('../../../assets/src/patinhaLogin.png')} />
 
             <TextInput
-                style={styles.inputNome}
+                style={styles.inputNomeEmpresa}
                 placeholder='Empresa' onChangeText={txtEmpresa => onChangeEmpresa(txtEmpresa)}>
             </TextInput>
 
             <TextInputMask
-                style={styles.inputEmail}
+                style={styles.inputCPFCNPJ}
                 maxLength={18}
                 placeholder='CPF/CNPJ'
 
@@ -78,12 +78,12 @@ export default function CadastrarParceiro() {
 
 
             <TextInput
-                style={styles.inputSenha}
+                style={styles.inputCidade}
                 placeholder='Cidade' onChangeText={txtCidade => onChangeCidade(txtCidade)}>
             </TextInput>
 
             <TextInputMask
-                style={styles.inputConfirmarSenha}
+                style={styles.inputTelefone}
                 maxLength={15}
                 type={'cel-phone'}
                 options={{

@@ -260,19 +260,19 @@ export default function Agendamento({ route }) {
                 <Text style={styles.nomeEmpresa}>{route.params?.empresa}</Text>
                 <Text style={styles.dadosEmpresa}>{route.params?.cidade} {route.params?.telefone}</Text>
                 <Text style={styles.divisao}>__________________________________________________</Text>
-                <Text style={styles.escolha}>Escolha seu serviço</Text>
+                <Text style={styles.escolha}>Escolha um serviço abaixo</Text>
 
-                <Text style={styles.banho}>Banho</Text>
+                <Text style={styles.textBanho}>Banho</Text>
                 <TouchableOpacity style={styles.btnBanho} onPress={abrirModalBanho}>
                     <Text style={styles.txtBanho}>R$ 40.00</Text>
                 </TouchableOpacity>
 
-                <Text style={styles.tosa}>Tosa</Text>
+                <Text style={styles.textTosa}>Tosa</Text>
                 <TouchableOpacity style={styles.btnTosa} onPress={abrirModalTosa}>
                     <Text style={styles.txtTosa}>R$ 35.00</Text>
                 </TouchableOpacity>
 
-                <Text style={styles.banhoetosa}>Banho e Tosa</Text>
+                <Text style={styles.textBanhoETosa}>Banho e Tosa</Text>
                 <TouchableOpacity style={styles.btnBanhoETosa} onPress={abrirModalBanhoETosa}>
                     <Text style={styles.txtBanhoETosa}>R$ 65.00</Text>
                 </TouchableOpacity>

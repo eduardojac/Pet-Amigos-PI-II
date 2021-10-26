@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     },
     texto:{
         fontSize: 30,
+        color:'#FFF',
         fontWeight: 'bold',
         bottom: 25
     },
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
     botaoAdicionar:{
         width: 250,
         height: 45,
-        backgroundColor: '#FF5700',
+        backgroundColor:'#C41D00',
         borderRadius: 5,
         alignItems: 'center',
         justifyContent: 'center',
@@ -32,14 +33,11 @@ const styles = StyleSheet.create({
         borderLeftWidth: 2,
         borderRightWidth: 2,
         borderTopWidth: 2,
-        borderBottomColor: '#C41D00',
-        borderLeftColor: '#C41D00',
-        borderTopColor: '#C41D00',
-        borderRightColor: '#C41D00',
         top: 20
     },
     textoAdd:{
         fontWeight: 'bold',
+        color: '#FFF',
         fontSize: 20,
         top: 12,
         right: 10
@@ -84,7 +82,7 @@ const styles = StyleSheet.create({
     botaoAdd:{
         width: 150,
         height: 35,
-        backgroundColor: '#FF5700',
+        backgroundColor:'#C41D00',
         borderRadius: 5,
         alignItems: 'center',
         justifyContent: 'center',
@@ -93,10 +91,7 @@ const styles = StyleSheet.create({
         borderLeftWidth: 2,
         borderRightWidth: 2,
         borderTopWidth: 2,
-        borderBottomColor: '#C41D00',
-        borderLeftColor: '#C41D00',
-        borderTopColor: '#C41D00',
-        borderRightColor: '#C41D00',
+
     },
     boxLista:{
         backgroundColor: '#FFF', 
@@ -126,7 +121,7 @@ const styles = StyleSheet.create({
         left: 140
     },
     textoNome:{
-        color:'#FF5700',
+        color:'#C41D00',
         top: 10,
         fontWeight: 'bold',
         fontSize: 25,

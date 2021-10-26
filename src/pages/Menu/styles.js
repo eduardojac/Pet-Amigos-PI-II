@@ -38,7 +38,10 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 35,
         borderTopLeftRadius: 35,
         borderTopRightRadius: 35
-    }
+    },
+    drawerGeral:{
+        backgroundColor: '#E1E2E1',
+    },
 }) 
 
 export {styles};

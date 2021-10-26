@@ -92,15 +92,15 @@ export default function Agenda() {
                 <TouchableOpacity style={styles.iconeVoltar} onPress={AbrirHome}>
                     <Ionicons name="arrow-back-circle-outline" size={50} color="black" />
                 </TouchableOpacity>
-                <Text style={styles.texto}>Agendamentos</Text>
+                <Text style={styles.textAgendamento}>Agendamentos</Text>
             </View>
 
             <View style={{ alignItems: 'center', marginVertical: 30, flex: 0.2 }}>
                 <TouchableOpacity style={styles.botaoAdicionar} onPress={abrirModalEscolha}>
-                    <Text style={styles.textoAdd}>Realizar agendamento</Text>
+                    <Text style={styles.textAdd}>Realizar agendamento</Text>
                     <AntDesign style={{ left: 105, bottom: 12 }} name="pluscircleo" size={24} color="black" />
                 </TouchableOpacity>
-                <Text style={styles.textoLinha}>__________________________________________________</Text>
+                <Text style={styles.textLinha}>__________________________________________________</Text>
             </View>
 
             <Modal
@@ -111,13 +111,13 @@ export default function Agenda() {
                         <TouchableOpacity style={{ right: 140 }} onPress={() => { setMostraEscolha(false) }}>
                             <EvilIcons name="chevron-down" size={50} color="black" />
                         </TouchableOpacity>
-                        <Text style={styles.textoPet}>Agendar</Text>
+                        <Text style={styles.textPet}>Agendar</Text>
 
                         <TouchableOpacity onPress={AbrirTelaBanho} style={styles.botaoBanho}>
-                            <Text style={{ fontSize: 20, fontWeight: 'bold', alignItems: 'center' }}>Banho</Text>
+                            <Text style={styles.textBanho}>Banho</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={AbrirTelaPasseio} style={styles.botaoPasseio}>
-                            <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Passeio</Text>
+                            <Text style={styles.textPasseio}>Passeio</Text>
                         </TouchableOpacity>
 
                     </View>
@@ -140,13 +140,13 @@ export default function Agenda() {
 
                                 <TouchableOpacity style={styles.botaoExcluir} onPress={() => AlertaExcluir(item.id)}><AntDesign name="delete" size={24} color="#C41D00" /></TouchableOpacity>
 
-                                <Text style={styles.textoEmpresa}>{item.empresa}, {item.cidade}</Text>
-                                <Text style={styles.textoServico}>{item.servico}</Text>
-                                <Text style={styles.textoDia}>{item.dia}</Text>
-                                <Text style={styles.textoMes}>{item.mes}</Text>
-                                <Text style={styles.textoHorario}>{item.horario}</Text>
+                                <Text style={styles.textEmpresa}>{item.empresa}, {item.cidade}</Text>
+                                <Text style={styles.textServico}>{item.servico}</Text>
+                                <Text style={styles.textDia}>{item.dia}</Text>
+                                <Text style={styles.textMes}>{item.mes}</Text>
+                                <Text style={styles.textHorario}>{item.horario}</Text>
 
-                                <Text style={styles.textoPreco}>{item.preco}</Text>
+                                <Text style={styles.textPreco}>{item.preco}</Text>
 
                             </View>
                         </TouchableOpacity>

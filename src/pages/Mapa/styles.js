@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     },
 
     botaoConfirmar:{
-        backgroundColor: '#ff6347',
+        backgroundColor:'#C41D00',
         justifyContent: 'center',
         alignItems: 'center',
         bottom: hp('40%'),
@@ -25,20 +25,16 @@ const styles = StyleSheet.create({
         borderLeftWidth: 2,
         borderRightWidth: 2,
         borderTopWidth: 2,
-        borderBottomColor: 'white',
-        borderLeftColor: 'white',
-        borderTopColor: 'white',
-        borderRightColor: 'white',
-        
-        
 
-        
     },
 
     textBotaoConfirmar:{
-        color:'black',
+        top: hp('0.1%'),
+        fontWeight: 'bold',
+        color:'white',
         fontSize: 17,
-        bottom: 30
+        bottom: 30,
+        
         
         
     },
@@ -128,17 +124,22 @@ const styles = StyleSheet.create({
     },
 
     botaoContinuar:{
-        backgroundColor: '#ff6347',
+        backgroundColor: '#C41D00',
         justifyContent: 'center',
         alignItems: 'center',
         width: wp('60%'),
         height: hp('7%'),
         borderRadius: wp ('6%'),
-        borderBottomWidth: 1, 
-        borderLeftWidth: 1,
-        borderRightWidth: 1,
-        borderTopWidth: 1,
+        borderBottomWidth: 2, 
+        borderLeftWidth: 2,
+        borderRightWidth: 2,
+        borderTopWidth: 2,
         right: wp ('340%')       
+    },
+    textContinuar:{
+        fontSize: 15,
+        color: 'white',
+        fontWeight: 'bold'
     }
 })
 

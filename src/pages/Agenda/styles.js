@@ -8,9 +8,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    texto:{
+    textAgendamento:{
         fontSize: 30,
         fontWeight: 'bold',
+        color:'#FFF',
         bottom: 25
     },
     iconeVoltar:{
@@ -32,13 +33,14 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center'
     },
-    textoAdd:{
+    textAdd:{
         fontWeight: 'bold',
-        fontSize: 20,
+        color:'#FFF',
+        fontSize: 19,
         top: 12,
         right: 10
     },
-    textoLinha:{
+    textLinha:{
         top: 20,
         color: '#C0C0C0',   
         marginVertical: 25,
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
     botaoAdicionar:{
         width: 250,
         height: 45,
-        backgroundColor: '#FF5700',
+        backgroundColor: '#C41D00',
         borderRadius: 5,
         alignItems: 'center',
         justifyContent: 'center',
@@ -54,10 +56,6 @@ const styles = StyleSheet.create({
         borderLeftWidth: 2,
         borderRightWidth: 2,
         borderTopWidth: 2,
-        borderBottomColor: '#C41D00',
-        borderLeftColor: '#C41D00',
-        borderTopColor: '#C41D00',
-        borderRightColor: '#C41D00',
         top: 20
     },
     viewModal:{
@@ -81,7 +79,7 @@ const styles = StyleSheet.create({
         height: 90,
         fontWeight: 'bold',
         fontSize: 25,
-        backgroundColor: '#FF5700',
+        backgroundColor: '#C41D00',
         borderRadius: 5,
         alignItems: 'center',
         justifyContent: 'center',
@@ -89,10 +87,7 @@ const styles = StyleSheet.create({
         borderLeftWidth: 2,
         borderRightWidth: 2,
         borderTopWidth: 2,
-        borderBottomColor: '#C41D00',
-        borderLeftColor: '#C41D00',
-        borderTopColor: '#C41D00',
-        borderRightColor: '#C41D00',
+
         right: 70,
         top:  20,
         padding: 4
@@ -104,7 +99,7 @@ const styles = StyleSheet.create({
         height: 90,
         padding: 6,
         fontSize: 25,
-        backgroundColor: '#FF5700',
+        backgroundColor: '#C41D00',
         borderRadius: 5,
         alignItems: 'center',
         justifyContent: 'center',
@@ -112,50 +107,61 @@ const styles = StyleSheet.create({
         borderLeftWidth: 2,
         borderRightWidth: 2,
         borderTopWidth: 2,
-        borderBottomColor: '#C41D00',
-        borderLeftColor: '#C41D00',
-        borderTopColor: '#C41D00',
-        borderRightColor: '#C41D00',
         bottom: 70,
         left: 60
     },
-    textoEmpresa:{
+    textEmpresa:{
         fontSize: 15, 
         top:hp('1.5%'),
     },
-    textoServico:{
+    textServico:{
         fontSize: 22,
-        right:hp('14%'),
+        right:hp('18%'),
         fontWeight: 'bold',
-        top:hp('3%')
+        top:hp('1%')
     },
-    textoDia:{
+    textDia:{
         bottom:hp('1.5%'),
         fontWeight: 'bold',
         fontSize: 30,
-        left: wp('32')
+        left: wp('27')
     },
-    textoMes:{
+    textMes:{
         bottom:hp('9%'),
         fontSize: 13,
-        left: wp('32')
+        left: wp('27')
     },
-    textoHorario:{
-        bottom:hp('4.5%'),
+    textHorario:{
+        bottom:hp('3.8%'),
         fontSize: 13,
-        left: wp('32')
+        left: wp('27')
     },
-    textoPreco:{
-        right:hp('14%'),
-        bottom:hp('8%'),
+    textPreco:{
+        right:hp('17.5%'),
+        bottom:hp('7%'),
         fontSize: 12
     },
-    textoPet:{
+    textPet:{
         fontWeight: 'bold',
         color: '#C41D00',
         fontSize: 25,
         bottom: 15
     },
+
+    textBanho:{
+        fontSize: 20, 
+        fontWeight: 'bold', 
+        alignItems: 'center',
+        color:'#FFF'
+    },
+
+    textPasseio:{
+        fontSize: 20, 
+        fontWeight: 'bold',
+        color:'#FFF',
+        
+    },
+
 
 });
 export {styles};

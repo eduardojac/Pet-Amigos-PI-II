@@ -258,12 +258,12 @@ export default function AgendamentoPasseio({ route }) {
                 <Text style={styles.divisao}>__________________________________________________</Text>
                 <Text style={styles.escolha}>Escolha seu serviço</Text>
 
-                <Text style={styles.banho}>Passeio Rápido</Text>
+                <Text style={styles.textBanho}>Passeio Rápido</Text>
                 <TouchableOpacity style={styles.btnBanho} onPress={abrirModalRapido}>
                     <Text style={styles.txtBanho}>R$ 60.00</Text>
                 </TouchableOpacity>
 
-                <Text style={styles.tosa}>Passeio Longo</Text>
+                <Text style={styles.textTosa}>Passeio Longo</Text>
                 <TouchableOpacity style={styles.btnTosa} onPress={abrirModalLongo}>
                     <Text style={styles.txtTosa}>R$ 90.00</Text>
                 </TouchableOpacity>

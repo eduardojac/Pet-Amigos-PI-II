@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
         padding: hp('1%')
     },
 
-    botaoSair:{
+    botaoAgenda:{
         backgroundColor:'#C41D00',
         width: wp('35%'),
         left:hp('12%'),
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
         bottom:hp('11.9%')
     },
 
-    textSair:{
+    textAgenda:{
         fontWeight:'bold',
         color:'#FFF',
         fontSize:hp('3.3%'),
@@ -155,10 +155,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius:0.5,
         
     },
-    estilo: {
-        top: hp ('25%'),
-        height: hp ('5%')
-    },
+
     botaoEmail:{
         width: wp('90%'),
         height: hp('5%'),
@@ -186,8 +183,9 @@ const styles = StyleSheet.create({
         top: hp('20%'),
         alignItems: 'center',
         left: wp('15%')
-    }
-    
+    },
+   
+ 
 
 })
 

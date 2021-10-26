@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         bottom: 25
     },   
-    inputNome:{
+    inputNomeEmpresa:{
         backgroundColor: '#FFF',
         borderRadius: wp ('2%'),
         width: wp('90%'),
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         borderRightWidth: 2,
         borderTopWidth: 2,
     },
-    inputEmail:{
+    inputCPFCNPJ:{
         backgroundColor: '#FFF',
         borderRadius: wp ('2%'),
         width: wp('90%'),
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         borderRightWidth: 2,
         borderTopWidth: 2,
     },
-    inputSenha:{
+    inputCidade:{
         backgroundColor: '#FFF',
         borderRadius: wp ('2%'),
         width: wp('90%'),
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         
     },
     
-    inputConfirmarSenha:{
+    inputTelefone:{
         backgroundColor: '#FFF',
         borderRadius: wp ('2%'),
         width: wp('90%'),

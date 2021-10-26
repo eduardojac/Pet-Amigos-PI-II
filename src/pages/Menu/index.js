@@ -67,7 +67,7 @@ export default function Menu(props) {
         <Text style={styles.textoMenu}>{nome}</Text>
         <Image style={styles.avatar} source={{uri: fotoUrl}} />
       </View>
-      <DrawerContentScrollView {...props}>
+      <DrawerContentScrollView {...props} style= {styles.drawerGeral}>
 
         <DrawerItem onPress={AbrirHome}
           icon={({ size, color }) => (

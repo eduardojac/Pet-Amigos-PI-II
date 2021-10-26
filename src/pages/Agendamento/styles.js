@@ -25,35 +25,35 @@ const styles = StyleSheet.create({
     },
     escolha:{
         fontWeight: 'bold',
-        fontSize: wp('5%'),
+        fontSize: wp('6%'),
         color: 'black',
         
         bottom: hp('8%')
         
     },
-    banho:{
+    textBanho:{
         right: hp('12%'),
-        fontSize: wp('6%'),
+        fontSize: wp('8%'),
         bottom: hp('1%'),
-        color: '#FF5700',
+        color: '#C41D00',
         fontWeight: 'bold',
     },
-    tosa:{
+    textTosa:{
         right: hp('12%'),
-        fontSize: wp('6%'),
+        fontSize: wp('8%'),
         bottom: hp('1%'),
-        color: '#FF5700',
+        color: '#C41D00',
         fontWeight: 'bold',
     },
-    banhoetosa:{
+    textBanhoETosa:{
         right: hp('11%'),
-        fontSize: wp('6%'),
+        fontSize: wp('8%'),
         bottom: hp('1%'),
-        color: '#FF5700',
+        color: '#C41D00',
         fontWeight: 'bold',
     },
     btnBanho:{
-        backgroundColor:'#FF5700',
+        backgroundColor:'#C41D00',
         width: wp('25%'),
         height: hp('7%'),
         left: wp('25%'),
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         borderRadius: 7, 
     },
     btnTosa:{
-        backgroundColor:'#FF5700',
+        backgroundColor:'#C41D00',
         width: wp('25%'),
         height: hp('7%'),
         bottom: hp('7%'),
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         borderRadius: 7,
     },
     btnBanhoETosa:{
-        backgroundColor:'#FF5700',
+        backgroundColor:'#C41D00',
         width: wp('25%'),
         height: hp('7%'),
         bottom: hp('7%'),
@@ -108,13 +108,16 @@ const styles = StyleSheet.create({
     },
     txtBanho:{
         fontWeight: 'bold',
+        color:'#FFF'
     
     },
     txtTosa:{
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color:'#FFF',
     },
     txtBanhoETosa:{
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color:'#FFF',
     },
     avatarBanho: {
         width: 100,
@@ -122,6 +125,11 @@ const styles = StyleSheet.create({
         right: wp ('30%'),
         bottom: hp ('4%'),
         borderRadius: 7,
+        borderBottomWidth: 2, 
+        borderLeftWidth: 2,
+        borderRightWidth: 2,
+        borderTopWidth: 2,
+        
     },
     patinha:{
         bottom: hp('4%'),
@@ -163,21 +171,27 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderRadius: 5,
         justifyContent: 'space-between',
-        alignItems: 'center',   
+        alignItems: 'center',  
+        borderBottomWidth: 1, 
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+        borderTopWidth: 1,
+        borderRadius: 7 
         
     },
     boxAgendar:{
-        backgroundColor: '#FF5700',
+        backgroundColor: 'white',
         width: 120,
         height: 40,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 5,
         bottom: 5,
-        borderBottomWidth: 2, 
-        borderLeftWidth: 2,
-        borderRightWidth: 2,
-        borderTopWidth: 2,
+        borderBottomWidth: 1, 
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+        borderTopWidth: 1,
+        borderRadius: 7
     },
     boxDatas:{
         backgroundColor: 'white',
@@ -186,6 +200,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingBottom: 5,       
         borderRadius: 5,
+        borderBottomWidth: 1, 
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+        borderTopWidth: 1,
+        borderRadius: 7 
+        
     },
     boxHorarios:{
         backgroundColor: 'white',
@@ -207,12 +227,7 @@ const styles = StyleSheet.create({
         bottom: 38,
         alignItems: 'center'
     },
-    titulo:{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'flex-end'
- 
-    },
+
     listaDias:{
         alignItems: 'flex-end'
     },

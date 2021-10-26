@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, TextInput} from 'react-native';
+import { Text, View, TouchableOpacity, TextInput, } from 'react-native';
 import MapView from 'react-native-maps';
 import { styles } from '../Mapa/styles.js';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
@@ -8,7 +8,7 @@ import * as Location from 'expo-location';
 import { StyleSheet } from 'react-native';
 import { BackgroundImage } from 'react-native-elements/dist/config';
 import Modal from 'react-native-modal';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview';
+
 
 
 
@@ -91,7 +91,7 @@ export default function Mapa() {
             alert('Preencha os campos obrigatórios!');
         } else {
 
-            navigation.navigate('TelaBanho', {
+            navigation.navigate('Home', {
                 endereco: endereco,
                 numero: numero,
                 complemento: complemento,
@@ -127,7 +127,7 @@ export default function Mapa() {
             </MapView>
 
             <TouchableOpacity style={styles.botaoConfirmar} onPress={ConfirmarLocal}>
-                <Text style={{ fontWeight: 'bold' }}>CONFIRMAR LOCAL</Text>
+                <Text style={styles.textBotaoConfirmar}>CONFIRMAR LOCAL</Text>
             </TouchableOpacity>
 
             
@@ -161,7 +161,7 @@ export default function Mapa() {
                 
                 <View style={styles.inputArea} >
                     
-
+                
                 <TextInput style={styles.inputEndereco} placeholder='Endereço' placeholderTextColor='#808080' value={endereco} onChangeText={txtEndereco => onChangeEndereco(txtEndereco)}></TextInput>
 
                 <TextInput style={styles.inputNumero} placeholder='Número' placeholderTextColor='#808080' value={numero} onChangeText={txtNumero => onChangeNumero(txtNumero)}></TextInput>
@@ -175,7 +175,7 @@ export default function Mapa() {
 
 
                 <TouchableOpacity style={styles.botaoContinuar} onPress={() => preencherLoc(endereco, numero, complemento)}>
-                <Text >CONTINUAR</Text>
+                <Text style= {styles.textContinuar}>CONTINUAR</Text>
                 </TouchableOpacity>
 
                 </View>

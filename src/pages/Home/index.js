@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, FlatList, Alert, LogBox } from 'react-native'
+import { View, Text, SafeAreaView, TouchableOpacity, FlatList, Alert, LogBox, TextInput } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { styles } from '../Home/styles'
 import { FontAwesome } from '@expo/vector-icons';
@@ -12,8 +12,9 @@ import { DrawerItem } from '@react-navigation/drawer';
 import { AntDesign } from '@expo/vector-icons';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { DotIndicator } from 'react-native-indicators';
+import * as Location from 'expo-location';
 
-export default function Home() {
+export default function Home({route}) {
     // Navegação entre telas
     const navigation = useNavigation();
 
@@ -77,15 +78,30 @@ export default function Home() {
             console.log("Error getting documents: ", error);
         });
 
+        // pegar localização
+
+        const pegarLoc = async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync();
+
+            if (status !== 'granted') {
+                alert('Permissão negada para acessar a Localização!');
+                return;
+            } else {
+                navigation.navigate('Mapa');
+            }
+            
+
+        } 
+        
+
     return (
 
         <SafeAreaView style={styles.container}>
-            
-                
+               
                 <Text style={styles.ola}>Olá {nome}</Text>
                 <Text style={styles.papai}>o que deseja?</Text>
                 <DotIndicator animating={animacao} size={8} style={styles.loading} />
-
+                    
                 <Text style={styles.pet}>Pet</Text>
                 <Text style={styles.amigos}>Amigos</Text>
 
@@ -104,8 +120,8 @@ export default function Home() {
                     <MaterialIcons name="pets" size={30} color="black" />
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.botaoSair} onPress={AbrirAgenda}>
-                    <Text style={styles.textSair}>AGENDA</Text>
+                <TouchableOpacity style={styles.botaoAgenda} onPress={AbrirAgenda}>
+                    <Text style={styles.textAgenda}>AGENDA</Text>
                     <AntDesign name="calendar" size={30} color="black" />
                 </TouchableOpacity>
 
@@ -117,11 +133,17 @@ export default function Home() {
 
             </TouchableOpacity>
 
-
             <TouchableOpacity style={styles.acessoMenu} onPress={() => navigation.openDrawer()}>
                 <Feather name="menu" size={35} color="black" />
             </TouchableOpacity>
             
+            <View style={{bottom: '183%', width: 350, justifyContent: 'center',  flexDirection: 'row'}}>
+            <TextInput  placeholder='Usar minha localização' placeholderTextColor='#808080'>
+            {route.params?.endereco}
+            </TextInput>
+            <MaterialIcons style={{left: 5}} name="my-location" size={20} color="black" onPress={pegarLoc}/>
+            </View>
+
         </SafeAreaView >
 
     )

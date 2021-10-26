@@ -7,12 +7,21 @@ const styles = StyleSheet.create({
         backgroundColor: '#ededed'
     },
     containerTexto: {
-        flex: hp('0.08%'),
+        flex: hp('0.05%'),
         backgroundColor: '#C41D00',
         alignItems: 'center',
         justifyContent: 'center',
         borderBottomWidth: 2,
-        borderBottomColor: '#a31a02',
+        borderBottomColor: '#a31a02'
+    },
+    botaoMenu: {
+        // flex: hp('0.029%'),
+        height:hp('15s%'),
+        backgroundColor: '#C41D00',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderBottomWidth: 2,
+        borderBottomColor: '#a31a02'
     },
     avatar: {
         alignItems: 'center',
@@ -29,7 +38,7 @@ const styles = StyleSheet.create({
         height: hp('7%'),
         alignItems: 'center',
         justifyContent: 'center',
-        bottom: hp('87%'),
+        bottom: hp('3%'),
         right: wp('80%'),
         borderRadius: 9,
         borderTopLeftRadius: 0.5,
@@ -51,20 +60,20 @@ const styles = StyleSheet.create({
         top: hp('5%')
     },
     textoEmail: {
-        fontSize: hp('2%'),
+        fontSize: hp('1.8%'),
         color: '#7d7c7c',
         //fontFamily: 'Gill Sans'
 
     },
     textoPets: {
-        fontSize: hp('2%'),
+        fontSize: hp('1.8%'),
         paddingTop: hp('1.5%'),
         color: '#7d7c7c',
         //fontFamily: 'Gill Sans'
 
     },
     textoAgendamentos: {
-        fontSize: hp('2%'),
+        fontSize: hp('1.8%'),
         paddingTop: hp('1.5%'),
         color: '#7d7c7c',
         //fontFamily: 'Gill Sans'

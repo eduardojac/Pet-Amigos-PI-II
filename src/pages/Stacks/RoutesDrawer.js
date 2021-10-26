@@ -9,7 +9,6 @@ import {
 import { View, Text } from 'react-native'
 import Home from '../Home'
 import Perfil from '../Perfil'
-import Mensagens from '../Mensagens'
 import Menu from '../Menu'
 import TelaBanho from '../TelaBanho'
 import TelaPasseio from '../TelaPasseio'
@@ -17,6 +16,7 @@ import TelaPet from '../TelaPet'
 import Agendamento from '../Agendamento'
 import Agenda from '../Agenda'
 import AgendamentoPasseio from '../AgendamentoPasseio';
+import Mensagens from '../Mensagens';
 
 const Drawer = createDrawerNavigator();
 
@@ -33,6 +33,7 @@ export default () => (
       name="TelaBanho"
       component={TelaBanho}
     />
+    
     <Drawer.Screen
       name="TelaPasseio"
       component={TelaPasseio}
@@ -60,7 +61,9 @@ export default () => (
     <Drawer.Screen
       name="Mensagens"
       component={Mensagens}
-    />
+      />
+    
+    
 
   </Drawer.Navigator>
 

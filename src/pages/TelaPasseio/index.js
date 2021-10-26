@@ -108,7 +108,7 @@ export default function TelaPasseio() {
                         
                         <View style={styles.boxLista}>
 
-                            <Text style={{ color: 'black', fontSize: 25, left: 35, top: 30, fontWeight: 'bold', color: '#FF5700' }}>{item.empresa}</Text>
+                            <Text style={{ color: 'black', fontSize: 25, left: 35, top: 30, fontWeight: 'bold', color: '#C41D00' }}>{item.empresa}</Text>
 
                             <Text style={{ color: 'black', fontSize: 15, left: 45, top: 40, fontWeight: 'bold' }}>{item.cidade} - {item.telefone}</Text>
 
