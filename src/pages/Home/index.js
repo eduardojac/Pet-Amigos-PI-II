@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, FlatList, Alert, LogBox, TextInput } from 'react-native'
+import { View, Text, SafeAreaView, TouchableOpacity, FlatList, Alert, LogBox, TextInput} from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { styles } from '../Home/styles'
 import { FontAwesome } from '@expo/vector-icons';
@@ -63,6 +63,26 @@ export default function Home({route}) {
     const [animacao, setAnimacao] = useState(true)
     const [nome, setNome] = useState(nome);
 
+    const [endereco, setEndereco] = useState('')
+    const [numero, setNumero] = useState('')
+    const [complemento, setComplemento] = useState('')
+    
+    firebase.firestore().collection('clientes').where("id", "==", user_id)
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            //console.log(doc.id, " => ", doc.data().nome);
+            setEndereco(doc.data().endereco + ", ");
+            setNumero(doc.data().numero + " - ")
+            setComplemento(doc.data().complemento)
+            
+        });
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+
     firebase.firestore().collection('clientes').where("id", "==", user_id)
         .get()
         .then((querySnapshot) => {
@@ -79,21 +99,23 @@ export default function Home({route}) {
         });
 
         // pegar localização
-
         const pegarLoc = async () => {
+
+            
             let { status } = await Location.requestForegroundPermissionsAsync();
+            
 
             if (status !== 'granted') {
                 alert('Permissão negada para acessar a Localização!');
                 return;
             } else {
                 navigation.navigate('Mapa');
+                
             }
             
 
         } 
         
-
     return (
 
         <SafeAreaView style={styles.container}>
@@ -138,9 +160,7 @@ export default function Home({route}) {
             </TouchableOpacity>
             
             <View style={{bottom: '183%', width: 350, justifyContent: 'center',  flexDirection: 'row'}}>
-            <TextInput  placeholder='Usar minha localização' placeholderTextColor='#808080'>
-            {route.params?.endereco}
-            </TextInput>
+            <Text>{endereco + numero + complemento}</Text>
             <MaterialIcons style={{left: 5}} name="my-location" size={20} color="black" onPress={pegarLoc}/>
             </View>
 

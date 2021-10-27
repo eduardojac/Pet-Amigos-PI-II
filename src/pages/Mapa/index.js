@@ -8,6 +8,7 @@ import * as Location from 'expo-location';
 import { StyleSheet } from 'react-native';
 import { BackgroundImage } from 'react-native-elements/dist/config';
 import Modal from 'react-native-modal';
+import firebase from '../../../firebaseconection';
 
 
 
@@ -16,11 +17,14 @@ export default function Mapa() {
 
     const navigation = useNavigation();
 
-    const AbrirTelaBanho = () => {
+
+    const AbrirTelaHome = () => {
         navigation.reset({
-            routes: [{ name: 'TelaBanho' }]
+            routes: [{ name: 'Home' }]
         })
     }
+
+    const [coords, setCoords] = useState()
 
 
     let [regiao, setRegiao] = useState({
@@ -43,6 +47,7 @@ export default function Mapa() {
                 latitudeDelta: 0.014,
                 longitudeDelta: 0.014
             })
+            setCoords(posicao.coords.latitude + "," + posicao.coords.longitude)
         });
     }, []);
 
@@ -98,28 +103,44 @@ export default function Mapa() {
                 pontRef: pontRef,
                 bairro: bairro
             })
-            
-           
+            console.log(coords)
+            gravarLocFirebase()
            setMostrarModal(false);
-           
 
 
         }
-        
-        
+             
     }
 
+    // Gravar localização no banco
 
+    const user_id = firebase.auth().currentUser.uid
+    const [id, setId] = useState('')
 
+    firebase.firestore().collection('clientes').where("id", "==", user_id)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                //console.log(doc.id, " => ", doc.data().nome);
+                setId(doc.id)
 
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
 
-    
+    const gravarLocFirebase = () => { 
+        firebase.firestore().collection('clientes').doc(id).update({ localizacao: coords, endereco: endereco, numero: numero, complemento: complemento });
+    } 
+
     return (
         <View style={{backgroundColor: 'white', alignItems: 'center',}}>
 
             <Text style={styles.textoIndicar}>INDICAR LOCAL NO MAPA</Text>
             <Text style={styles.textoIndicar}></Text>
-            <TouchableOpacity style={styles.iconeVoltar} onPress={AbrirTelaBanho}>
+            <TouchableOpacity style={styles.iconeVoltar} onPress={AbrirTelaHome}>
                 <AntDesign name="left" size={24} color="black" />
             </TouchableOpacity>
             <MapView style={{ width: '100%', height: '100%' }} region={regiao} showsUserLocation>

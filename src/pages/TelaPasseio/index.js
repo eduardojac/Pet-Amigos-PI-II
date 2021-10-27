@@ -88,9 +88,9 @@ export default function TelaPasseio() {
             <Ionicons name="arrow-back-circle-outline" size={50} color="black" />
             </TouchableOpacity>
 
-            <TextInput style={styles.inputLocal} placeholder='Brasília DF'></TextInput>
+           
 
-            <MaterialIcons style={styles.iconeLocal} name="my-location" size={24} color="black" />
+            
             <Text style={styles.texto}>Vamos passear</Text>
 
             <Text style={styles.texto}>com seu pet!</Text>

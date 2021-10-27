@@ -63,8 +63,6 @@ export default () => (
       component={Mensagens}
       />
     
-    
-
   </Drawer.Navigator>
 
 

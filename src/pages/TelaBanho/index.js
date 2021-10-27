@@ -120,7 +120,7 @@ export default function TelaBanho({route}) {
 
 
        
-        
+        /*
         const pegarLoc = async () => {
             let { status } = await Location.requestForegroundPermissionsAsync();
 
@@ -133,7 +133,7 @@ export default function TelaBanho({route}) {
             
 
         } 
-
+*/
     return(
 
         <SafeAreaView style={styles.container}>
@@ -144,12 +144,8 @@ export default function TelaBanho({route}) {
                 <Ionicons name="arrow-back-circle-outline" size={50} color="black" />
             </TouchableOpacity>
 
-            <TextInput style={styles.inputLocal} placeholder='Onde você está?' > 
-            {route.params?.endereco} {route.params?.numero}  {route.params?.complemento} 
-
-            </TextInput>
-
-            <MaterialIcons style={styles.iconeLocal} name="my-location" size={24} color="black"  />
+            
+           
             <Text style={styles.texto}>É hora de dar banho</Text>
 
             <Text style={styles.texto}>no seu pet!</Text>
