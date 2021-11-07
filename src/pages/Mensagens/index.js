@@ -84,11 +84,19 @@ export default function Mensagens() {
       routes: [{ name: 'Home' }]
     })
   }
+  const abrirChatPrivado = (nome, email, foto) => {
+    navigation.navigate('ChatPrivado', {
+      nome: nome,
+      email: email,
+      foto: foto
+    })
+  }
+
 
   const [data, setData] = useState('')
   const user_id = firebase.auth().currentUser.uid
-  const [Id, setId] = useState('')
-  const [IdDoUsuario, setIdDoUsuario] = useState('')
+  //const [Id, setId] = useState('')
+  //const [IdDoUsuario, setIdDoUsuario] = useState('')
 
   /*//Exibir lista de usuários
   firebase.firestore().collection('clientes').where("id", "==", user_id)
@@ -115,7 +123,7 @@ export default function Mensagens() {
 
   //Exibir lista de parceiros cadastrados
 
- /* const ref = firebase.firestore().collection('clientes').where('id', "!=", user_id);
+  const ref = firebase.firestore().collection('clientes').where('id', "!=", user_id);
   useEffect(() => {
     ref.onSnapshot(querySnapshot => {
       const data = []
@@ -124,7 +132,7 @@ export default function Mensagens() {
           ...doc.data(),
           key: doc.id
         })
-       // setId(doc.id)
+        // setId(doc.id)
         //setIdDoUsuario(doc.data().id)
       })
       setData(data)
@@ -132,9 +140,9 @@ export default function Mensagens() {
 
     })
     return;
-  }, []) */
+  }, [])
 
-  firebase.firestore().collection('clientes').where("id", "!=", user_id)
+  /*firebase.firestore().collection('clientes').where("id", "!=", user_id)
     .get()
     .then((querySnapshot) => {
       const data = []
@@ -145,18 +153,16 @@ export default function Mensagens() {
           ...doc.data(),
           key: doc.id
         })
-        setId(doc.id)
-        setIdDoUsuario(doc.data().id)
+        //setId(doc.id)
+        //setIdDoUsuario(doc.data().id)
       });
       setData(data)
     })
     .catch((error) => {
       console.log("Error getting documents: ", error);
-    });
+    });  */
 
-  const pegarInfos = () => {
-    console.log('Id do usuário = ', + IdDoUsuario + "/" + "Id do Documento = ", + Id)
-  } 
+
 
   return (
     <View style={styles.container}>
@@ -171,7 +177,7 @@ export default function Mensagens() {
           showsVerticalScrollIndicator={false}
           data={data}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={pegarInfos}>
+            <TouchableOpacity onPress={() => abrirChatPrivado(item.nome, item.email, item.foto)}>
               <View style={styles.boxLista}>
                 <Text style={{ color: 'black', fontSize: 15, left: 60, fontWeight: 'bold', color: '#C41D00' }}>{item.nome}</Text>
                 <Text style={{ color: 'black', fontSize: 15, left: 60, top: 10 }}>{item.email}</Text>
@@ -183,5 +189,6 @@ export default function Mensagens() {
         />
       </View>
     </View>
+
   )
 }
