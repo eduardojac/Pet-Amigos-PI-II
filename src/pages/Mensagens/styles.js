@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ededed'
+        backgroundColor: '#ededed',
     },
     containerTexto: {
         flex: hp('0.05%'),
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     },
     botaoMenu: {
         // flex: hp('0.029%'),
-        height:hp('15s%'),
+        height:hp('15%'),
         backgroundColor: '#C41D00',
         alignItems: 'center',
         justifyContent: 'center',
@@ -127,9 +127,10 @@ const styles = StyleSheet.create({
     },
     avatar:{
         position: "absolute",
-        width: 160,
-        height: 160,
+        width: 50,
+        height: 50,
         borderRadius: 80,
+        left: 3
 
     },
     botaoCadastrar:{
@@ -165,6 +166,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         bottom: hp('18%'),
         left: wp('20%')
+    },
+    boxLista:{
+        backgroundColor: '#FFF', 
+        width: wp('100%'),
+        height: hp('10%'),
+        flex: 1,
+        marginVertical: 1,      
+        justifyContent: 'center',
     }
 })
 
