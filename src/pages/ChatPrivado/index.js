@@ -162,7 +162,24 @@ export default function ChatPrivado({route}) {
         console.log("Error getting documents: ", error);
       });  */
 
-
+      useEffect(() => {
+        const subscribe = firebase.firestore().collection('chatId').onSnapshot((querySnapshot) => {
+          querySnapshot.docChanges().forEach((change) => {
+            if (change.type === 'added') {
+              let data: any = change.doc.data();
+              data.createdAt = data.createdAt.toDate()
+              setMessages((prevMessage) => GiftedChat.append(prevMessage, data));
+            }
+          })
+        })
+    
+        return () => subscribe()
+      }, [])
+    
+      function onSend(messages: IMessage[]) {
+        firebase.firestore().collection('chatId').doc(Date.now().toString()).set(messages[0])
+      }
+    
 
     return (
         <View style={styles.container}>
