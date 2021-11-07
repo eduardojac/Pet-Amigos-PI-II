@@ -19,11 +19,12 @@ export default function Mensagens() {
       routes: [{ name: 'Home' }]
     })
   }
-  const abrirChatPrivado = (nome, email, foto) => {
+  const abrirChatPrivado = (nome, email, foto,id) => {
     navigation.navigate('ChatPrivado', {
       nome: nome.split(" ")[0],
       email: email,
-      foto: foto
+      foto: foto,
+      id: id
     })
   }
 
@@ -63,11 +64,12 @@ export default function Mensagens() {
           showsVerticalScrollIndicator={false}
           data={data}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => abrirChatPrivado(item.nome, item.email, item.foto)}>
+            <TouchableOpacity onPress={() => abrirChatPrivado(item.nome, item.email, item.foto, item.id)}>
               <View style={styles.boxLista}>
                 <Text style={{ color: 'black', fontSize: 15, left: 60, fontWeight: 'bold', color: '#C41D00' }}>{item.nome}</Text>
                 <Text style={{ color: 'black', fontSize: 15, left: 60, top: 10 }}>{item.email}</Text>
                 <Image style={styles.avatar} source={{ uri: item.foto }}></Image>
+                <Text style={{bottom: 10000}}>{item.id}</Text>
               </View>
             </TouchableOpacity>
 

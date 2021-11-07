@@ -9,6 +9,7 @@ import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { TextInput } from 'react-native-gesture-handler';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 import firebase from '../../../firebaseconection';
+import { concat } from 'react-native-reanimated';
 
 export default function ChatPrivado({route}) {
     /* const [messages, setMessages] = useState([]);
@@ -156,28 +157,68 @@ export default function ChatPrivado({route}) {
           //setId(doc.id)
           //setIdDoUsuario(doc.data().id)
         });
-        setData(data)
+        setData(data) 'user.destino', '==', route.params?.id
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);
       });  */
 
+      //.where('user._id','==', user_id).where('user.destino', '==', route.params?.id)  É TIPO UMA DESSA: where('user._id','==', user_id || 'user._id', '==', route.params?.id).where('destino', '==', route.params?.id)
+
+      /*const adicionarDestino = () => {
+        firebase.firestore().collection('chatId').add({destino: route.params?.id});
+      }*/
+
+     /* async function filtros() {
+        const origem = firebase.firestore().collection('chatId').where('user._id', 'in', [user_id,route.params?.id]).
+        const destino = firebase.firestore().collection('chatId').where('destino', 'in', [user_id,route.params?.id])
+
+        const [
+          origemSnapshot,
+          destinoSnapshot
+        ] = await Promise.all([origem,destino])
+
+        const eOrigem = origemSnapshot.docs
+        const eDestino = destinoSnapshot.docs
+        
+        return _.concat(eOrigem,eDestino)
+
+      } */
+
+      const array = [user_id, route.params?.id]
+
       useEffect(() => {
-        const subscribe = firebase.firestore().collection('chatId').onSnapshot((querySnapshot) => {
+        const subscribe = firebase.firestore().collection('chatId').where('user.destino','in', [user_id, route.params?.id]).where('user._id', '==', user_id).onSnapshot((querySnapshot) => {
           querySnapshot.docChanges().forEach((change) => {
             if (change.type === 'added') {
               let data: any = change.doc.data();
               data.createdAt = data.createdAt.toDate()
               setMessages((prevMessage) => GiftedChat.append(prevMessage, data));
+              
             }
           })
         })
-    
         return () => subscribe()
       }, [])
+
+     useEffect(() => {
+        const subscribe2 = firebase.firestore().collection('chatId').where('user.destino','in', [user_id, route.params?.id]).where('user._id', '==', route.params?.id).onSnapshot((querySnapshot) => {
+          querySnapshot.docChanges().forEach((change) => {
+            if (change.type === 'added') {
+              let data: any = change.doc.data();
+              data.createdAt = data.createdAt.toDate()
+              setMessages((prevMessage) => GiftedChat.append(prevMessage, data));
+              
+            }
+          })
+        })
+        return () => subscribe2()
+      }, []) 
+
     
       function onSend(messages: IMessage[]) {
         firebase.firestore().collection('chatId').doc(Date.now().toString()).set(messages[0])
+        
       }
     
 
@@ -194,10 +235,12 @@ export default function ChatPrivado({route}) {
             <GiftedChat
                 messages={messages}
                 onSend={(messages) => onSend(messages)}
-                showAvatarForEveryMessage={true}
                 user={{
                     _id: user_id,
+                    _id2: user_id,
+                    destino: route.params?.id              
                 }}
+                
             />
 
         </View>
