@@ -156,7 +156,7 @@ export default function Mensagens() {
 
   const pegarInfos = () => {
     console.log('Id do usuário = ', + IdDoUsuario + "/" + "Id do Documento = ", + Id)
-  }
+  } 
 
   return (
     <View style={styles.container}>
@@ -171,9 +171,9 @@ export default function Mensagens() {
           showsVerticalScrollIndicator={false}
           data={data}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={pegarInfos()}>
+            <TouchableOpacity onPress={pegarInfos}>
               <View style={styles.boxLista}>
-                <Text style={{ color: 'black', fontSize: 15, left: 60, fontWeight: 'bold', color: '#C41D00' }}>{item.id}</Text>
+                <Text style={{ color: 'black', fontSize: 15, left: 60, fontWeight: 'bold', color: '#C41D00' }}>{item.nome}</Text>
                 <Text style={{ color: 'black', fontSize: 15, left: 60, top: 10 }}>{item.email}</Text>
                 <Image style={styles.avatar} source={{ uri: item.foto }}></Image>
               </View>
