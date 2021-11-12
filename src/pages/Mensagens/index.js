@@ -56,7 +56,7 @@ export default function Mensagens() {
         <TouchableOpacity style={styles.acessoMenu} onPress={AbrirHome}>
           <Ionicons name="arrow-back-circle-outline" size={50} color="black" style={{ backgroundColor: "#C41D00" }} />
         </TouchableOpacity>
-        <Text style={{ color: 'white', fontSize: 22, fontWeight: 'bold' }}>Mensagens</Text>
+        <Text style={styles.textoMensagem}>Mensagens</Text>
       </View>
       <View style={{ alignItems: 'center', flex: 1 }}>
         <FlatList

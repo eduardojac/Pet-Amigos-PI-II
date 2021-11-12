@@ -5,7 +5,6 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
-
 import { View, Text } from 'react-native'
 import Home from '../Home'
 import Perfil from '../Perfil'
@@ -17,6 +16,8 @@ import Agendamento from '../Agendamento'
 import Agenda from '../Agenda'
 import AgendamentoPasseio from '../AgendamentoPasseio';
 import Mensagens from '../Mensagens';
+import Sobre from '../Sobre'
+import Config from '../Config'
 
 const Drawer = createDrawerNavigator();
 
@@ -61,6 +62,14 @@ export default () => (
     <Drawer.Screen
       name="Mensagens"
       component={Mensagens}
+      />
+    <Drawer.Screen
+      name="Sobre"
+      component={Sobre}
+      />
+      <Drawer.Screen
+      name="Config"
+      component={Config}
       />
     
   </Drawer.Navigator>

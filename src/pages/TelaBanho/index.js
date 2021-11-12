@@ -156,7 +156,7 @@ export default function TelaBanho({route}) {
 
             <FlatList
                 showsVerticalScrollIndicator={false}
-                data={list}
+                data={data}
                 
                 renderItem={({ item }) => (
                 

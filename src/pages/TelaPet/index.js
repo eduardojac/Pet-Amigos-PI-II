@@ -12,6 +12,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 
+
 export default function TelaPet(route) {
 
     // Warnings para ignorar

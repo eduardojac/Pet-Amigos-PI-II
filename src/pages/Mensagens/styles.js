@@ -6,17 +6,18 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#ededed',
     },
-    containerTexto: {
-        flex: hp('0.05%'),
-        backgroundColor: '#C41D00',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderBottomWidth: 2,
-        borderBottomColor: '#a31a02'
-    },
+    // containerTexto: {
+    //     // flex: hp('0.2%'),
+    //     backgroundColor: '#C41D00',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    //     borderBottomWidth: 2,
+    //     borderBottomColor: '#a31a02',
+    //     // height: hp('18%'),
+    // },
     botaoMenu: {
         // flex: hp('0.029%'),
-        height:hp('15%'),
+        height:hp('18%'),
         backgroundColor: '#C41D00',
         alignItems: 'center',
         justifyContent: 'center',
@@ -32,13 +33,22 @@ const styles = StyleSheet.create({
          bottom: hp('10%'),
         position: 'absolute',
     },
+
+    textoMensagem:{
+        color: 'white',
+        bottom: hp('0.7%'),
+        top: hp('3%'),
+        fontSize: hp('4%'),
+        fontWeight: 'bold' 
+    },
+
     acessoMenu: {
-        backgroundColor: 'white',
+        // backgroundColor: 'white',
         width: hp('7%'),
         height: hp('7%'),
         alignItems: 'center',
         justifyContent: 'center',
-        bottom: hp('3%'),
+        bottom: hp('5%'),
         right: wp('80%'),
         borderRadius: 9,
         borderTopLeftRadius: 0.5,

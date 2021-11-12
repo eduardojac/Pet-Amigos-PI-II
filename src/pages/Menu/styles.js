@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     drawerGeral:{
         backgroundColor: '#E1E2E1',
     },
+
 }) 
 
 export {styles};

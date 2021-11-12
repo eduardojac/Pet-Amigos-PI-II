@@ -7,8 +7,9 @@ import {
   DrawerItemList,
   DrawerItem
 } from '@react-navigation/drawer';
+
 import { Feather, AntDesign, FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation,useRoute } from '@react-navigation/native';
 import firebase from '../../../firebaseconection';
 
 export default function Menu(props) {
@@ -40,6 +41,14 @@ export default function Menu(props) {
       routes: [{ name: 'Mensagens' }]
     })
   }
+
+  const AbrirConfig = () => {
+    navigation.reset({
+      routes: [{ name: 'Config'}]
+    })
+  }
+
+
 
     // Pegar o nome do usuário logado
     const user_id = firebase.auth().currentUser.uid
@@ -89,7 +98,7 @@ export default function Menu(props) {
             <Ionicons name="notifications-outline" size={24} color="black" />
           )}
           label="Notificações" />
-        <DrawerItem
+        <DrawerItem onPress={AbrirConfig}
           icon={({ size, color }) => (
             <Feather name="settings" size={24} color="black" />
           )}
@@ -100,6 +109,7 @@ export default function Menu(props) {
             <MaterialCommunityIcons name="logout" size={24} color="black" />
           )}
           label="Sair" />
+
 
       </DrawerContentScrollView>
 

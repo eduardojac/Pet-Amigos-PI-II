@@ -19,6 +19,8 @@ import AgendamentoPasseio from '../AgendamentoPasseio'
 import Mapa from '../Mapa'
 import Mensagens from '../Mensagens'
 import ChatPrivado from '../ChatPrivado'
+import Sobre from '../Sobre'
+import Config from '../Config'
 
 const Stack = createStackNavigator();
 
@@ -49,6 +51,8 @@ export default () => (
         <Stack.Screen name="Mapa" component={Mapa} />
         <Stack.Screen name="Mensagens" component={Mensagens} />
         <Stack.Screen name="ChatPrivado" component={ChatPrivado} />
+        <Stack.Screen name="Sobre" component={Sobre} />
+        <Stack.Screen name="Config" component={Config} />
         
     </Stack.Navigator>
 

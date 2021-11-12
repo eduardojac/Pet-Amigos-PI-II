@@ -101,7 +101,7 @@ export default function TelaPasseio() {
             
             <FlatList
                 showsVerticalScrollIndicator={false}
-                data={list}
+                data={data}
                 renderItem={({ item }) => (
                 
                     <TouchableOpacity onPress={() => AbrirAgendamentoPasseio(item.empresa, item.cidade, item.telefone)}>
