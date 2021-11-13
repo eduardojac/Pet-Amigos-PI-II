@@ -29,6 +29,12 @@ export default function TelaPet(route) {
         })
     }
 
+    const AbrirTelaPet = () => {
+        navigation.reset({
+            routes: [{name: 'TelaPet'}]
+        })
+    }
+
     // Pegar o id do usuário logado e filtrar dados
     const user_id = firebase.auth().currentUser.uid
 
@@ -61,13 +67,13 @@ export default function TelaPet(route) {
     const [idade, setIdade] = useState('')
 
     const cadastrarPet = async () => {
-
         if (nome == "" || especie == "" || sexo == "" || idade == "") {
             falhacadastro()
         } else {
             firebase.firestore().collection('pet').add({ nome: nome, especie: especie, sexo: sexo, idade: idade, user_id: user_id })
-            cadastrado()
+            cadastrado(id)
             setMostraCadastro(false)
+            AbrirTelaPet()
         }
     }
 
@@ -90,11 +96,20 @@ export default function TelaPet(route) {
         Alert.alert("Não foi possível realizar o seu cadastro!",
             "Preencha todos os campos")
 
+    const falhaAtualizar = (id) =>
+        Alert.alert("Não foi possível atualizar seu pet!",
+            "Preencha todos os campos")
+
     // Editar pet
-    const EditarPet = async (id) => {
-        firebase.firestore().collection('pet').doc(id).update({ nome: nome, especie: especie, sexo: sexo, idade: idade, user_id: user_id })
-        atualizado(id);
-        setMostraEdicao(false);
+    const EditarPet = (id) => {
+        if (nome == "" || especie == "" || sexo == "" || idade == "") {
+            falhaAtualizar()
+        } else {
+            firebase.firestore().collection('pet').doc(id).update({ nome: nome, especie: especie, sexo: sexo, idade: idade, user_id: user_id })
+            atualizado(id);
+            setMostraEdicao(false);
+            AbrirTelaPet()
+        }
     }
     const atualizado = () =>
         Alert.alert("Atualizado com sucesso!")
@@ -116,7 +131,6 @@ export default function TelaPet(route) {
     }
 
     // Abrir modal de cadastramento
-
     const [mostraCadastro, setMostraCadastro] = useState(false);
     const [mostraEdicao, setMostraEdicao] = useState(false);
     const [pegarId, setPegarId] = useState('');
@@ -182,7 +196,7 @@ export default function TelaPet(route) {
                             </View>
 
                             <TouchableOpacity style={styles.botaoAdd} onPress={cadastrarPet}>
-                                <Text style={{ fontWeight: 'bold', fontSize: 20, color:'#FFF'}}>Adicionar</Text>
+                                <Text style={{ fontWeight: 'bold', fontSize: 20, color: '#FFF' }}>Adicionar</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -216,12 +230,12 @@ export default function TelaPet(route) {
                             </View>
 
                             <View>
-                                <TextInput type={Number} style={styles.input} placeholder={'Idade'} placeholderTextColor='#808080'onChangeText={txtIdade => onChangeIdade(txtIdade)}></TextInput>
+                                <TextInput type={Number} style={styles.input} placeholder={'Idade'} placeholderTextColor='#808080' onChangeText={txtIdade => onChangeIdade(txtIdade)}></TextInput>
                                 <FontAwesome name="birthday-cake" size={24} color="black" style={styles.icone} />
                             </View>
 
                             <TouchableOpacity style={styles.botaoAdd} onPress={() => EditarPet(pegarId)}>
-                                <Text style={{ fontWeight: 'bold', fontSize: 20, color:'white' }}>Atualizar</Text>
+                                <Text style={{ fontWeight: 'bold', fontSize: 20, color: 'white' }}>Atualizar</Text>
                             </TouchableOpacity>
 
                         </View>

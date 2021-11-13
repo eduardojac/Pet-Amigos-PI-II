@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, FlatList, Text, View, SafeAreaView, TouchableOpacity, TextInput,LogBox } from 'react-native';
+import { Alert, FlatList, Text, View, SafeAreaView, TouchableOpacity, TextInput, LogBox } from 'react-native';
 import { styles } from '../Agenda/styles.js';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -14,7 +14,6 @@ export default function Agenda() {
     LogBox.ignoreLogs([
         "Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function"
     ])
-
 
     // Navegação entre telas
     const navigation = useNavigation();
@@ -137,15 +136,12 @@ export default function Agenda() {
 
                             <View style={styles.boxLista}>
 
-
                                 <TouchableOpacity style={styles.botaoExcluir} onPress={() => AlertaExcluir(item.id)}><AntDesign name="delete" size={24} color="#C41D00" /></TouchableOpacity>
-
                                 <Text style={styles.textEmpresa}>{item.empresa}, {item.cidade}</Text>
                                 <Text style={styles.textServico}>{item.servico}</Text>
                                 <Text style={styles.textDia}>{item.dia}</Text>
                                 <Text style={styles.textMes}>{item.mes}</Text>
                                 <Text style={styles.textHorario}>{item.horario}</Text>
-
                                 <Text style={styles.textPreco}>{item.preco}</Text>
 
                             </View>

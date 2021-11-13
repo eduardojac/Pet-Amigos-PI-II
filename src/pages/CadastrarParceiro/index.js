@@ -35,7 +35,7 @@ export default function CadastrarParceiro() {
             falhacadastro()
 
         } else {
-            firebase.firestore().collection('parceiros').add({ empresa: empresa, cpf: cpf, cidade: cidade, telefone: telefone });
+            firebase.firestore().collection('parceiros').add({ empresa: empresa, cpf: cpf, cidade: cidade, telefone: telefone, foto: 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/pet-shop-logo-design-template-bc892cbf4691f21d905feb883e9ff0ee_screen.jpg?ts=1570445501' });
             cadastrado()
             navigation.navigate('ConfirmacaoCadP')
         }

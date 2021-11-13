@@ -20,16 +20,17 @@ import * as Location from 'expo-location';
 // import { Platform } from 'react-native';
 
 
-export default function TelaBanho({route}) {
+export default function TelaBanho({ route }) {
 
     //Navegação entre telas
     const navigation = useNavigation();
 
-    const AbrirAgendamento = (empresa, cidade, telefone) => {
+    const AbrirAgendamento = (empresa, cidade, telefone, foto) => {
         navigation.navigate('Agendamento', {
             empresa: empresa,
             cidade: cidade,
-            telefone: telefone
+            telefone: telefone,
+            foto: foto
         })
     }
     const AbrirHome = () => {
@@ -37,15 +38,13 @@ export default function TelaBanho({route}) {
             routes: [{ name: 'Home' }]
         })
     }
-    
+
     // Pegar o nome do usuário
     const [empresa, setEmpresa] = useState('')
     const [dados, setDados] = useState('')
     const [cidade, setCidade] = useState('')
     const [telefone, setTelefone] = useState('')
     const [data, setData] = useState('')
-
-
 
     //Exibir lista de parceiros cadastrados
     const ListaParceiros = () => {
@@ -67,123 +66,90 @@ export default function TelaBanho({route}) {
                 })
             })
             setData(data)
+            setOriginalData(data)
 
         })
         return;
     }, [])
 
-    // Filtro das empresas
-    const [list, setList] = useState(data);
-    const [searchText, setSearchText] = useState('');
+    // Filtro de parceiros
+    const [originalData, setOriginalData] = useState([])
 
-    useEffect(() =>  {
-        if (searchText == "") {
-            setList(data);
-        
-        } else {
-            setList(
-                data.filter(item => {
-                    if (item.empresa.toLowerCase().indexOf(searchText.toLowerCase()) > -1) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                })
-            );
-        }
-    }, [searchText]);
-    
+    function search(s) {
+        let arr = JSON.parse(JSON.stringify(originalData));
+        setData(arr.filter((d) => d.empresa.toLowerCase().includes(s)))
+    }
 
-
-
-    // pegar localização do usuário
-
-
-   /* 
-    const [coords, setCoords] = useState(null);
-
-
-    const pegarLoc = async () => {
-        alert('Aceitar Localizção');
-        
-
-
-        if (status !== 'granted') {
-            setErrorMsg('Permissão negada para acessar a Localização!')
-            return;
-        }
-
-        let location = await Location.getLastKnownPositionAsync({});
-        setCoords(location.coords.latitude, location.coords.longitude);*/
-
-        
-
-
-       
-        /*
-        const pegarLoc = async () => {
-            let { status } = await Location.requestForegroundPermissionsAsync();
-
-            if (status !== 'granted') {
-                alert('Permissão negada para acessar a Localização!');
-                return;
-            } else {
-                navigation.navigate('Mapa');
-            }
-            
-
-        } 
-*/
-    return(
+    return (
 
         <SafeAreaView style={styles.container}>
-            
-            
 
             <TouchableOpacity style={styles.iconeVoltar} onPress={AbrirHome}>
                 <Ionicons name="arrow-back-circle-outline" size={50} color="black" />
             </TouchableOpacity>
 
-            
-           
             <Text style={styles.texto}>É hora de dar banho</Text>
 
             <Text style={styles.texto}>no seu pet!</Text>
-           
-            <TextInput style={styles.inputPesquisar} placeholder={'Pesquise pelo seu PetShop favorito'} value={searchText} onChangeText={(t) => setSearchText(t)} />
+
+            <TextInput style={styles.inputPesquisar} placeholder={'Pesquise pelo seu PetShop favorito'} onChangeText={(s) => search(s)} autoCapitalize="none"/>
 
             <AntDesign style={styles.iconePesquisa} name="search1" size={24} color="black" />
 
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={data}
-                
-                renderItem={({ item }) => (
-                
 
-                    <TouchableOpacity onPress={() => AbrirAgendamento(item.empresa, item.cidade, item.telefone)}>
+                renderItem={({ item }) => (
+
+
+                    <TouchableOpacity onPress={() => AbrirAgendamento(item.empresa, item.cidade, item.telefone, item.foto)}>
 
                         <View style={styles.boxLista}>
-
-                            <Text style={{ color: 'black', fontSize: 25, left: 35, top: 30, fontWeight: 'bold', color: '#C41D00' }}>{item.empresa}</Text>
-
-                            <Text style={{ color: 'black', fontSize: 15, left: 45, top: 40, fontWeight: 'bold' }}>{item.cidade} - {item.telefone}</Text>
-
-                            <Image style={styles.avatarBanho} source={require('../../../assets/src/banhoDog.png')} />
-
+                            <Image style={styles.avatarBanho} source={{ uri: item.foto }} />
+                            <Text style={{ color: 'black', fontSize: 25, left: 35, bottom: 65, fontWeight: 'bold', color: '#C41D00' }}>{item.empresa}</Text>
+                            <Text style={{ color: 'black', fontSize: 15, left: 45, bottom: 50, fontWeight: 'bold' }}>{item.cidade} - {item.telefone}</Text>
                         </View>
                     </TouchableOpacity>
-        
-                )}
-                
-                
-            />
-                
 
-        </SafeAreaView>      
-        
+                )}
+            />
+
+        </SafeAreaView>
 
     )
+}
+
+    // pegar localização do usuário
 
 
-}           
+    /* 
+     const [coords, setCoords] = useState(null);
+ 
+ 
+     const pegarLoc = async () => {
+         alert('Aceitar Localizção');
+         
+ 
+ 
+         if (status !== 'granted') {
+             setErrorMsg('Permissão negada para acessar a Localização!')
+             return;
+         }
+ 
+         let location = await Location.getLastKnownPositionAsync({});
+         setCoords(location.coords.latitude, location.coords.longitude);*/
+
+    /*
+    const pegarLoc = async () => {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+
+        if (status !== 'granted') {
+            alert('Permissão negada para acessar a Localização!');
+            return;
+        } else {
+            navigation.navigate('Mapa');
+        }     
+
+    } 
+*/

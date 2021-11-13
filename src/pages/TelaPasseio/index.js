@@ -15,11 +15,12 @@ export default function TelaPasseio() {
     //Navegação entre telas
     const navigation = useNavigation();
 
-    const AbrirAgendamentoPasseio = (empresa, cidade, telefone) => {
+    const AbrirAgendamentoPasseio = (empresa, cidade, telefone,foto) => {
         navigation.navigate('AgendamentoPasseio', {
         empresa: empresa, 
         cidade: cidade, 
-        telefone: telefone
+        telefone: telefone,
+        foto: foto
         })
     }
     const AbrirHome = () => {
@@ -56,30 +57,19 @@ export default function TelaPasseio() {
                 })
             })
             setData(data)
+            setOriginalData(data)
 
         })
         return;
     }, [])
 
-    // Filtrar parceiro favorito
-    const [searchText, setSearchText] = useState('');
-    const [list, setList] = useState(data);
+    // Filtro de parceiros
+    const [originalData, setOriginalData] = useState([])
 
-    useEffect(() => {
-        if(searchText === ''){
-            setList(data);
-        } else {
-            setList(
-                data.filter( item => {
-                    if(item.empresa.toLowerCase().indexOf(searchText.toLowerCase()) > -1){
-                        return true;
-                    } else{
-                        return false;
-                    }
-                })
-            );
-        }
-    }, [searchText]);
+    function search(s) {
+        let arr = JSON.parse(JSON.stringify(originalData));
+        setData(arr.filter((d) => d.empresa.toLowerCase().includes(s)))
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -95,7 +85,7 @@ export default function TelaPasseio() {
 
             <Text style={styles.texto}>com seu pet!</Text>
 
-            <TextInput style={styles.inputPesquisar} placeholder={'Pesquise pelo seu Parceiro favorito'} value={searchText} onChangeText={(t) => setSearchText(t)}></TextInput>
+            <TextInput style={styles.inputPesquisar} placeholder={'Pesquise pelo seu Parceiro favorito'} onChangeText={(s) => search(s)} autoCapitalize="none"/>
 
             <AntDesign style={styles.iconePesquisa} name="search1" size={24} color="black" />
             
@@ -104,7 +94,7 @@ export default function TelaPasseio() {
                 data={data}
                 renderItem={({ item }) => (
                 
-                    <TouchableOpacity onPress={() => AbrirAgendamentoPasseio(item.empresa, item.cidade, item.telefone)}>
+                    <TouchableOpacity onPress={() => AbrirAgendamentoPasseio(item.empresa, item.cidade, item.telefone, item.foto)}>
                         
                         <View style={styles.boxLista}>
 
@@ -112,7 +102,7 @@ export default function TelaPasseio() {
 
                             <Text style={{ color: 'black', fontSize: 15, left: 45, top: 40, fontWeight: 'bold' }}>{item.cidade} - {item.telefone}</Text>
 
-                            <Image style={styles.avatarBanho} source={require('../../../assets/src/banhoDog.png')} />
+                            <Image style={styles.avatarBanho} source={{uri: item.foto}} />
 
                         </View>
                     </TouchableOpacity>

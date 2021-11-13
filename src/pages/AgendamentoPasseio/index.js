@@ -94,11 +94,11 @@ export default function AgendamentoPasseio({ route }) {
             newListaDias.push({
                 status: dias[d.getDay()] != 'Dom' ? true : false,
                 weekday: dias[d.getDay()],
-                number: i      
-                
+                number: i
+
             })
             setDiaSemana(dias[d.getDay()])
-            
+
         }
 
         setListaDias(newListaDias);
@@ -127,22 +127,37 @@ export default function AgendamentoPasseio({ route }) {
 
     //Cadastrar 
     const cadastrarPet = async () => {
-
-        if (horaSelecionada == "" ) {
+        if (mesSelecionado < new Date().getMonth() && anoSelecionado <= new Date().getFullYear()) {
+            falhaData()
+        } else if (diaSelecionado < new Date().getDate() && mesSelecionado <= new Date().getMonth() && anoSelecionado <= new Date().getFullYear()) {
+            falhaData()
+        } else if (horaSelecionada == "") {
             falhaAgendamento()
+        } else if (horaSelecionada.split(':')[0] < new Date().getHours() && diaSelecionado == new Date().getDate() && mesSelecionado == new Date().getMonth() && anoSelecionado == new Date().getFullYear()) {
+            falhaHora()
         } else {
-            firebase.firestore().collection('agendamento').add({ servico: servico, empresa: route.params?.empresa, cidade: route.params?.cidade, mes: meses[mesSelecionado], dia: diaSelecionado, horario: horaSelecionada, preco: preco, user_id: user_id})    
+            firebase.firestore().collection('agendamento').add({ servico: servico, empresa: route.params?.empresa, cidade: route.params?.cidade, mes: meses[mesSelecionado], dia: diaSelecionado, horario: horaSelecionada, preco: preco, user_id: user_id })
             agendado()
             AbrirAgenda()
 
         }
     }
+
     const agendado = () =>
         Alert.alert("Cadastro realizado com sucesso!")
 
     const falhaAgendamento = () =>
         Alert.alert("Não foi possível realizar seu agendamento!",
             "Preencha um horário")
+
+    const falhaData = () => {
+        Alert.alert("Não foi possível realizar seu agendamento!",
+            "Data inválida")
+    }
+    const falhaHora = () => {
+        Alert.alert("Não foi possível realizar seu agendamento!",
+            "Horário inválido")
+    }
 
 
     const user_id = firebase.auth().currentUser.uid
@@ -189,12 +204,12 @@ export default function AgendamentoPasseio({ route }) {
                                 </View>
 
                                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
-                                    
+
                                     {listaDias.map((item, key) => (
-                                        
+
                                         <TouchableOpacity
                                             key={key}
-                                            
+
                                             onPress={() => item.status ? setDiaSelecionado(item.number) : null}
                                             style={{
                                                 opacity: item.status ? 1 : 0.5,
@@ -203,13 +218,13 @@ export default function AgendamentoPasseio({ route }) {
                                                 borderRadius: 10,
                                                 alignItems: 'center',
                                                 justifyContent: 'center',
-                                            
-                                                
+
+
                                             }}
                                         >
                                             <Text style={styles.diaSemana}>{item.weekday}</Text>
                                             <Text style={styles.numero}>{item.number}</Text>
-                                            
+
                                         </TouchableOpacity>
                                     ))}
 
@@ -225,7 +240,7 @@ export default function AgendamentoPasseio({ route }) {
                                             <TouchableOpacity
                                                 key={key}
                                                 onPress={() => setHoraSelecionada(item)}
-                                                
+
                                                 style={{
                                                     backgroundColor: item === horaSelecionada ? '#FF5700' : '#FFFFFF',
                                                     width: 75,
@@ -252,11 +267,11 @@ export default function AgendamentoPasseio({ route }) {
                     </View>
                 </Modal>
 
-                <Image style={styles.avatarBanho} source={require('../../../assets/src/Dog.png')} />
+                <Image style={styles.avatarBanho} source={{uri: route.params?.foto}} />
                 <Text style={styles.nomeEmpresa}>{route.params?.empresa}</Text>
                 <Text style={styles.dadosEmpresa}>{route.params?.cidade} {route.params?.telefone}</Text>
                 <Text style={styles.divisao}>__________________________________________________</Text>
-                <Text style={styles.escolha}>Escolha seu serviço</Text>
+                <Text style={styles.escolha}>Escolha um serviço abaixo:</Text>
 
                 <Text style={styles.textBanho}>Passeio Rápido</Text>
                 <TouchableOpacity style={styles.btnBanho} onPress={abrirModalRapido}>

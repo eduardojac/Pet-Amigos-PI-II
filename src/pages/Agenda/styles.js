@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
     },
 
     botaoExcluir:{
-        top: 28,
-        left: 150
+        top: 32,
+        left: 145,
     },
     botaoBanho:{
         width: 105,
@@ -115,10 +115,10 @@ const styles = StyleSheet.create({
         top:hp('1.5%'),
     },
     textServico:{
-        fontSize: 22,
-        right:hp('18%'),
+        fontSize: 20,
+        right:hp('12%'),
         fontWeight: 'bold',
-        top:hp('1%')
+        top:hp('3%')
     },
     textDia:{
         bottom:hp('1.5%'),

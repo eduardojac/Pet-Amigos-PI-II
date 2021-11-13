@@ -71,7 +71,11 @@ const styles = StyleSheet.create({
         width: 90,
         height: 90,
         right: wp ('30%'),
-        bottom: hp ('4%')
+        bottom: hp ('4%'),
+        borderBottomLeftRadius: 45,
+        borderBottomRightRadius: 45,
+        borderTopLeftRadius: 45,
+        borderTopRightRadius: 45
     }
 })
 
