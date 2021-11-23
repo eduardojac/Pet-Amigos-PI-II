@@ -21,6 +21,8 @@ import Mensagens from '../Mensagens'
 import ChatPrivado from '../ChatPrivado'
 import Sobre from '../Sobre'
 import Config from '../Config'
+import Ajuda from '../Ajuda'
+import Relatar from '../Relatar'
 
 const Stack = createStackNavigator();
 
@@ -53,6 +55,8 @@ export default () => (
         <Stack.Screen name="ChatPrivado" component={ChatPrivado} />
         <Stack.Screen name="Sobre" component={Sobre} />
         <Stack.Screen name="Config" component={Config} />
+        <Stack.Screen name="Ajuda" component={Ajuda} />
+        <Stack.Screen name="Relatar" component={Relatar} />
         
     </Stack.Navigator>
 

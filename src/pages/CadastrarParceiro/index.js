@@ -4,6 +4,7 @@ import { styles } from '../CadastrarParceiro/styles.js'
 import { useNavigation } from '@react-navigation/native';
 import firebase from '../../../firebaseconection';
 import { TextInputMask } from 'react-native-masked-text';
+import { SCLAlert, SCLAlertButton } from 'react-native-scl-alert'
 
 export default function CadastrarParceiro() {
 
@@ -22,6 +23,10 @@ export default function CadastrarParceiro() {
     const [cidade, setCidade] = useState('')
     const [telefone, setTelefone] = useState('')
 
+    const [mostraErro, setMostraErro] = useState(false)
+    const [mostraSucesso, setMostraSucesso] = useState(false)
+
+
     const cadastrado = () =>
         Alert.alert("Cadastro realizado com sucesso!")
 
@@ -32,12 +37,14 @@ export default function CadastrarParceiro() {
     const Inserir = () => {
 
         if (empresa == "" || cpf == "" || cidade == "" || telefone == "") {
-            falhacadastro()
+            //falhacadastro()
+            setMostraErro(true)
 
         } else {
             firebase.firestore().collection('parceiros').add({ empresa: empresa, cpf: cpf, cidade: cidade, telefone: telefone, foto: 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/pet-shop-logo-design-template-bc892cbf4691f21d905feb883e9ff0ee_screen.jpg?ts=1570445501' });
-            cadastrado()
-            navigation.navigate('ConfirmacaoCadP')
+            //cadastrado()
+            //navigation.navigate('ConfirmacaoCadP')
+            setMostraSucesso(true)
         }
     }
 
@@ -102,7 +109,24 @@ export default function CadastrarParceiro() {
                 <Text style={{ fontSize: 17 }}>Já tem cadastro? Acesse!</Text>
             </TouchableOpacity>
 
-
+            <SCLAlert
+                theme="success"
+                show={mostraSucesso}
+                title="Cadastro realizado"
+                subtitle="Seus serviços estarão disponíveis no aplicativo em breve"
+                onRequestClose={() => setMostraSucesso(false)}
+            >
+                <SCLAlertButton theme="success" onPress={() => navigation.navigate('FazerLogin')}>Entendido</SCLAlertButton>
+            </SCLAlert>
+            <SCLAlert
+                theme="danger"
+                show={mostraErro}
+                title="Cadastro inválido"
+                subtitle="Preencha todos os campos"
+                onRequestClose={() => setMostraErro(false)}
+            >
+                <SCLAlertButton theme="danger" onPress={() => setMostraErro(false)}>Tentar novamente</SCLAlertButton>
+            </SCLAlert>
 
         </SafeAreaView>
 

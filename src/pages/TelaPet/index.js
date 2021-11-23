@@ -11,7 +11,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-
+import { SCLAlert, SCLAlertButton } from 'react-native-scl-alert'
 
 export default function TelaPet(route) {
 
@@ -31,7 +31,7 @@ export default function TelaPet(route) {
 
     const AbrirTelaPet = () => {
         navigation.reset({
-            routes: [{name: 'TelaPet'}]
+            routes: [{ name: 'TelaPet' }]
         })
     }
 
@@ -68,10 +68,12 @@ export default function TelaPet(route) {
 
     const cadastrarPet = async () => {
         if (nome == "" || especie == "" || sexo == "" || idade == "") {
-            falhacadastro()
+            //falhacadastro()
+            setMostraCadastro(false)
+            setMostraErro(true)
         } else {
             firebase.firestore().collection('pet').add({ nome: nome, especie: especie, sexo: sexo, idade: idade, user_id: user_id })
-            cadastrado(id)
+            cadastrado() 
             setMostraCadastro(false)
             AbrirTelaPet()
         }
@@ -100,15 +102,18 @@ export default function TelaPet(route) {
         Alert.alert("Não foi possível atualizar seu pet!",
             "Preencha todos os campos")
 
+
     // Editar pet
     const EditarPet = (id) => {
         if (nome == "" || especie == "" || sexo == "" || idade == "") {
-            falhaAtualizar()
+            //falhaAtualizar()
+            setMostraErro(true)
         } else {
             firebase.firestore().collection('pet').doc(id).update({ nome: nome, especie: especie, sexo: sexo, idade: idade, user_id: user_id })
             atualizado(id);
             setMostraEdicao(false);
             AbrirTelaPet()
+            
         }
     }
     const atualizado = () =>
@@ -144,7 +149,12 @@ export default function TelaPet(route) {
         setPegarId(id)
     }
 
+    // Abrir modal de erro
+    const [mostraErro, setMostraErro] = useState(false)
+    const [mostraSucesso, setMostraSucesso] = useState(false)
+
     return (
+
         <View style={{ flex: 1 }}>
 
             <View style={styles.container}>
@@ -154,15 +164,13 @@ export default function TelaPet(route) {
                 </TouchableOpacity>
                 <Text style={styles.texto}>Meu Pet</Text>
             </View>
-
-
-
             <View style={{ alignItems: 'center', marginVertical: 30, flex: 0.2 }}>
                 <TouchableOpacity style={styles.botaoAdicionar} onPress={abrirModalCadastro}>
                     <Text style={styles.textoAdd}>Adicionar novo pet</Text>
                     <AntDesign style={{ left: 105, bottom: 12 }} name="pluscircleo" size={24} color="black" />
                 </TouchableOpacity>
                 <Text style={styles.textoLinha}>__________________________________________________</Text>
+
 
                 <Modal
                     onBackdropPress={() => setMostraCadastro(false)}
@@ -245,12 +253,10 @@ export default function TelaPet(route) {
             </View>
             <View style={styles.viewLista}>
                 <FlatList
-
                     showsVerticalScrollIndicator={false}
                     data={data}
                     renderItem={({ item }) =>
                     (
-
                         <TouchableOpacity disabled={true} >
 
                             <View style={styles.boxLista}>
@@ -261,7 +267,6 @@ export default function TelaPet(route) {
                                 <Text style={styles.textoNome}>{item.nome}</Text>
                                 <Text style={styles.textoEspecie}>{item.especie}</Text>
                                 <Text style={styles.textoSexoEIdade}>{item.sexo}, {item.idade}</Text>
-
                                 <Image style={styles.avatarBanho} source={require('../../../assets/src/DogTag.jpg')} />
 
                             </View>
@@ -269,9 +274,25 @@ export default function TelaPet(route) {
 
                     )}
                 />
-            </View>
-
-
+            </View> 
+                <SCLAlert
+                    theme="warning"
+                    show={mostraErro}
+                    title="Oops..."
+                    subtitle="Todos os campos devem ser preenchidos"
+                    onRequestClose={() => setMostraErro(false)}
+                >
+                    <SCLAlertButton theme="warning" onPress={() => setMostraErro(false)}>Entendido</SCLAlertButton>
+                </SCLAlert>
+                <SCLAlert
+                    theme="success"
+                    show={mostraSucesso}
+                    title="Sucesso"
+                    subtitle="Seu novo pet foi cadastrado"
+                    onRequestClose={() => setMostraSucesso(false)}
+                >
+                    <SCLAlertButton theme="warning" onPress={() => setMostraSucesso(false)}>Entendido</SCLAlertButton>
+                </SCLAlert>
 
         </View>
 

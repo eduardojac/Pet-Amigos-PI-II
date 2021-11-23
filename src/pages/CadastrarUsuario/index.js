@@ -7,6 +7,7 @@ import UserPermissions from '../../../utilities/UserPermissions.js';
 import * as ImagePicker from 'expo-image-picker'
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import { SCLAlert, SCLAlertButton } from 'react-native-scl-alert'
 
 export default function CadastrarUsuario() {
 
@@ -20,22 +21,28 @@ export default function CadastrarUsuario() {
     }
 
     // Cadastrar no banco e autenticação
+    const [mostraErro, setMostraErro] = useState(false)
+    const [mostraSucesso, setMostraSucesso] = useState(false)
+
+
+
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [senha, setSenha] = useState('')
 
     const Cadastramento = () => {
-        if (senha === password) {   
-            firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {  
-                firebase.firestore().collection('clientes').add({ nome: nome, email: email, senha: password, id: firebase.auth().currentUser.uid, foto: 'https://www.immotop.lu/files/default-logo.png'});
-                cadastrado()
-                navigation.navigate('FazerLogin')
-                 
+        if (nome == "") {
+            Alert.alert("Por favor, preencha um nome")
+        } else if (senha === password) {
+            firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
+                firebase.firestore().collection('clientes').add({ nome: nome, email: email, senha: password, id: firebase.auth().currentUser.uid, foto: 'https://www.immotop.lu/files/default-logo.png' });
+                //cadastrado()
+                setMostraSucesso(true)
             }).catch(() => {
-                falhacadastro()
+                //falhacadastro()
+                setMostraErro(true)
             })
-
         } else if (senha == "") {
             Alert.alert("Por favor, confirme sua senha")
             return;
@@ -51,6 +58,11 @@ export default function CadastrarUsuario() {
     const falhacadastro = () =>
         Alert.alert("Não foi possível realizar o seu cadastro!",
             "Lembre-se de que o email deve ser válido e sua senha deverá conter no mínimo 6 caracteres")
+
+    const liberarLogin = () => {
+        navigation.navigate('FazerLogin')
+        setMostraSucesso(false)
+    }
 
     const onChangeNome = (txtNome) => {
         setNome(txtNome)
@@ -104,6 +116,24 @@ export default function CadastrarUsuario() {
             <TouchableOpacity style={styles.botaoJaTemCadastro} onPress={AbrirFazerLogin}>
                 <Text style={{ fontSize: 17 }}>Já tem cadastro? Acesse!</Text>
             </TouchableOpacity>
+            <SCLAlert
+                theme="success"
+                show={mostraSucesso}
+                title="Cadastro realizado"
+                subtitle="Você agora pode fazer login no aplicativo"
+                onRequestClose={() => setMostraSucesso(false)}
+            >
+                <SCLAlertButton theme="success" onPress={liberarLogin}>Fazer Login</SCLAlertButton>
+            </SCLAlert>
+            <SCLAlert
+                theme="danger"
+                show={mostraErro}
+                title="Cadastro inválido"
+                subtitle="Seu email deve ser válido e a senha ter no mínimo 6 caracteres"
+                onRequestClose={() => setMostraErro(false)}
+            >
+                <SCLAlertButton theme="danger" onPress={() => setMostraErro(false)}>Tentar novamente</SCLAlertButton>
+            </SCLAlert>
 
         </SafeAreaView>
 

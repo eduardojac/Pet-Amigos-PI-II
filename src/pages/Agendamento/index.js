@@ -8,6 +8,7 @@ import { EvilIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { ScrollView } from 'react-native-gesture-handler';
 import firebase from 'firebase';
+import { SCLAlert, SCLAlertButton } from 'react-native-scl-alert'
 
 export default function Agendamento({ route }) {
 
@@ -108,6 +109,13 @@ export default function Agendamento({ route }) {
 
     }, [mesSelecionado, anoSelecionado]);
 
+    // Alertas personalizados
+    const [mostraErro, setMostraErro] = useState(false)
+    const [mostraErroBranco, setMostraErroBranco] = useState(false)
+    const [mostraErroHora, setMostraErroHora] = useState(false)
+    const [mostraSucesso, setMostraSucesso] = useState(false)
+
+
     // Modal de Realizar Agendamento
     const [visible, setVisible] = useState(false);
     const [servico, setServico] = useState('')
@@ -132,17 +140,22 @@ export default function Agendamento({ route }) {
     //Cadastrar 
     const cadastrarPet = async () => {
         if (mesSelecionado < new Date().getMonth() && anoSelecionado <= new Date().getFullYear()) {
-            falhaData()
+            //falhaData()
+            setMostraErro(true)
         } else if (diaSelecionado < new Date().getDate() && mesSelecionado <= new Date().getMonth() && anoSelecionado <= new Date().getFullYear()) {
-            falhaData()
+            //falhaData()
+            setMostraErro(true)
         } else if (horaSelecionada == "") {
-            falhaAgendamento()
+            //falhaAgendamento()
+            setMostraErroBranco(true)
         } else if (horaSelecionada.split(':')[0] < new Date().getHours() && diaSelecionado == new Date().getDate() && mesSelecionado == new Date().getMonth() && anoSelecionado == new Date().getFullYear()) {
-            falhaHora()
+            //falhaHora()
+            setMostraErroHora(true)
         } else {
             firebase.firestore().collection('agendamento').add({ servico: servico, empresa: route.params?.empresa, cidade: route.params?.cidade, mes: meses[mesSelecionado], dia: diaSelecionado, horario: horaSelecionada, preco: preco, user_id: user_id })
-            agendado()
-            AbrirAgenda()
+            //agendado()
+            setMostraSucesso(true)
+            //AbrirAgenda()
 
         }
     }
@@ -268,7 +281,7 @@ export default function Agendamento({ route }) {
                     </View>
                 </Modal>
 
-                <Image style={styles.avatarBanho} source={{uri: route.params?.foto}} />
+                <Image style={styles.avatarBanho} source={{ uri: route.params?.foto }} />
                 <Text style={styles.nomeEmpresa}>{route.params?.empresa}</Text>
                 <Text style={styles.dadosEmpresa}>{route.params?.cidade} {route.params?.telefone}</Text>
                 <Text style={styles.divisao}>__________________________________________________</Text>
@@ -290,7 +303,42 @@ export default function Agendamento({ route }) {
                 </TouchableOpacity>
 
             </View>
-
+            <SCLAlert
+                theme="success"
+                show={mostraSucesso}
+                title="Confirmado!"
+                subtitle="Seu agendamento será realizado em breve"
+                onRequestClose={() => setMostraSucesso(false)}
+            >
+                <SCLAlertButton theme="success" onPress={AbrirAgenda}>Ver minha agenda</SCLAlertButton>
+            </SCLAlert>
+            <SCLAlert
+                theme="danger"
+                show={mostraErroHora}
+                title="Hora inválida"
+                subtitle="Selecione um horário maior que o atual"
+                onRequestClose={() => setMostraErroHora(false)}
+            >
+                <SCLAlertButton theme="danger" onPress={() => setMostraErroHora(false)}>Tentar novamente</SCLAlertButton>
+            </SCLAlert>
+            <SCLAlert
+                theme="danger"
+                show={mostraErro}
+                title="Data inválida"
+                subtitle="Selecione um dia e mês igual ou superior a hoje"
+                onRequestClose={() => setMostraErro(false)}
+            >
+                <SCLAlertButton theme="danger" onPress={() => setMostraErro(false)}>Tentar novamente</SCLAlertButton>
+            </SCLAlert>
+            <SCLAlert
+                theme="warning"
+                show={mostraErroBranco}
+                title="Oops..."
+                subtitle="Preencha o horário"
+                onRequestClose={() => setMostraErroBranco(false)}
+            >
+                <SCLAlertButton theme="warning" onPress={() => setMostraErroBranco(false)}>Tentar novamente</SCLAlertButton>
+            </SCLAlert>
 
         </View>
 

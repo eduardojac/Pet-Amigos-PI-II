@@ -36,6 +36,8 @@ export default function Agenda() {
         })
     }
 
+    // Alertas personalizados
+
     // Passar lista de agendamentos por usuário
     const user_id = firebase.auth().currentUser.uid
 
@@ -64,6 +66,7 @@ export default function Agenda() {
         setMostraEscolha(true)
 
     }
+
 
     const [mostraEscolha, setMostraEscolha] = useState(false);
 

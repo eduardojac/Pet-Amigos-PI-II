@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         
     },
     botaoSair: {
-        marginTop: hp ('28%')
+        marginTop: hp ('37%')
     },
     avatar: {
         alignItems: 'center',

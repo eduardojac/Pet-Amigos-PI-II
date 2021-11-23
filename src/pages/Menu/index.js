@@ -93,11 +93,6 @@ export default function Menu(props) {
             <Feather name="message-circle" size={24} color="black" />
           )}
           label="Mensagens" />
-        <DrawerItem
-          icon={({ size, color }) => (
-            <Ionicons name="notifications-outline" size={24} color="black" />
-          )}
-          label="Notificações" />
         <DrawerItem onPress={AbrirConfig}
           icon={({ size, color }) => (
             <Feather name="settings" size={24} color="black" />

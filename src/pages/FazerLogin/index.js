@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, Image, TouchableOpacity, StyleSheet, SafeAreaView, TextInput, Alert, ActivityIndicator } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, SafeAreaView, TextInput, Alert, ActivityIndicator, LogBox } from 'react-native';
 import { styles, LoadingIcon } from '../FazerLogin/styles.js';
 import firebase from '../../../firebaseconection';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { render } from 'react-dom';
-
+import { SCLAlert, SCLAlertButton } from 'react-native-scl-alert'
 
 export default function FazerLogin() {
+    // Warnings para ignorar
+    LogBox.ignoreLogs([
+        "Animated: `useNativeDriver` was not specified. This is a required option and must be explicitly set to `true` or `false`",
+        "Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function"
+    ])
+
     const [animacao, setAnimacao] = useState(false)
 
 
@@ -33,7 +39,10 @@ export default function FazerLogin() {
 
     const [loading, setLoading] = useState('true')
 
-    
+
+    // Alertas personalizados
+    const [mostraErro, setMostraErro] = useState(false)
+    const [mostraSucesso, setMostraSucesso] = useState(false)
 
 
     //Fazer login
@@ -53,7 +62,8 @@ export default function FazerLogin() {
             navigation.navigate('Home')
         }).catch(() => {
             setAnimacao(false)
-            falha()
+            //falha()
+            setMostraErro(true)
         })
     }
     const falha = () =>
@@ -90,7 +100,7 @@ export default function FazerLogin() {
                     }
                 </TouchableOpacity>
             </View>
-            <ActivityIndicator color="black" size='large' animating={animacao}/>
+            <ActivityIndicator color="black" size='large' animating={animacao} />
             <TouchableOpacity style={styles.botaoAcessar} onPress={login}>
                 <Text style={styles.textBotaoAcessar}>ACESSAR</Text>
             </TouchableOpacity>
@@ -103,6 +113,15 @@ export default function FazerLogin() {
                 <Text style={{ fontSize: 17 }}>Esqueci minha senha</Text>
             </TouchableOpacity>
 
+            <SCLAlert
+                theme="danger"
+                show={mostraErro}
+                title="Oops..."
+                subtitle="Usuário não encontrado ou senha incorreta"
+                onRequestClose={() => setMostraErro(false)}
+            >
+                <SCLAlertButton theme="danger" onPress={() => setMostraErro(false)}>Tentar novamente</SCLAlertButton>
+            </SCLAlert>
         </SafeAreaView>
 
 

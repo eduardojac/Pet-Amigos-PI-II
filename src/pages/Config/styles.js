@@ -60,6 +60,14 @@ const styles = StyleSheet.create({
         left: wp('5%'),
     },
 
+    txtAjuda:{
+        fontSize: hp('2.5%'),
+        fontWeight: 'bold',
+        color: '#43464B',
+        paddingTop: hp('4%'),
+        left: wp('5%'),
+    }
+
 })
 
 export { styles };

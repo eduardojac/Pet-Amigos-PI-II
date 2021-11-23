@@ -9,8 +9,8 @@ import { render } from 'react-dom';
 import { Appearance } from 'react-native';
 
 export default function Config() {
-    //Navegação entre telas
 
+    //Navegação entre telas
     const navigation = useNavigation();
 
     const adaptarTema = () => {
@@ -19,10 +19,16 @@ export default function Config() {
             useColorScheme();
         }
     }
-    
+
     const AbrirHome = () => {
         navigation.reset({
             routes: [{ name: 'Home' }]
+        })
+    }
+
+    const AbrirAjuda = () => {
+        navigation.reset({
+            routes: [{ name: 'Ajuda' }]
         })
     }
 
@@ -31,6 +37,8 @@ export default function Config() {
             routes: [{ name: 'Sobre' }]
         })
     }
+
+
 
     return (
         <View style={styles.container}>
@@ -46,12 +54,12 @@ export default function Config() {
                         <Text style={styles.txtAparencia} onPress={adaptarTema}>Aparência</Text>
                         <View style={styles.hdivider} />
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Text style={styles.txtOpcoes} >Notificações</Text>
-                        <View style={styles.hdivider} />
-                    </TouchableOpacity>
                     <Text style={styles.txtOpcoes}>Versão  1.0</Text>
                     <View style={styles.hdivider} />
+                    <TouchableOpacity>
+                        <Text style={styles.txtAjuda} onPress={AbrirAjuda}>Ajuda</Text>
+                        <View style={styles.hdivider} />
+                    </TouchableOpacity>
                     <TouchableOpacity>
                         <Text onPress={AbrirSobre} style={styles.txtOpcoes}>Sobre</Text>
                         <View style={styles.hdivider} />

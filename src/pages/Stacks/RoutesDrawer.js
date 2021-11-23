@@ -18,6 +18,8 @@ import AgendamentoPasseio from '../AgendamentoPasseio';
 import Mensagens from '../Mensagens';
 import Sobre from '../Sobre'
 import Config from '../Config'
+import Ajuda from '../Ajuda'
+import Relatar from '../Relatar'
 
 const Drawer = createDrawerNavigator();
 
@@ -71,6 +73,14 @@ export default () => (
       name="Config"
       component={Config}
       />
+      <Drawer.Screen
+      name="Ajuda"
+      component={Ajuda}
+      />
+      <Drawer.Screen
+      name="Relatar"
+      component={Relatar}
+      />      
     
   </Drawer.Navigator>
 
