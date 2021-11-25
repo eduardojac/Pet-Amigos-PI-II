@@ -1,6 +1,6 @@
 import React from 'react'
 import { styles } from '../Perfil/styles'
-import { View, Text, Image, TouchableOpacity, ActivityIndicator, LogBox } from 'react-native'
+import { View, Text, Image, TouchableOpacity, ActivityIndicator, LogBox, Alert } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Feather } from '@expo/vector-icons';
 import { DrawerItem } from '@react-navigation/drawer';
@@ -117,8 +117,10 @@ export default function Perfil() {
             });
 
         } catch (e) {
-            console.log(e)
+            Alert.alert('Por favor, insira uma foto')
+            //console.log(e)
             setAnimacao(false)
+           
         }
 
     }

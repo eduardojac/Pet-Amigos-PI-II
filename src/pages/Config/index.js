@@ -38,8 +38,6 @@ export default function Config() {
         })
     }
 
-
-
     return (
         <View style={styles.container}>
             <View style={styles.topConfigDiv}>
@@ -51,7 +49,7 @@ export default function Config() {
             <View>
                 <View style={styles.divOpcoes}>
                     <TouchableOpacity>
-                        <Text style={styles.txtAparencia} onPress={adaptarTema}>Aparência</Text>
+                        <Text style={styles.txtAparencia}>Idioma (Português Brasil)</Text>
                         <View style={styles.hdivider} />
                     </TouchableOpacity>
                     <Text style={styles.txtOpcoes}>Versão  1.0</Text>

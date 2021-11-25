@@ -159,7 +159,7 @@ export default function Home({ route }) {
             </TouchableOpacity>
 
 
-            <View style={{ bottom: '190%', width: 350, justifyContent: 'center', flexDirection: 'row' }}>
+            <View style={{ bottom: '183%', width: 350, justifyContent: 'center', flexDirection: 'row' }}>
                     <Text onPress={pegarLoc}>{endereco + numero + complemento} </Text> 
                     <EvilIcons style={{left: 2, bottom: 10}}name="chevron-down" size={45} color="black" onPress={pegarLoc}/>
             </View>

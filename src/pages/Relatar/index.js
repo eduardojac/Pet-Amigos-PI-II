@@ -10,6 +10,12 @@ import { render } from 'react-dom';
 export default function Relatar() {
 
     //Navegação entre telas
+    const AbrirHome = () => {
+        navigation.reset({
+            routes: [{ name: 'Home' }]
+        })
+    }
+
 
     const navigation = useNavigation();
 
@@ -19,18 +25,18 @@ export default function Relatar() {
         })
     }
 
-    return(
+    return (
         <View style={styles.containerGeral}>
             <TouchableOpacity style={styles.iconeVoltar} onPress={AbrirAjuda}>
-                    <Ionicons name="arrow-back-circle-outline" size={50} color="black" />
+                <Ionicons name="arrow-back-circle-outline" size={50} color="black" />
             </TouchableOpacity>
             <View style={styles.inputArea}>
                 <TextInput style={styles.inputRelatar} placeholder='Descreva resumidamente, o que está acontecendo?'>
                 </TextInput>
-        </View>
-        <TouchableOpacity style={styles.botaoEnviar}>
+            </View>
+            <TouchableOpacity style={styles.botaoEnviar} onPress={AbrirHome}>
                 <Text style={styles.textBotaoEnviar}>ENVIAR</Text>
             </TouchableOpacity>
         </View>
-    )            
+    )
 }
